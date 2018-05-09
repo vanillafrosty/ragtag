@@ -20,4 +20,12 @@ body {
 }
 
 .homeContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedContainer {
+  display: flex;
+  margin: auto;
+  width: 952px;
 }
