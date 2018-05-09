@@ -45,9 +45,9 @@ export default class SessionForm extends React.Component {
       <div className="sessionContainer">
         <div className="sessionPicContainer">
         </div>
-        <div className="sessionFormContainer">
+        <div className={this.props.errors === 'none' ? "sessionFormContainer" : "sessionFormContainerWithErrors"}>
           <div className="sessionForm">
-            {this.props.errors}
+            <div className="sessionErrors">{this.props.errors === 'none' ? '' : this.props.errors}</div>
             <h1 className="title">Ragtag</h1>
             <form onSubmit={this.handleSubmit}>
               <label>Username <br />

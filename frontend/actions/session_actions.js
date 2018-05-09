@@ -7,6 +7,8 @@ export const login = (user) => {
   return (dispatch) => {
     return APIUtil.login(user).then( user => {
       return dispatch(receiveCurrentUser(user));
+    }, err => {
+      return dispatch(receiveErrors(err.responseJSON));
     });
   };
 };
@@ -23,6 +25,8 @@ export const signup = (user) => {
   return (dispatch) => {
     return APIUtil.signup(user).then( user => {
       return dispatch(receiveCurrentUser(user));
+    }, err => {
+      return dispatch(receiveErrors(err.responseJSON));
     });
   };
 };

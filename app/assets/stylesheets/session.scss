@@ -20,6 +20,18 @@
   height: 400px;
 }
 
+.sessionFormContainerWithErrors{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #ffffff;
+  border-color: #E3E3E3;
+  border-width: 1px;
+  border-style: solid;
+  width: 360px;
+  height: 480px;
+}
+
 .sessionPicContainer {
   background-image: image-url("session_pic.jpeg");
   // width: 640px;
@@ -81,4 +93,7 @@
   background-color: #112558;
   color: #ffffff;
   font-weight: 500;
+}
+
+.sessionErrors {
 }
