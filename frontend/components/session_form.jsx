@@ -43,6 +43,8 @@ export default class SessionForm extends React.Component {
     }
     return (
       <div className="sessionContainer">
+        <div className="sessionPicContainer">
+        </div>
         <div className="sessionFormContainer">
           <div className="sessionForm">
             {this.props.errors}
@@ -51,7 +53,7 @@ export default class SessionForm extends React.Component {
               <label>Username <br />
                 <input type="text" value={this.state.username} onChange={this.handleChange('username')}/>
               </label>
-              <br /><br /><br />
+              <br /><br />
               <label>Password <br />
                 <input type="text" value={this.state.password} onChange={this.handleChange('password')}/>
               </label>
