@@ -18,16 +18,13 @@ export default class NavbarContainer extends React.Component {
           <SearchbarContainer />
           <ul className="navbar-buttons">
             <li>
-              item 1
+              <i className="far fa-compass fa-lg"></i>
             </li>
             <li>
-              item 2
+              <i className="far fa-heart fa-lg"></i>
             </li>
             <li>
-              item 3
-            </li>
-            <li>
-              item 4
+              <i className="far fa-user fa-lg"></i>
             </li>
           </ul>
         </nav>

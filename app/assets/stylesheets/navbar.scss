@@ -11,7 +11,7 @@
   align-items: center;
   height: 75px;
   background-color: #ffffff;
-  width: 900px;
+  width: 950px;
   margin: auto;
 }
 
@@ -27,6 +27,8 @@
 
 .navbar-buttons {
   display: flex;
+  width: 120px;
+  justify-content: space-between;
 }
 
 #ragtagSVG {
