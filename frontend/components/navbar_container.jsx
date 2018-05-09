@@ -1,5 +1,4 @@
 import React from 'react';
-import Icons from './icons';
 
 export default class NavbarContainer extends React.Component {
 
@@ -26,7 +25,6 @@ export default class NavbarContainer extends React.Component {
             </li>
           </ul>
         </nav>
-        <Icons/>
         <svg id="ragtagSVG"><use href="#ragtag"></use></svg>
       </header>
     )
