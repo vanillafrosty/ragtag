@@ -1,27 +1,20 @@
-//NEEDS TO BE UPDATED LATER TO JUST BE A CONTAINER COMPONENT
-// import { connect } from 'react-redux';
-//
-// const mapStateToProps = (state) => {
-//
-// };
-//
-// const mapDispatchToProps = (dispatch) => {
-//
-// };
+import { connect } from 'react-redux';
+import PostIndex from './post_index';
+import { fetchPosts } from '../actions/post_actions';
+import _ from 'lodash';
 
-import React from 'react';
+const mapStateToProps = (state) => {
+  return {
+    user: state.entities.users[state.session.id],
+    posts: _.values(state.entities.posts)
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPosts: () => dispatch(fetchPosts())
+  };
+};
 
 
-export default class PostIndexContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>HERE is your user feed, player</h1>
-      </div>
-    );
-  }
-}
+export default connect(mapStateToProps, mapDispatchToProps)(PostIndex);
