@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchbarContainer from './searchbar_container';
 
 export default class NavbarContainer extends React.Component {
 
@@ -8,9 +9,14 @@ export default class NavbarContainer extends React.Component {
 
   render() {
     return (
-      <header>
-        <nav>
-          <ul>
+      <header className="navbarHeader">
+        <nav className="navbarContainer">
+          <div className="navbar-logo-title">
+            <svg id="ragtagSVG"><use href="#ragtag"></use></svg>
+            <h1>Ragtag</h1>
+          </div>
+          <SearchbarContainer />
+          <ul className="navbar-buttons">
             <li>
               item 1
             </li>
@@ -25,7 +31,6 @@ export default class NavbarContainer extends React.Component {
             </li>
           </ul>
         </nav>
-        <svg id="ragtagSVG"><use href="#ragtag"></use></svg>
       </header>
     )
   }
