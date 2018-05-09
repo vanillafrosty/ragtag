@@ -41,13 +41,25 @@ export default class SessionForm extends React.Component {
       other_str = 'Already Registered?';
       other_str_prompt = "Log in!";
     }
+    let renderedErrors;
+    if (this.props.errors.length === 0) {
+      renderedErrors = '';
+    } else {
+      renderedErrors = this.props.errors.map( (err) => {
+        return <li>{err}</li>
+      });
+    }
     return (
       <div className="sessionContainer">
         <div className="sessionPicContainer">
         </div>
-        <div className={this.props.errors === 'none' ? "sessionFormContainer" : "sessionFormContainerWithErrors"}>
+        <div className={renderedErrors === '' ? "sessionFormContainer" : "sessionFormContainerWithErrors"}>
           <div className="sessionForm">
-            <div className="sessionErrors">{this.props.errors === 'none' ? '' : this.props.errors}</div>
+            <div className="sessionErrors">
+              <ul>
+                {renderedErrors}
+              </ul>
+            </div>
             <h1 className="title">Ragtag</h1>
             <form onSubmit={this.handleSubmit}>
               <label>Username <br />

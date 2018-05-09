@@ -4,10 +4,8 @@ import SessionForm from './session_form';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
-  let errors_slice = state.errors.session;
-  let errors = errors_slice.length === 0 ? 'none' : errors_slice;
   return {
-    errors: errors,
+    errors: state.errors.session,
     formType: 'signup'
   };
 };
