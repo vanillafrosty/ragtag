@@ -1,6 +1,6 @@
 import React from 'react';
 import PostIndexContainer from './post_index_container';
-
+import NavbarContainer from './navbar_container';
 
 export default class HomeContainer extends React.Component {
 
@@ -10,7 +10,10 @@ export default class HomeContainer extends React.Component {
 
   render() {
     return (
-      <PostIndexContainer />
+      <div className="homeContainer">
+        <NavbarContainer />
+        <PostIndexContainer />
+      </div>
     );
   }
 
