@@ -1,6 +1,8 @@
 .navbarHeader {
   position: sticky;
   top: 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid #E3E3E3;
 }
 
 .navbarContainer {
@@ -9,9 +11,8 @@
   align-items: center;
   height: 75px;
   background-color: #ffffff;
-  border-bottom: 1px solid #E3E3E3;
-  padding-left: 35px;
-  padding-right: 35px;
+  width: 900px;
+  margin: auto;
 }
 
 .navbar-logo-title {
