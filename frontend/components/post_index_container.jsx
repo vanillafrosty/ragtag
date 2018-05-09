@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import PostIndex from './post_index';
 import { fetchPosts } from '../actions/post_actions';
+import { logout } from '../actions/session_actions';
 import _ from 'lodash';
 
 const mapStateToProps = (state) => {
@@ -12,7 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPosts: () => dispatch(fetchPosts())
+    fetchPosts: () => dispatch(fetchPosts()),
+    logout: () => dispatch(logout())
   };
 };
 
