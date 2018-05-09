@@ -14,7 +14,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="appContainer">
         <Switch>
           <AuthRoute path="/login" component={LoginForm} />
           <AuthRoute path="/signup" component={SignupForm} />

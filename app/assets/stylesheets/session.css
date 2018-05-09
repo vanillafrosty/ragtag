@@ -1,0 +1,63 @@
+.sessionFormContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #ffffff;
+  border-color: #D3D3D3;
+  border-width: 1px;
+  border-style: solid;
+  width: 300px;
+  height: 450px;
+}
+
+.sessionForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.sessionPrompt {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.session-prompt-link {
+  color: #5A89FF;
+}
+
+.title {
+  font-family: 'Pacifico', sans-serif;
+}
+
+.sessionForm h1 {
+  font-size: 48px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.sessionForm label{
+}
+
+.sessionForm input {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #D3D3D3;
+  height: 25px;
+  border-radius: 3px;
+}
+
+.session-button {
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 100%;
+  background-color: #112558;
+  color: #ffffff;
+  font-weight: 500;
+}

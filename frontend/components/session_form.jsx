@@ -42,24 +42,29 @@ export default class SessionForm extends React.Component {
       other_str_prompt = "Log in!";
     }
     return (
-      <div>
-        <Link to="/">Home</Link>
-        {this.props.errors}
-        <h1>{str}</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>Username
-            <input type="text" value={this.state.username} onChange={this.handleChange('username')}/>
-          </label>
+      <div className="sessionContainer">
+        <div className="sessionFormContainer">
+          <div className="sessionForm">
+            {this.props.errors}
+            <h1 className="title">Ragtag</h1>
+            <form onSubmit={this.handleSubmit}>
+              <label>Username <br />
+                <input type="text" value={this.state.username} onChange={this.handleChange('username')}/>
+              </label>
+              <br /><br /><br />
+              <label>Password <br />
+                <input type="text" value={this.state.password} onChange={this.handleChange('password')}/>
+              </label>
+              <br /><br /><br />
+              <button type="submit" className="session-button">{str}</button>
 
-          <label>Password
-            <input type="text" value={this.state.password} onChange={this.handleChange('password')}/>
-          </label>
-
-          <button type="submit">{str}</button>
-
-        </form>
-        <h3>{other_str}</h3>
-        <Link to={`/${other_path}`}>{other_str_prompt}</Link>
+            </form>
+          </div>
+          <div className="sessionPrompt">
+            <h3>{other_str}</h3>
+            <Link className="session-prompt-link" to={`/${other_path}`}>{other_str_prompt}</Link>
+          </div>
+        </div>
       </div>
     );
   }
