@@ -6,6 +6,7 @@ import LoginForm from './login_form_container';
 import PostIndexContainer from './post_index_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import HomeContainer from './home_container';
+import ProfileContainer from './profile_container';
 
 export default class App extends React.Component {
 
@@ -19,6 +20,7 @@ export default class App extends React.Component {
         <Switch>
           <AuthRoute path="/login" component={LoginForm} />
           <AuthRoute path="/signup" component={SignupForm} />
+          <ProtectedRoute path="/user/:userId" component={ProfileContainer} />
           <ProtectedRoute path="/" component={HomeContainer} />
         </Switch>
       </div>

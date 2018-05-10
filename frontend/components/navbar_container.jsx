@@ -1,35 +1,14 @@
 import React from 'react';
-import SearchbarContainer from './searchbar_container';
+import { connect } from 'react-redux';
+import Navbar from './navbar';
 
-export default class NavbarContainer extends React.Component {
 
-  constructor(props){
-    super(props);
+const mapStateToProps = (state) => {
+  return {
+    userId: state.session.id
   }
 
-  render() {
-    return (
-      <header className="navbarHeader">
-        <nav className="navbarContainer">
-          <div className="navbar-logo-title">
-            <svg id="ragtagSVG"><use href="#ragtag"></use></svg>
-            <h1>Ragtag</h1>
-          </div>
-          <SearchbarContainer />
-          <ul className="navbar-buttons">
-            <li>
-              <i className="far fa-compass fa-lg"></i>
-            </li>
-            <li>
-              <i className="far fa-heart fa-lg"></i>
-            </li>
-            <li>
-              <i className="far fa-user fa-lg"></i>
-            </li>
-          </ul>
-        </nav>
-      </header>
-    )
-  }
+};
 
-}
+
+export default connect(mapStateToProps, null)(Navbar);
