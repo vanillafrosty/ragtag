@@ -7,6 +7,10 @@ export default class ProfileInfo extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.fetchPosts();
+  }
+
   render() {
     return (
       <div className="profile-info-container">
@@ -19,7 +23,7 @@ export default class ProfileInfo extends React.Component {
             <button type="button" onClick={this.props.logout}>Logout</button>
           </li>
           <li className="profile-info-second">
-            0 posts
+            {`${this.props.posts.length} posts`}
           </li>
           <li className="profile-info-third">
             BIO HERE
