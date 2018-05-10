@@ -19,7 +19,7 @@ body {
   background-color: #F9F9F9;
 }
 
-.homeContainer {
+.home-container {
   display: flex;
   flex-direction: column;
 }

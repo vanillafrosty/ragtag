@@ -1,5 +1,6 @@
 import React from 'react';
-import NavbarContainer from './navbar_container';
+import ProfileInfoContainer from './profile_info_container';
+
 
 export default class ProfileContainer extends React.Component {
 
@@ -10,9 +11,9 @@ export default class ProfileContainer extends React.Component {
   render() {
     return (
       <div>
-        <NavbarContainer />
         <h1>THIS IS A PROFILE PAGE</h1>
         <h1>CURRENT user is...{this.props.userId}</h1>
+        <ProfileInfoContainer />
       </div>
     );
   }

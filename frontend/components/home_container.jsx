@@ -1,25 +1,28 @@
 import React from 'react';
-import PostIndexContainer from './post_index_container';
 import NavbarContainer from './navbar_container';
-import SidebarContainer from './sidebar_container';
+import { Switch } from 'react-router-dom';
+import { ProtectedRoute } from '../util/route_util';
+import FeedContainer from './feed_container';
+import ProfileContainer from './profile_container';
+
+
 
 export default class HomeContainer extends React.Component {
 
-  constructor(props) {
+  constructor(props){
     super(props);
   }
 
   render() {
     return (
-      <div className="homeContainer">
+      <div className="home-container">
         <NavbarContainer />
-        <div className="feedContainer">
-          <PostIndexContainer />
-          <SidebarContainer />
-        </div>
+        <Switch>
+          <ProtectedRoute path="/user/:userId" component={ProfileContainer} />
+          <ProtectedRoute path="/" component={FeedContainer} />
+        </Switch>
       </div>
-    );
+    )
   }
-
 
 }
