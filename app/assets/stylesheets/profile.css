@@ -21,6 +21,26 @@
   background-color: blue;
 }
 
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 60px;
+  height: 150px;
+  width: 600px;
+}
+
+.profile-info-first {
+  display: flex;
+}
+
+.profile-info-second {
+  display: flex;
+}
+
+.profile-info-third {
+  display: flex;
+}
+
 .post-lite-page {
   background-color: #ffffff;
   border-color: #E3E3E3;
