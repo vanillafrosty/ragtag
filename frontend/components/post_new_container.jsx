@@ -8,7 +8,7 @@ export default class PostNewContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="post-new-container">
         <h1>NEW POST!!!</h1>
       </div>
     );
