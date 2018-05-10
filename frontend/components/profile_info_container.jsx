@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ProfileInfo from './profile_info';
+import { logout } from '../actions/session_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -8,5 +9,10 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(logout())
+  };
+};
 
-export default connect(mapStateToProps, null)(ProfileInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileInfo);
