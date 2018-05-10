@@ -16,7 +16,7 @@ export default class ProfileInfo extends React.Component {
         <div className="profile-info">
           <p>{this.props.user.username}</p>
           <button type="button">New Post</button>
-          0 posts boiii
+          <br />0 posts boiii
         </div>
         <h1>WELCOME, {this.props.user.username}</h1>
         <button type="button" onClick={this.props.logout}>Logout</button>
