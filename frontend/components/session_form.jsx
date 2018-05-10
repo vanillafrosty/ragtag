@@ -67,7 +67,7 @@ export default class SessionForm extends React.Component {
               </label>
               <br /><br />
               <label>Password <br />
-                <input type="text" value={this.state.password} onChange={this.handleChange('password')}/>
+                <input type="password" value={this.state.password} onChange={this.handleChange('password')}/>
               </label>
               <br /><br /><br />
               <button type="submit" className="session-button">{str}</button>
