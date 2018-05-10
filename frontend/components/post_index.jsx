@@ -17,9 +17,6 @@ export default class PostIndex extends React.Component {
     });
     return (
       <div className="post-index">
-        <h1>WELCOME, {this.props.user.username}</h1>
-        <button type="button" onClick={this.props.logout}>Logout</button>
-        <h1>HERE is your user feed</h1>
         <ul>
           {posts}
         </ul>

@@ -18,6 +18,9 @@ export default class ProfileInfo extends React.Component {
           <button type="button">New Post</button>
           0 posts boiii
         </div>
+        <h1>WELCOME, {this.props.user.username}</h1>
+        <button type="button">Logout</button>
+        <h1>HERE is your user feed</h1>
 
       </div>
     );
