@@ -4,6 +4,7 @@ import ProfileInfo from './profile_info';
 import { logout } from '../actions/session_actions';
 import _ from 'lodash';
 import { fetchPosts, createPost } from '../actions/post_actions';
+import { toggleModal } from '../actions/ui_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -16,7 +17,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(logout()),
     fetchPosts: () => dispatch(fetchPosts()),
-    createPost: (post) => dispatch(createPost(post))
+    createPost: (post) => dispatch(createPost(post)),
+    toggleModal: () => dispatch(toggleModal())
   };
 };
 
