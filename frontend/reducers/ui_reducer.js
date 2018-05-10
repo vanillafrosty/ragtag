@@ -1,13 +1,8 @@
-import { TOGGLE_MODAL } from '../actions/ui_actions';
+import { combineReducers } from 'redux';
+import modalReducer from './modal_reducer';
 
-const uiReducer = (state = { modal: false }, action) => {
-  Object.freeze(state);
-  switch(action.type) {
-    case TOGGLE_MODAL:
-      return { modal: !state.modal };
-    default:
-      return state;
-  }
-};
+const uiReducer = combineReducers({
+  modal: modalReducer
+});
 
 export default uiReducer;

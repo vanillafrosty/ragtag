@@ -7,10 +7,6 @@ export default class ProfileInfo extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.fetchPosts();
-  }
-
   render() {
     return (
       <div className="profile-info-container">
@@ -19,7 +15,7 @@ export default class ProfileInfo extends React.Component {
         <ul className="profile-info">
           <li className="profile-info-first">
             <div className="user-text">{this.props.user.username}</div>
-            <button type="button" onClick={this.props.toggleModal}>New Post</button>
+            <button type="button" onClick={this.props.openModal}>New Post</button>
             <button type="button" onClick={this.props.logout}>Logout</button>
           </li>
           <li className="profile-info-second">

@@ -4,7 +4,7 @@ import { Switch } from 'react-router-dom';
 import { ProtectedRoute } from '../util/route_util';
 import FeedContainer from './feed_container';
 import ProfileContainer from './profile_container';
-
+import Modal from './modal';
 
 
 export default class HomeContainer extends React.Component {
@@ -16,6 +16,7 @@ export default class HomeContainer extends React.Component {
   render() {
     return (
       <div className="home-container">
+        <Modal />
         <NavbarContainer />
         <Switch>
           <ProtectedRoute path="/user/:userId" component={ProfileContainer} />
