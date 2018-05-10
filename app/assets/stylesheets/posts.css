@@ -53,10 +53,12 @@
 }
 
 .x-button {
-  height: 50px;
-  width: 50px;
+  cursor: pointer;
+  height: 48px;
+  width: 48px;
   margin-left: auto;
   text-align: center;
+  vertical-align: middle;
   font-size: 48px;
   color: #112558;
 }

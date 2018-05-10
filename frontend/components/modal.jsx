@@ -11,7 +11,7 @@ const Modal = ({modal, closeModal}) => {
   let component;
   switch (modal) {
     case 'create':
-      component = <PostNewContainer />;
+      component = <PostNewContainer closeModal={closeModal} />;
       break;
     case 'show':
       component = <PostShowContainer />;
@@ -20,8 +20,8 @@ const Modal = ({modal, closeModal}) => {
       return null;
   }
   return (
-    <div className="modal-background" onClick={closeModal}>
-      <div className="modal-child" onClick={e => e.stopPropagation()}>
+    <div className="modal-background" onClick={modal === 'show' ? closeModal : null}>
+      <div className="modal-child" onClick={modal === 'show' ? e => e.stopPropagation() : null}>
         { component }
       </div>
     </div>
