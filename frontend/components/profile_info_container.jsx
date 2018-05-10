@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ProfileInfo from './profile_info';
 import { logout } from '../actions/session_actions';
 import _ from 'lodash';
-import { fetchPosts } from '../actions/post_actions';
+import { fetchPosts, createPost } from '../actions/post_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -15,7 +15,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(logout()),
-    fetchPosts: () => dispatch(fetchPosts())
+    fetchPosts: () => dispatch(fetchPosts()),
+    createPost: (post) => dispatch(createPost(post))
   };
 };
 
