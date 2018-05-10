@@ -14,15 +14,15 @@ export default class ProfileInfo extends React.Component {
         </div>
         <ul className="profile-info">
           <li className="profile-info-first">
-            <div>{this.props.user.username}</div>
+            <div className="user-text">{this.props.user.username}</div>
             <button type="button">New Post</button>
             <button type="button" onClick={this.props.logout}>Logout</button>
           </li>
           <li className="profile-info-second">
-            0 posts boiii
+            0 posts
           </li>
           <li className="profile-info-third">
-            BIO
+            BIO HERE
           </li>
         </ul>
 
