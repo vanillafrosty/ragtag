@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PostNewContainer from './post_new_container';
 import PostShowContainer from './post_show_container';
 
-const Modal = ({modal, toggleModal}) => {
+const Modal = ({modal, closeModal}) => {
   if (!modal) {
     return null;
   }
