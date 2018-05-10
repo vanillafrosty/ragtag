@@ -10,10 +10,25 @@ export const receivePosts = (posts) => {
   };
 };
 
+export const receivePost = (post) => {
+  return {
+    type: RECEIVE_POST,
+    post: post
+  };
+};
+
 export const fetchPosts = () => {
   return (dispatch) => {
     return ApiUtil.fetchPosts().then( posts => {
       return dispatch(receivePosts(posts));
+    });
+  };
+};
+
+export const createPost = (post) => {
+  return (dispatch) => {
+    return ApiUtil.createPost(post).then( post => {
+      return dispatch(receivePost(post));
     });
   };
 };
