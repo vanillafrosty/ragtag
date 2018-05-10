@@ -1,6 +1,6 @@
 import React from 'react';
 import ProfileInfoContainer from './profile_info_container';
-
+import PostLitePage from './post_lite_page';
 
 export default class ProfileContainer extends React.Component {
 
@@ -10,10 +10,9 @@ export default class ProfileContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>THIS IS A PROFILE PAGE</h1>
-        <h1>CURRENT user is...{this.props.userId}</h1>
+      <div className="profile-container">
         <ProfileInfoContainer />
+        <PostLitePage />
       </div>
     );
   }

@@ -11,16 +11,15 @@ export default class ProfileInfo extends React.Component {
     return (
       <div className="profile-info-container">
         <div className="profile-pic">
-          <p>THIS IS A PROFILE PIC</p>
         </div>
         <div className="profile-info">
           <p>{this.props.user.username}</p>
           <button type="button">New Post</button>
           <br />0 posts boiii
+          <h1>WELCOME, {this.props.user.username}</h1>
+          <button type="button" onClick={this.props.logout}>Logout</button>
+          <h1>HERE is your user feed</h1>
         </div>
-        <h1>WELCOME, {this.props.user.username}</h1>
-        <button type="button" onClick={this.props.logout}>Logout</button>
-        <h1>HERE is your user feed</h1>
 
       </div>
     );
