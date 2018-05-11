@@ -37,28 +37,68 @@
   height: 600px;
   width: 950px;
   background-color: #ffffff;
+  font-family: 'Raleway', sans-serif;
+}
+
+.post-new-container .post-new-image {
+  width: 600px;
+  height: 600px;
+  background-color: lightgray;
 }
 
 .post-new-container form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  background-color: blue;
 }
 
-.post-new-container input {
+
+.post-new-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 600px;
+  width: 350px;
+}
+
+.post-new-submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+.post-new-submit textarea {
+  resize: none;
   border-width: 1px;
   border-style: solid;
   border-color: #D3D3D3;
+  border-radius: 1px;
+}
+
+.post-new-submit button {
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  width: 40%;
+  margin: 30px;
+  background-color: #112558;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 .x-button {
+  position: absolute;
+  top: 0;
+  right: 0;
   cursor: pointer;
   height: 48px;
   width: 48px;
   margin-left: auto;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #112558;
 }
