@@ -18,7 +18,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(logout()),
     fetchPosts: () => dispatch(fetchPosts()),
-    openModal: () => dispatch(openModal('create'))
+    openCreateModal: () => dispatch(openModal('create')),
+    openShowModal: () => dispatch(openModal('show'))
   };
 };
 
@@ -36,8 +37,8 @@ class ProfileContainer extends React.Component {
     const { user, posts, logout, openModal } = this.props;
     return (
       <div className="profile-container">
-        <ProfileInfo user={user} posts={posts} logout={logout} openModal={openModal} />
-        <PostLitePage posts={posts} />
+        <ProfileInfo user={user} posts={posts} logout={logout} openModal={openCreateModal} />
+        <PostLitePage posts={posts} openModal={openShowModal} />
       </div>
     );
   }

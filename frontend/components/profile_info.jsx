@@ -11,6 +11,7 @@ export default class ProfileInfo extends React.Component {
     return (
       <div className="profile-info-container">
         <div className="profile-pic">
+          <img src={this.props.user.avatar_url} />
         </div>
         <ul className="profile-info">
           <li className="profile-info-first">

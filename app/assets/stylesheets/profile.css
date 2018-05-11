@@ -17,8 +17,13 @@
   margin-right: 60px;
   height: 140px;
   width: 140px;
+}
+
+.profile-pic img {
+  height: 100%;
+  width: 100%;
   border-radius: 70px;
-  background-color: blue;
+  object-fit: cover;
 }
 
 .profile-info {
