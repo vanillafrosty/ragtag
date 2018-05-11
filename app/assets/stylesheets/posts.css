@@ -40,10 +40,16 @@
   font-family: 'Raleway', sans-serif;
 }
 
-.post-new-container .post-new-image {
+.post-new-image {
   width: 600px;
   height: 600px;
   background-color: lightgray;
+}
+
+.post-new-image-preview {
+  width: 600px;
+  height: 600px;
+  object-fit: cover;
 }
 
 .post-new-container form {
