@@ -27,6 +27,7 @@ body {
 .feedContainer {
   display: flex;
   margin: auto;
+  margin-top: 50px;
   width: 952px;
 }
 

@@ -1,4 +1,9 @@
 .sidebar-container {
   width:300px;
+  height: 500px;
   margin-left: 50px;
+  background-color: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #E3E3E3;
 }
