@@ -77,6 +77,7 @@ export default class SessionForm extends React.Component {
               <button type="submit" className="session-button">{str}</button>
 
             </form>
+            <div className="sessionDemo" onClick={this.props.demoLogin}>Log in as demo user</div>
           </div>
           <div className="sessionPrompt">
             <h3>{other_str}</h3>

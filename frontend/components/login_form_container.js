@@ -11,7 +11,12 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  let demoUser = {
+    username: 'instagram',
+    password: 'starwars'
+  };
   return {
+    demoLogin: () => dispatch(login(demoUser)),
     processForm: (user) => dispatch(login(user)),
     clearErrors: () => dispatch(clearErrors())
   };

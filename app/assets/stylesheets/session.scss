@@ -17,7 +17,7 @@
   border-width: 1px;
   border-style: solid;
   width: 360px;
-  height: 400px;
+  height: 440px;
 }
 
 .sessionFormContainerWithErrors{
@@ -29,7 +29,7 @@
   border-width: 1px;
   border-style: solid;
   width: 360px;
-  height: 480px;
+  height: 520px;
 }
 
 .sessionPicContainer {
@@ -104,4 +104,10 @@
 .sessionErrors {
   text-align: center;
   color: #D10606;
+}
+
+.sessionDemo {
+  padding-top: 20px;
+  color: #5A89FF;
+  cursor: pointer;
 }
