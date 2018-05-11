@@ -21,13 +21,6 @@ export default class PostNewContainer extends React.Component {
     };
   }
 
-  fileBind(file, result) {
-    return (e) => {
-      e.preventDefault();
-      this.setState({ imgFile: file, imgUrl: result});
-    };
-  }
-
   updateFile(e) {
     e.preventDefault();
     let file = e.currentTarget.files[0];
