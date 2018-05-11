@@ -34,7 +34,7 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
-    const { user, posts, logout, openModal } = this.props;
+    const { user, posts, logout, openCreateModal, openShowModal } = this.props;
     return (
       <div className="profile-container">
         <ProfileInfo user={user} posts={posts} logout={logout} openModal={openCreateModal} />
