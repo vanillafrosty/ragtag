@@ -6,7 +6,6 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    debugger
     @post = current_user.posts.new(post_params)
     if @post.save
       render :show
