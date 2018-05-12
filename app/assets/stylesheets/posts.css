@@ -52,7 +52,7 @@
   object-fit: cover;
 }
 
-.post-new-container form {
+.post-new-form {
   display: flex;
   flex-direction: row;
   align-items: center;

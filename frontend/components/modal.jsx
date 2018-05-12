@@ -3,15 +3,16 @@ import { closeModal } from '../actions/modal_actions';
 import { connect } from 'react-redux';
 import PostNewContainer from './post_new_container';
 import PostShowContainer from './post_show_container';
+import { createPost } from '../actions/post_actions';
 
-const Modal = ({modal, closeModal}) => {
+const Modal = ({modal, closeModal, createPost}) => {
   if (!modal) {
     return null;
   }
   let component;
   switch (modal) {
     case 'create':
-      component = <PostNewContainer closeModal={closeModal} />;
+      component = <PostNewContainer closeModal={closeModal} createPost={createPost} />;
       break;
     case 'show':
       component = <PostShowContainer />;
@@ -36,7 +37,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    createPost: (post) => dispatch(createPost(post))
   };
 };
 
