@@ -46,8 +46,11 @@ export default class PostNewContainer extends React.Component {
           <div className="post-new-side">
             <div className="x-button" onClick={this.props.closeModal}><i className="fas fa-times fa-lg"></i></div>
             <div className="post-new-submit">
-              <input type="file" onChange={this.updateFile} />
-              <textarea rows="4" cols="30" maxLength="280" placeholder="Caption" value={this.state.body} onChange={this.handleChange('body')}>
+              <label for="file-upload" class="post-file-upload">
+                <i class="fas fa-camera-retro"></i> Choose File
+              </label>
+              <input id="file-upload" type="file" onChange={this.updateFile}/>
+              <textarea rows="4" cols="30" maxLength="280" placeholder="Caption..." value={this.state.body} onChange={this.handleChange('body')}>
               </textarea>
 
               <button type="button">Share</button>

@@ -74,12 +74,27 @@
   margin: auto;
 }
 
+input[type="file"] {
+  display: none;
+}
+
+.post-file-upload {
+  /* border: 1px solid #ccc; */
+  border: 1px solid #112558;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
 .post-new-submit textarea {
   resize: none;
   border-width: 1px;
   border-style: solid;
-  border-color: #D3D3D3;
-  border-radius: 1px;
+  /* border-color: #D3D3D3; */
+  border-color: #112558;
+  border-radius: 5px;
 }
 
 .post-new-submit button {
