@@ -14,3 +14,123 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/*
+██████   ██████  ███████ ████████     ███    ██ ███████ ██     ██
+██   ██ ██    ██ ██         ██        ████   ██ ██      ██     ██
+██████  ██    ██ ███████    ██        ██ ██  ██ █████   ██  █  ██
+██      ██    ██      ██    ██        ██  ██ ██ ██      ██ ███ ██
+██       ██████  ███████    ██        ██   ████ ███████  ███ ███
+*/
+
+
+
+.post-new-container {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #E3E3E3;
+  border-radius: 1px;
+  height: 600px;
+  width: 950px;
+  background-color: #ffffff;
+  font-family: 'Raleway', sans-serif;
+}
+
+.post-new-image {
+  width: 600px;
+  height: 600px;
+  background-color: lightgray;
+}
+
+.post-new-image-preview {
+  width: 600px;
+  height: 600px;
+  object-fit: cover;
+}
+
+.post-new-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.post-new-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 600px;
+  width: 350px;
+}
+
+.post-new-errors {
+  text-align: center;
+  color: #D10606;
+}
+
+.post-new-submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.post-file-upload {
+  /* border: 1px solid #ccc; */
+  border: 1px solid #112558;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.post-new-submit textarea {
+  resize: none;
+  border-width: 1px;
+  border-style: solid;
+  /* border-color: #D3D3D3; */
+  border-color: #112558;
+  border-radius: 5px;
+}
+
+.post-new-submit button {
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  width: 40%;
+  margin: 30px;
+  background-color: #112558;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.x-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  height: 48px;
+  width: 48px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #112558;
+}
+
+
+/*
+██████   ██████  ███████ ████████     ███████ ██   ██  ██████  ██     ██
+██   ██ ██    ██ ██         ██        ██      ██   ██ ██    ██ ██     ██
+██████  ██    ██ ███████    ██        ███████ ███████ ██    ██ ██  █  ██
+██      ██    ██      ██    ██             ██ ██   ██ ██    ██ ██ ███ ██
+██       ██████  ███████    ██        ███████ ██   ██  ██████   ███ ███
+*/
