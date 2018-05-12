@@ -5,7 +5,7 @@
   width: 732px;
   height: 60%;
   margin-top: 150px;
-
+  font-family: $raleway;
 }
 
 .sessionFormContainer{
@@ -40,7 +40,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-family: $raleway;
 }
 
 .sessionPrompt {
@@ -48,7 +47,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-family: $raleway;
   padding-bottom: 10px;
 }
 
