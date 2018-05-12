@@ -3,7 +3,7 @@ class User < ApplicationRecord
   validates :username, :password_digest, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true}
 
-  has_attached_file :avatar, default_url: "navy.jpeg"
+  has_attached_file :avatar, default_url: "/images/navy.jpeg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   has_many :posts,
