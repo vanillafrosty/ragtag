@@ -2,10 +2,10 @@ import React from 'react';
 import PostLitePage from './post_lite_page';
 import { connect } from 'react-redux';
 import ProfileInfo from './profile_info';
-import { logout } from '../actions/session_actions';
+import { logout } from '../../actions/session_actions';
 import _ from 'lodash';
-import { fetchPosts } from '../actions/post_actions';
-import { openModal } from '../actions/modal_actions';
+import { fetchPosts } from '../../actions/post_actions';
+import { openModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state) => {
   return {

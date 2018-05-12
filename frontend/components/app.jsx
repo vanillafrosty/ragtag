@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Switch } from 'react-router-dom';
-import SignupForm from './signup_form_container';
-import LoginForm from './login_form_container';
+import SignupForm from './session/signup_form_container';
+import LoginForm from './session/login_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import HomeContainer from './home_container';
 

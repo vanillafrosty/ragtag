@@ -2,9 +2,9 @@ import React from 'react';
 import NavbarContainer from './navbar_container';
 import { Switch } from 'react-router-dom';
 import { ProtectedRoute } from '../util/route_util';
-import FeedContainer from './feed_container';
-import ProfileContainer from './profile_container';
-import Modal from './modal';
+import FeedContainer from './feed/feed_container';
+import ProfileContainer from './profile/profile_container';
+import Modal from './modal/modal';
 
 
 export default class HomeContainer extends React.Component {

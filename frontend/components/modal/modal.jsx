@@ -1,9 +1,9 @@
 import React from 'react';
-import { closeModal } from '../actions/modal_actions';
+import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import PostNewContainer from './post_new_container';
 import PostShowContainer from './post_show_container';
-import { createPost } from '../actions/post_actions';
+import { createPost } from '../../actions/post_actions';
 
 const Modal = ({modal, closeModal, createPost}) => {
   if (!modal) {

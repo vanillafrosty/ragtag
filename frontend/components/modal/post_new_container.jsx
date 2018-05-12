@@ -37,19 +37,14 @@ export default class PostNewContainer extends React.Component {
   }
 
   handleSubmit(e) {
-    // e.preventDefault();
-    // this.props.createPost(this.state).then( resp => {
-    //   this.props.closeModal();
-    // });
+    e.preventDefault();
     const file = this.state.image;
 
     const formData = new FormData();
     formData.append("post[body]", this.state.body);
-    // our backend can't handle a null image, so why even
-    if (file) formData.append("post[image]", file);
+    formData.append("post[image]", file);
 
     this.props.createPost(formData);
-
   }
 
   render() {
