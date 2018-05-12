@@ -6,13 +6,12 @@
 ██      ██   ██  ██████  ██      ██ ███████ ███████     ██ ██   ████ ██       ██████
 */
 
+
 .profile-info-container {
+  @extend %border-light;
   font-family: 'Raleway', sans-serif;
   display: flex;
   background-color: #ffffff;
-  border-color: #E3E3E3;
-  border-width: 1px;
-  border-style: solid;
   width: 950px;
   margin: auto;
   margin-top: 40px;

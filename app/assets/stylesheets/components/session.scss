@@ -9,33 +9,27 @@
 }
 
 .sessionFormContainer{
+  @extend %border-light;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   background-color: #ffffff;
-  border-color: #E3E3E3;
-  border-width: 1px;
-  border-style: solid;
   width: 360px;
   height: 440px;
 }
 
 .sessionFormContainerWithErrors{
+  @extend %border-light;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   background-color: #ffffff;
-  border-color: #E3E3E3;
-  border-width: 1px;
-  border-style: solid;
   width: 360px;
   height: 520px;
 }
 
 .sessionPicContainer {
   background-image: image-url("session_pic.jpeg");
-  // width: 640px;
-  // height: 426px;
   width: 340px;
   height: 426px;
   margin-right: 30px;
@@ -103,7 +97,7 @@
 
 .sessionErrors {
   text-align: center;
-  color: #D10606;
+  color: $maroon;
 }
 
 .sessionDemo {

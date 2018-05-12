@@ -26,9 +26,7 @@
 
 
 .post-new-container {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #E3E3E3;
+  @extend %border-light;
   border-radius: 1px;
   height: 600px;
   width: 950px;
@@ -65,7 +63,7 @@
 
 .post-new-errors {
   text-align: center;
-  color: #D10606;
+  color: $maroon;
 }
 
 .post-new-submit {
