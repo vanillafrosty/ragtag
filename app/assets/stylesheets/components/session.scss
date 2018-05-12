@@ -40,7 +40,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Raleway', sans-serif;
+  font-family: $raleway;
 }
 
 .sessionPrompt {
@@ -48,7 +48,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Raleway', sans-serif;
+  font-family: $raleway;
   padding-bottom: 10px;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .title {
-  font-family: 'Pacifico', sans-serif;
+  font-family: $title;
 }
 
 .sessionForm form {

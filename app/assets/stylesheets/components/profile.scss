@@ -9,7 +9,7 @@
 
 .profile-info-container {
   @extend %border-light;
-  font-family: 'Raleway', sans-serif;
+  font-family: $raleway;
   display: flex;
   background-color: #ffffff;
   width: 950px;
