@@ -44,7 +44,9 @@ export default class PostNewContainer extends React.Component {
     formData.append("post[body]", this.state.body);
     formData.append("post[image]", file);
 
-    this.props.createPost(formData);
+    this.props.createPost(formData).then( resp => {
+      this.props.closeModal();
+    });
   }
 
   render() {
