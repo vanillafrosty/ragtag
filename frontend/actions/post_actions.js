@@ -45,7 +45,6 @@ export const createPost = (post) => {
     return ApiUtil.createPost(post).then( post => {
       return dispatch(receivePost(post));
     }, err => {
-      debugger;
       return dispatch(receiveErrors(err.responseJSON));
     });
   };

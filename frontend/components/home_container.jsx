@@ -7,23 +7,17 @@ import ProfileContainer from './profile/profile_container';
 import Modal from './modal/modal';
 
 
-export default class HomeContainer extends React.Component {
+const HomeContainer = (props) => {
+  return (
+    <div className="home-container">
+      <Modal />
+      <NavbarContainer />
+      <Switch>
+        <ProtectedRoute path="/user/:userId" component={ProfileContainer} />
+        <ProtectedRoute path="/" component={FeedContainer} />
+      </Switch>
+    </div>
+  );
+};
 
-  constructor(props){
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="home-container">
-        <Modal />
-        <NavbarContainer />
-        <Switch>
-          <ProtectedRoute path="/user/:userId" component={ProfileContainer} />
-          <ProtectedRoute path="/" component={FeedContainer} />
-        </Switch>
-      </div>
-    )
-  }
-
-}
+export default HomeContainer;
