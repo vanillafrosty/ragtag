@@ -2,6 +2,7 @@ import * as ApiUtil from '../util/post_api_util';
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
+export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
 
 export const receivePosts = (posts) => {
   return {
@@ -17,6 +18,13 @@ export const receivePost = (post) => {
   };
 };
 
+export const receiveErrors = (errors) => {
+  return {
+    type: RECEIVE_POST_ERRORS,
+    errors: errors
+  };
+};
+
 export const fetchPosts = () => {
   return (dispatch) => {
     return ApiUtil.fetchPosts().then( posts => {
@@ -29,6 +37,9 @@ export const createPost = (post) => {
   return (dispatch) => {
     return ApiUtil.createPost(post).then( post => {
       return dispatch(receivePost(post));
+    }, err => {
+      debugger;
+      return dispatch(receiveErrors(err.responseJSON));
     });
   };
 };

@@ -42,7 +42,7 @@ export default class PostNewContainer extends React.Component {
 
     const formData = new FormData();
     formData.append("post[body]", this.state.body);
-    formData.append("post[image]", file);
+    if (file) { formData.append("post[image]", file); }
 
     this.props.createPost(formData).then( resp => {
       this.props.closeModal();
@@ -58,6 +58,7 @@ export default class PostNewContainer extends React.Component {
           </div>
 
           <div className="post-new-side">
+            <div>{this.props.errors}</div>
             <div className="x-button" onClick={this.props.closeModal}><i className="fas fa-times fa-lg"></i></div>
             <div className="post-new-submit">
               <label htmlFor="file-upload" className="post-file-upload">

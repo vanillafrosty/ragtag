@@ -5,14 +5,15 @@ import PostNewContainer from './post_new_container';
 import PostShowContainer from './post_show_container';
 import { createPost } from '../../actions/post_actions';
 
-const Modal = ({modal, closeModal, createPost}) => {
+const Modal = ({errors, modal, closeModal, createPost}) => {
   if (!modal) {
     return null;
   }
   let component;
   switch (modal) {
     case 'create':
-      component = <PostNewContainer closeModal={closeModal} createPost={createPost} />;
+      component = <PostNewContainer closeModal={closeModal} createPost={createPost}
+        errors={errors} />;
       break;
     case 'show':
       component = <PostShowContainer />;
@@ -31,7 +32,8 @@ const Modal = ({modal, closeModal, createPost}) => {
 
 const mapStateToProps = state => {
   return {
-    modal: state.ui.modal
+    modal: state.ui.modal,
+    errors: state.errors.post
   };
 };
 
