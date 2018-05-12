@@ -1,11 +1,11 @@
 import React from 'react';
-import PostLitePage from './post_lite_page';
 import { connect } from 'react-redux';
 import ProfileInfo from './profile_info';
 import { logout } from '../../actions/session_actions';
 import _ from 'lodash';
 import { fetchPosts } from '../../actions/post_actions';
 import { openModal } from '../../actions/modal_actions';
+import PostLiteContainer from './post_lite_container';
 
 const mapStateToProps = (state) => {
   return {
@@ -35,10 +35,17 @@ class ProfileContainer extends React.Component {
 
   render() {
     const { user, posts, logout, openCreateModal, openShowModal } = this.props;
+    let postLiteArr = posts.map( post => {
+      return <PostLiteContainer key={post.id} openModal={openShowModal} post={post} />
+    });
     return (
       <div className="profile-container">
         <ProfileInfo user={user} posts={posts} logout={logout} openModal={openCreateModal} />
-        <PostLitePage posts={posts} openModal={openShowModal} />
+        <div>
+          <ul className="post-lite-list">
+            {postLiteArr}
+          </ul>
+        </div>
       </div>
     );
   }

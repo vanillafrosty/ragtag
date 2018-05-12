@@ -67,7 +67,10 @@
   margin-bottom: 10px;
 }
 
-.post-lite-page {
+.post-lite-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   background-color: #ffffff;
   border-color: #E3E3E3;
   border-width: 1px;
@@ -75,4 +78,11 @@
   width: 950px;
   margin: auto;
   margin-top: 40px;
+}
+
+.post-lite-container {
+  width: 400px;
+  height: 400px;
+  background-color: #ffffff;
+  border: 1px solid lightgray;
 }
