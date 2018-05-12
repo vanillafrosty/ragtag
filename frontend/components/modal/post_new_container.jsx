@@ -13,6 +13,10 @@ export default class PostNewContainer extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
   handleChange(field) {
     return (e) => {
       e.preventDefault();
@@ -50,6 +54,9 @@ export default class PostNewContainer extends React.Component {
   }
 
   render() {
+    let styledErrors = this.props.errors.map( err => {
+      return err+'!';
+    });
     return (
       <div className="post-new-container">
         <div className="post-new-form">
@@ -58,9 +65,9 @@ export default class PostNewContainer extends React.Component {
           </div>
 
           <div className="post-new-side">
-            <div>{this.props.errors}</div>
             <div className="x-button" onClick={this.props.closeModal}><i className="fas fa-times fa-lg"></i></div>
             <div className="post-new-submit">
+              <div className="post-new-errors">{styledErrors}</div>
               <label htmlFor="file-upload" className="post-file-upload">
                 <i className="fas fa-camera-retro"></i> Choose File
               </label>

@@ -3,9 +3,9 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import PostNewContainer from './post_new_container';
 import PostShowContainer from './post_show_container';
-import { createPost } from '../../actions/post_actions';
+import { createPost, clearErrors } from '../../actions/post_actions';
 
-const Modal = ({errors, modal, closeModal, createPost}) => {
+const Modal = ({errors, clearErrors, modal, closeModal, createPost}) => {
   if (!modal) {
     return null;
   }
@@ -13,7 +13,7 @@ const Modal = ({errors, modal, closeModal, createPost}) => {
   switch (modal) {
     case 'create':
       component = <PostNewContainer closeModal={closeModal} createPost={createPost}
-        errors={errors} />;
+        errors={errors} clearErrors={clearErrors} />;
       break;
     case 'show':
       component = <PostShowContainer />;
@@ -40,7 +40,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     closeModal: () => dispatch(closeModal()),
-    createPost: (post) => dispatch(createPost(post))
+    createPost: (post) => dispatch(createPost(post)),
+    clearErrors: () => dispatch(clearErrors())
   };
 };
 

@@ -67,6 +67,11 @@
   width: 350px;
 }
 
+.post-new-errors {
+  text-align: center;
+  color: #D10606;
+}
+
 .post-new-submit {
   display: flex;
   flex-direction: column;
@@ -86,6 +91,7 @@ input[type="file"] {
   padding: 6px 12px;
   cursor: pointer;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .post-new-submit textarea {
