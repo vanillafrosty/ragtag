@@ -10,8 +10,8 @@ export default class PostLiteContainer extends React.Component {
   render() {
     return (
       <li className="post-lite-container">
-        THIS is a POST
-        {this.props.post.id}
+        <img className="post-lite-container-img"
+          src={this.props.post.img_url} />
       </li>
     )
   }

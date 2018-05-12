@@ -41,6 +41,7 @@ class ProfileContainer extends React.Component {
     return (
       <div className="profile-container">
         <ProfileInfo user={user} posts={posts} logout={logout} openModal={openCreateModal} />
+        <div className="profile-divide"></div>
         <div>
           <ul className="post-lite-list">
             {postLiteArr}
