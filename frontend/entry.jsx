@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
-import { createLike, removeLike } from './util/like_api_util';
+import { createLike, deleteLike } from './actions/like_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -19,6 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   window.store = store;
   window.createLike = createLike;
-  window.removeLike = removeLike;
+  window.deleteLike = deleteLike;
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 });

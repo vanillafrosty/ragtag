@@ -21,22 +21,23 @@ class Api::PostsController < ApplicationController
   end
 
   def createLike
-    @post = Post.find(params[:post_id])
-    @like = @post.likes.new(user_id: current_user.id)
+    post = Post.find(params[:post_id])
+    @like = post.likes.new(user_id: current_user.id)
     if @like.save
-      render :show
+      render '/api/likes/show'
     else
       render json: @like.errors.full_messages, status: 422
     end
   end
 
   def destroyLike
-    @post = Post.find(params[:post_id])
-    @like = @post.likes.where(user_id: current_user.id)
-    if @like.destroy_all
-      render :show
+    post = Post.find(params[:post_id])
+    @like = post.likes.where(user_id: current_user.id)
+    @like = @like.destroy_all.first
+    if @like != nil
+      render '/api/likes/show'
     else
-      render json: @like.errors.full_messages, status: 422
+      render json: ['Error when removing the like'], status: 422
     end
   end
 

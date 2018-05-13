@@ -13,14 +13,14 @@ const postsReducer = (state = {}, action) => {
       return nextState;
     case RECEIVE_LIKE:
       nextState = merge({}, state);
-      let user_id = action.post.user_id;
-      let likes = nextState[action.post.id].likes;
+      let user_id = action.like.user_id;
+      let likes = nextState[action.like.post_id].likes;
       likes.push(user_id);
       return nextState;
     case REMOVE_LIKE:
       nextState = merge({}, state);
-      user_id = action.post.user_id;
-      likes = nextState[action.post.id].likes;
+      user_id = action.like.user_id;
+      likes = nextState[action.like.post_id].likes;
       let user_index = likes.indexOf(user_id);
       likes.splice(user_index, 1);
       return nextState;    

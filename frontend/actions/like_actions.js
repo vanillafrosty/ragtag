@@ -4,32 +4,32 @@ export const RECEIVE_LIKE = 'RECEIVE_LIKE';
 export const REMOVE_LIKE = 'REMOVE_LIKE';
 
 
-export const receiveLike = (post) => {
+export const receiveLike = (like) => {
   return {
     type: RECEIVE_LIKE,
-    post: post
+    like: like
   };
 };
 
-export const removeLike = (post) => {
+export const removeLike = (like) => {
   return {
     type: REMOVE_LIKE,
-    post: post
+    like: like
   };
 };
 
 export const createLike = (id) => {
   return (dispatch) => {
-    return APIUtil.createLike(id).then( post => {
-      return dispatch(receiveLike(post));
+    return APIUtil.createLike(id).then( like => {
+      return dispatch(receiveLike(like));
     });
   };
 };
 
 export const deleteLike = (id) => {
   return (dispatch) => {
-    return APIUtil.removeLike(id).then( post => {
-      return dispatch(removeLike(post));
+    return APIUtil.removeLike(id).then( like => {
+      return dispatch(removeLike(like));
     });
   };
 };
