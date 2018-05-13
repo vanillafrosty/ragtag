@@ -1,7 +1,7 @@
 class Api::PostsController < ApplicationController
 
   def index
-    @posts = current_user.posts
+    @posts = current_user.posts.includes(:likes)
     render :index
   end
 
