@@ -8,7 +8,8 @@ const PostIndexItem = (props) => {
       <img className="post-index-item-image" src={props.post.img_url} />
       <br />
       <h3>{props.post.body}</h3>
-      <h3>number of likes:</h3>
+      <h3>number of likes: {props.post.likes.length}</h3>
+      <h3 onClick={(e) => { props.createLike(props.post.id) }}>LIKE/UNLIKE</h3>
     </li>
   )
 

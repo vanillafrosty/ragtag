@@ -22,6 +22,8 @@ export const createLike = (id) => {
   return (dispatch) => {
     return APIUtil.createLike(id).then( like => {
       return dispatch(receiveLike(like));
+    }, err => {
+      return dispatch(deleteLike(id));
     });
   };
 };

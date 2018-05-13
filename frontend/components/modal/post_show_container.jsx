@@ -14,7 +14,7 @@ export default class PostShowContainer extends React.Component {
         </div>
         <div className="post-show-side">
           <h3>{this.props.post.body}</h3>
-          <h3>number of likes: </h3>
+          <h3>number of likes: {this.props.post.likes.length}</h3>
         </div>
       </div>
     );
