@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create]
     resource :sessions, only: [:create, :destroy]
-    resources :posts
+    resources :posts do
+      get '/likes' => 'posts#likes'
+      post '/likes' => 'posts#createLike'
+      delete '/likes' => 'posts#destroyLike'
+    end
   end
 
 end

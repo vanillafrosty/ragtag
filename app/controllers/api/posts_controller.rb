@@ -17,6 +17,29 @@ class Api::PostsController < ApplicationController
   def show
   end
 
+  def likes
+  end
+
+  def createLike
+    @post = Post.find(params[:post_id])
+    @like = @post.likes.new(user_id: current_user.id)
+    if @like.save
+      render :show
+    else
+      render json: @like.errors.full_messages, status: 422
+    end
+  end
+
+  def destroyLike
+    @post = Post.find(params[:post_id])
+    @like = @post.likes.where(user_id: current_user.id)
+    if @like.destroy_all
+      render :show
+    else
+      render json: @like.errors.full_messages, status: 422
+    end
+  end
+
   private
   def post_params
     params.require(:post).permit(:body, :image)

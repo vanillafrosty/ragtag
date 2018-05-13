@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
-import { createPost } from './util/post_api_util';
-
+import { createLike, removeLike } from './util/like_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -19,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
   window.store = store;
-  window.createPost = createPost;
+  window.createLike = createLike;
+  window.removeLike = removeLike;
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 });
