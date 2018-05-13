@@ -10,6 +10,27 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def createFollow
+    user = User.find(params[:user_id])
+    @follow = user.follows.new(user_id: current_user.id)
+    if @follow.save
+      render '/api/follows/show'
+    else
+      render json: @follow.errors.full_messages, status: 422
+    end
+  end
+
+  def destroyFollow
+    user = User.find(params[:user_id])
+    @follow = user.follows.where(follower_id: current_user.id)
+    @follow = @follow.destroy_all.first
+    if @follow != nil
+      render '/api/follows/show'
+    else
+      render json: ['Error when unfollowing user'], status: 422
+    end
+  end
+
 
   private
   def user_params

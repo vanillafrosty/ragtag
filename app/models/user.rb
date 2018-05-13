@@ -11,6 +11,21 @@ class User < ApplicationRecord
     primary_key: :id,
     class_name: :Post
 
+  has_many :follows,
+    foreign_key: :follower_id,
+    primary_key: :id,
+    class_name: :Follow
+
+  has_many :led_follows,
+    foreign_key: :followee_id,
+    primary_key: :id,
+    class_name: :Follow
+
+  has_many :followers,
+    through: :led_follows,
+    source: :follower
+
+
 
   attr_reader :password
 

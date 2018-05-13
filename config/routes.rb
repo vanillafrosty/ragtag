@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   root to: 'static_pages#root'
 
   namespace :api, defaults: {format: :json} do
-    resources :users, only: [:create]
+    resources :users, only: [:create] do
+      get '/follows' => 'users#follows'
+      post '/follows' => 'users#createFollow'
+      delete '/follows' => 'users#destroyFollow'
+    end
     resource :sessions, only: [:create, :destroy]
     resources :posts do
       get '/likes' => 'posts#likes'
