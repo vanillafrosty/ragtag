@@ -10,6 +10,15 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    if @user
+      render :show
+    else
+      render json: ['Cannot find user with that ID'], status: 422
+    end
+  end
+
   def createFollow
     user = User.find(params[:user_id])
     @follow = user.led_follows.new(follower_id: current_user.id)

@@ -6,16 +6,20 @@ import _ from 'lodash';
 import { fetchPosts } from '../../actions/post_actions';
 import { openModal } from '../../actions/modal_actions';
 import PostLiteContainer from './post_lite_container';
+import { fetchUser } from '../../actions/user_actions';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  let fetched = state.entities.users[ownProps.match.params.userId];
+  let user = fetched === undefined ? {follows: []} : fetched;
   return {
-    user: state.entities.users[state.session.id],
+    user: user,
     posts: _.values(state.entities.posts)
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchUser: (id) => dispatch(fetchUser(id)),
     logout: () => dispatch(logout()),
     fetchPosts: () => dispatch(fetchPosts()),
     openCreateModal: () => dispatch(openModal({ status: 'create', postId: null })),
@@ -31,6 +35,13 @@ class ProfileContainer extends React.Component {
 
   componentDidMount() {
     this.props.fetchPosts();
+    this.props.fetchUser(this.props.match.params.userId);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.userId !== nextProps.match.params.userId) {
+      this.props.fetchUser(this.props.match.params.userId);
+    }
   }
 
   render() {

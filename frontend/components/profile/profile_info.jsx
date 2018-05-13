@@ -15,6 +15,7 @@ const ProfileInfo = (props) => {
         </li>
         <li className="profile-info-second">
           {`${props.posts.length} posts`}
+          {`${props.user.follows.length} followers`}
         </li>
         <li className="profile-info-third">
           BIO HERE
