@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import PostNewContainer from './post_new_container';
 import PostShowContainer from './post_show_container';
 import { createPost, clearErrors } from '../../actions/post_actions';
+import { createLike } from '../../actions/like_actions';
 
-const Modal = ({errors, clearErrors, modal, closeModal, createPost, post}) => {
+
+const Modal = ({errors, clearErrors, modal, closeModal, createPost, post, createLike}) => {
   if (!modal.status) {
     return null;
   }
@@ -16,7 +18,7 @@ const Modal = ({errors, clearErrors, modal, closeModal, createPost, post}) => {
         errors={errors} clearErrors={clearErrors} />;
       break;
     case 'show':
-      component = <PostShowContainer post={post} />;
+      component = <PostShowContainer post={post} createLike={createLike} />;
       break;
     default:
       return null;
@@ -47,7 +49,8 @@ const mapDispatchToProps = dispatch => {
   return {
     closeModal: () => dispatch(closeModal()),
     createPost: (post) => dispatch(createPost(post)),
-    clearErrors: () => dispatch(clearErrors())
+    clearErrors: () => dispatch(clearErrors()),
+    createLike: (id) => dispatch(createLike(id))
   };
 };
 
