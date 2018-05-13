@@ -25,6 +25,19 @@
   </head>
 
   <body>
+    <% if is_logged_in? %>
+      <script type="text/javascript">
+        window.currentUser =
+          <%= render( '/api/users/user.json.jbuilder' ,user: current_user).html_safe %>
+      </script>
+    <% end %>
+
+    <script type="text/javascript">
+      window.images = {
+        navy: "<%= image_path("navy.jpeg") %>"
+      }
+    </script>
+
     <%= yield %>
   </body>
 </html>
