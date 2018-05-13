@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(logout()),
     fetchPosts: () => dispatch(fetchPosts()),
-    openCreateModal: () => dispatch(openModal('create')),
-    openShowModal: () => dispatch(openModal('show'))
+    openCreateModal: () => dispatch(openModal({ status: 'create', postId: null })),
+    openShowModal: (postId) => dispatch(openModal({ status: 'show', postId: postId }))
   };
 };
 
@@ -36,11 +36,11 @@ class ProfileContainer extends React.Component {
   render() {
     const { user, posts, logout, openCreateModal, openShowModal } = this.props;
     let postLiteArr = posts.map( post => {
-      return <PostLiteContainer key={post.id} openModal={openShowModal} post={post} />
+      return <PostLiteContainer key={post.id} openShowModal={openShowModal} post={post} />
     });
     return (
       <div className="profile-container">
-        <ProfileInfo user={user} posts={posts} logout={logout} openModal={openCreateModal} />
+        <ProfileInfo user={user} posts={posts} logout={logout} openCreateModal={openCreateModal} />
         <div className="profile-divide"></div>
         <div>
           <ul className="post-lite-list">

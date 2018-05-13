@@ -10,7 +10,7 @@ const ProfileInfo = (props) => {
       <ul className="profile-info">
         <li className="profile-info-first">
           <div className="user-text">{props.user.username}</div>
-          <button type="button" onClick={props.openModal}>New Post</button>
+          <button type="button" onClick={props.openCreateModal}>New Post</button>
           <button type="button" onClick={props.logout}>Logout</button>
         </li>
         <li className="profile-info-second">

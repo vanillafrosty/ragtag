@@ -6,24 +6,24 @@ import PostShowContainer from './post_show_container';
 import { createPost, clearErrors } from '../../actions/post_actions';
 
 const Modal = ({errors, clearErrors, modal, closeModal, createPost}) => {
-  if (!modal) {
+  if (!modal.status) {
     return null;
   }
   let component;
-  switch (modal) {
+  switch (modal.status) {
     case 'create':
       component = <PostNewContainer closeModal={closeModal} createPost={createPost}
         errors={errors} clearErrors={clearErrors} />;
       break;
     case 'show':
-      component = <PostShowContainer />;
+      component = <PostShowContainer postId={modal.postId} />;
       break;
     default:
       return null;
   }
   return (
-    <div className="modal-background" onClick={modal === 'show' ? closeModal : null}>
-      <div className="modal-child" onClick={modal === 'show' ? e => e.stopPropagation() : null}>
+    <div className="modal-background" onClick={modal.status === 'show' ? closeModal : null}>
+      <div className="modal-child" onClick={modal.status === 'show' ? e => e.stopPropagation() : null}>
         { component }
       </div>
     </div>

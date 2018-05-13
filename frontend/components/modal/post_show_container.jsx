@@ -8,8 +8,9 @@ export default class PostShowContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="post-show-container">
         <h1>SHOWING A POST!!!</h1>
+        post id is {this.props.postId}
       </div>
     );
   }
