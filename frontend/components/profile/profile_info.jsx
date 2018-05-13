@@ -2,6 +2,9 @@ import React from 'react';
 
 
 const ProfileInfo = (props) => {
+
+  const followPrompt = props.followed ? 'Unfollow' : 'Follow';
+
   return (
     <div className="profile-info-container">
       <div className="profile-pic">
@@ -10,6 +13,7 @@ const ProfileInfo = (props) => {
       <ul className="profile-info">
         <li className="profile-info-first">
           <div className="user-text">{props.user.username}</div>
+          {props.user.id === props.currentUser ? '' : (<button type="button" onClick={props.createFollow}>{followPrompt}</button>)}
           <button type="button" onClick={props.openCreateModal}>New Post</button>
           <button type="button" onClick={props.logout}>Logout</button>
         </li>

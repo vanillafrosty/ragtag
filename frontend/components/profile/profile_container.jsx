@@ -7,18 +7,23 @@ import { fetchPosts } from '../../actions/post_actions';
 import { openModal } from '../../actions/modal_actions';
 import PostLiteContainer from './post_lite_container';
 import { fetchUser } from '../../actions/user_actions';
+import { createFollow } from '../../actions/follow_actions';
 
 const mapStateToProps = (state, ownProps) => {
   let fetched = state.entities.users[ownProps.match.params.userId];
   let user = fetched === undefined ? {follows: []} : fetched;
+  let followed = user.follows.includes(state.session.id);
   return {
     user: user,
-    posts: _.values(state.entities.posts)
+    currentUser: state.session.id,
+    posts: _.values(state.entities.posts),
+    followed: followed
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    createFollow: () => dispatch(createFollow(ownProps.match.params.userId)),
     fetchUser: (id) => dispatch(fetchUser(id)),
     logout: () => dispatch(logout()),
     fetchPosts: () => dispatch(fetchPosts()),
@@ -40,18 +45,19 @@ class ProfileContainer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.userId !== nextProps.match.params.userId) {
-      this.props.fetchUser(this.props.match.params.userId);
+      this.props.fetchUser(nextProps.match.params.userId);
     }
   }
 
   render() {
-    const { user, posts, logout, openCreateModal, openShowModal } = this.props;
+    const { user, posts, logout, openCreateModal, openShowModal, currentUser, createFollow, followed } = this.props;
     let postLiteArr = posts.map( post => {
       return <PostLiteContainer key={post.id} openShowModal={openShowModal} post={post} />
     });
     return (
       <div className="profile-container">
-        <ProfileInfo user={user} posts={posts} logout={logout} openCreateModal={openCreateModal} />
+        <ProfileInfo user={user} currentUser={currentUser} followed={followed}
+          createFollow={createFollow} posts={posts} logout={logout} openCreateModal={openCreateModal} />
         <div className="profile-divide"></div>
         <div>
           <ul className="post-lite-list">
