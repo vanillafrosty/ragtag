@@ -5,7 +5,7 @@ import PostNewContainer from './post_new_container';
 import PostShowContainer from './post_show_container';
 import { createPost, clearErrors } from '../../actions/post_actions';
 
-const Modal = ({errors, clearErrors, modal, closeModal, createPost}) => {
+const Modal = ({errors, clearErrors, modal, closeModal, createPost, post}) => {
   if (!modal.status) {
     return null;
   }
@@ -16,7 +16,7 @@ const Modal = ({errors, clearErrors, modal, closeModal, createPost}) => {
         errors={errors} clearErrors={clearErrors} />;
       break;
     case 'show':
-      component = <PostShowContainer postId={modal.postId} />;
+      component = <PostShowContainer post={post} />;
       break;
     default:
       return null;
@@ -31,8 +31,14 @@ const Modal = ({errors, clearErrors, modal, closeModal, createPost}) => {
 }
 
 const mapStateToProps = state => {
+  let modal, post;
+  modal = state.ui.modal;
+  if (modal.status === 'show') {
+    post = state.entities.posts[modal.postId];
+  }
   return {
-    modal: state.ui.modal,
+    modal: modal,
+    post: post,
     errors: state.errors.post
   };
 };
