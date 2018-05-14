@@ -8,10 +8,8 @@ const PostIndex = (props) => {
     });
 
     return (
-      <div className="post-index">
-        <ul>
-          {posts}
-        </ul>
+      <div className="post-index-container">
+        {posts}
       </div>
     );
 }

@@ -17,7 +17,7 @@
 
 
 
-.post-index {
+.post-index-container {
   display: flex;
   flex-direction: column;
   width: 602px;
@@ -25,19 +25,62 @@
 
 
 .post-index-item {
+  font-family: $raleway;
   width: 600px;
   height: 950px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #E3E3E3;
+  @extend %border-light;
   margin-bottom: 75px;
   background-color: #ffffff;
 }
 
-.post-index-item-image {
+.post-index-image {
   height: 600px;
+  width: 600px;
+}
+
+.post-index-image-preview{
+  height: 600px;
+  width: 600px;
   object-fit: cover;
 }
+
+.post-index-profile {
+  display: flex;
+  align-items: center;
+}
+
+.post-index-profile-pic {
+  width: 50px;
+  height: 50px;
+}
+
+.post-index-profile-pic img {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  object-fit: cover;
+}
+
+.post-index-profile-name {
+  padding: 5px;
+}
+
+.post-index-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.post-index-info-first {
+  display: flex;
+}
+
+.post-index-info li {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
 
 /*
 ███████ ██ ██████  ███████ ██████   █████  ██████
