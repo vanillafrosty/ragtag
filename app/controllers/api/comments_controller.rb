@@ -1,5 +1,15 @@
 class Api::CommentsController < ApplicationController
 
+  def index
+    post = Post.find(params[:post_id])
+    if post
+      @comments = post.comments
+      render :index
+    else
+      render json: ['Error finding the post'], status: 422
+    end
+  end
+
   def create
     post = Post.find(params[:post_id])
     if post
@@ -11,7 +21,7 @@ class Api::CommentsController < ApplicationController
         render @comment.errors.full_messages, status: 422
       end
     else
-      render json: ['Error creating the comment'], status: 422
+      render json: ['Error finding the post'], status: 422
     end
   end
 
