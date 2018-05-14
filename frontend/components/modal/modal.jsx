@@ -7,7 +7,7 @@ import { createPost, clearErrors } from '../../actions/post_actions';
 import { createLike } from '../../actions/like_actions';
 
 
-const Modal = ({errors, clearErrors, modal, closeModal, createPost, post, createLike}) => {
+const Modal = ({user, errors, clearErrors, modal, closeModal, createPost, post, createLike, liked}) => {
   if (!modal.status) {
     return null;
   }
@@ -18,7 +18,7 @@ const Modal = ({errors, clearErrors, modal, closeModal, createPost, post, create
         errors={errors} clearErrors={clearErrors} />;
       break;
     case 'show':
-      component = <PostShowContainer post={post} createLike={createLike} />;
+      component = <PostShowContainer user={user} post={post} createLike={createLike} liked={liked} />;
       break;
     default:
       return null;
@@ -33,15 +33,19 @@ const Modal = ({errors, clearErrors, modal, closeModal, createPost, post, create
 }
 
 const mapStateToProps = state => {
-  let modal, post;
+  let modal, post, user, liked;
   modal = state.ui.modal;
   if (modal.status === 'show') {
     post = state.entities.posts[modal.postId];
+    user = state.entities.users[post.user_id];
+    liked = post.likes.includes(user.id);
   }
   return {
     modal: modal,
     post: post,
-    errors: state.errors.post
+    errors: state.errors.post,
+    user: user,
+    liked: liked
   };
 };
 

@@ -91,7 +91,6 @@ input[type="file"] {
   resize: none;
   border-width: 1px;
   border-style: solid;
-  /* border-color: #D3D3D3; */
   border-color: $navy;
   border-radius: 5px;
 }
@@ -158,7 +157,61 @@ input[type="file"] {
 .post-show-side {
   display: flex;
   flex-direction: column;
-  align-items: center;
   height: 600px;
   width: 350px;
+}
+
+.post-show-profile {
+  display: flex;
+  align-items: center;
+}
+
+.post-show-profile-pic {
+  width: 50px;
+  height: 50px;
+  margin: 20px;
+}
+
+.post-show-profile-name {
+  padding: 5px;
+}
+
+.post-show-profile-pic img {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  object-fit: cover;
+}
+
+.post-show-sidebar-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.post-show-sidebar-info li {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.post-show-divide {
+  border-bottom: 1px solid #D3D3D3;
+  width: 80%;
+  margin: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.post-show-sidebar-info-second {
+  display: flex;
+}
+
+.sidebar-icon {
+  margin-right: 20px;
+}
+
+.sidebar-icon-red {
+  margin-right: 20px;
+  color: $red;
 }
