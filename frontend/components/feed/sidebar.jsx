@@ -6,22 +6,18 @@ const SidebarContainer = (props) => {
 
   return (
     <div className="sidebar-container">
-      <h1>THIS IS A SIDEBAR</h1>
       <div className="sidebar-profile">
         <div className="sidebar-profile-pic">
           <img src={props.user.avatar_url} />
         </div>
-        <div className="sidebar-profile-name">{props.user.username}</div>
+        <Link to={`/user/${props.user.id}`}>
+          <div className="sidebar-profile-name">{props.user.username}</div>
+        </Link>
       </div>
       <ul className="sidebar-info">
         <li className="sidebar-info-first">
-          {`${props.posts.length} posts`}
-          {`${props.user.follows.length} followers`}
-        </li>
-        <li className="sidebar-info-second">
-          <Link to={`/user/${props.user.id}`}>
-            <button type="button">Profile</button>
-          </Link>
+          <div className="sidebar-text">{`${props.posts.length} posts`}</div>
+          <div className="sidebar-text">{`${props.user.follows.length} followers`}</div>
         </li>
       </ul>
     </div>

@@ -1,10 +1,20 @@
+.feedContainer {
+  display: flex;
+  margin: auto;
+  margin-top: 50px;
+  width: 952px;
+}
+
+
 /*
-██   ██  ██████  ███    ███ ███████     ███████ ███████ ███████ ██████
-██   ██ ██    ██ ████  ████ ██          ██      ██      ██      ██   ██
-███████ ██    ██ ██ ████ ██ █████       █████   █████   █████   ██   ██
-██   ██ ██    ██ ██  ██  ██ ██          ██      ██      ██      ██   ██
-██   ██  ██████  ██      ██ ███████     ██      ███████ ███████ ██████
+██████   ██████  ███████ ████████ ███████
+██   ██ ██    ██ ██         ██    ██
+██████  ██    ██ ███████    ██    ███████
+██      ██    ██      ██    ██         ██
+██       ██████  ███████    ██    ███████
 */
+
+
 
 
 .post-index {
@@ -27,4 +37,62 @@
 .post-index-item-image {
   height: 600px;
   object-fit: cover;
+}
+
+/*
+███████ ██ ██████  ███████ ██████   █████  ██████
+██      ██ ██   ██ ██      ██   ██ ██   ██ ██   ██
+███████ ██ ██   ██ █████   ██████  ███████ ██████
+     ██ ██ ██   ██ ██      ██   ██ ██   ██ ██   ██
+███████ ██ ██████  ███████ ██████  ██   ██ ██   ██
+*/
+
+
+.sidebar-container {
+  @extend %border-light;
+  width: 275px;
+  height: 400px;
+  margin-left: 75px;
+  background-color: #ffffff;
+  position: sticky;
+  top: 126px;
+  display: flex;
+  flex-direction: column;
+  font-family: $raleway;
+}
+
+.sidebar-profile {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-profile-pic {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+
+.sidebar-profile-name {
+  padding: 5px;
+}
+
+.sidebar-profile-pic img {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  object-fit: cover;
+}
+
+.sidebar-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar-info-first {
+  display: flex;
+}
+
+.sidebar-text {
+  padding: 10px;
 }

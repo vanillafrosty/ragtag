@@ -18,8 +18,8 @@ const ProfileInfo = (props) => {
           <button type="button" onClick={props.logout}>Logout</button>
         </li>
         <li className="profile-info-second">
-          {`${props.posts.length} posts`}
-          {`${props.user.follows.length} followers`}
+          <div className="profile-text">{`${props.posts.length} posts`}</div>
+          <div className="profile-text">{`${props.user.follows.length} followers`}</div>
         </li>
         <li className="profile-info-third">
           BIO HERE
