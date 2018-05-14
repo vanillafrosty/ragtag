@@ -45,8 +45,10 @@ class ProfileContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.match.params.userId !== nextProps.match.params.userId) {
-      this.props.fetchUser(nextProps.match.params.userId);
+    let id = nextProps.match.params.userId;
+    if (this.props.match.params.userId !== id) {
+      this.props.fetchUser(id);
+      this.props.fetchPosts({ type: "user", id: id });
     }
   }
 
