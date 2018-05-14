@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
-import { fetchComments } from './util/comment_api_util';
+import { fetchComments, createComment, deleteComment } from './actions/comment_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -19,5 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   window.store = store;
   window.fetchComments = fetchComments;
+  window.createComment = createComment;
+  window.deleteComment = deleteComment;
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 });
