@@ -17,7 +17,7 @@ const SidebarContainer = (props) => {
       <div className="sidebar-divide"></div>
       <ul className="sidebar-info">
         <li className="sidebar-info-first">
-          <div className="sidebar-text">{`${props.user.follows.length} followers`}</div>
+          <div className="sidebar-text"></div>
         </li>
       </ul>
     </div>

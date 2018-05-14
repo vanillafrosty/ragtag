@@ -7,15 +7,31 @@ class Api::PostsController < ApplicationController
     #params = { type: "index"/"user", id: "5" }
     if (params[:type] == "index")
       #nested includes takes care of all potential N+1 queries
-      users = current_user.followed_people.includes(posts: :likes)
+      all_users = current_user.followed_people.includes(posts: :likes)
       @posts = [];
+      @users = [];
       #we don't really need a nested array when sending @posts back up
       # to our json view...so we concat.
-      users.each{ |user| @posts.concat(user.posts)}
+      #we don't want to return up a user if he/she has no posts, that's
+      #unecessary data
+      #ACTUALLY may want to remove the check for length...
+      #if we want to render a number/list of people that current user
+      #is following on the index sidebar. make it a todo
+      all_users.each do |user|
+        if user.posts.length > 0
+          @posts.concat(user.posts)
+          @users.push(user)
+        end
+      end
+      #we need the current user when rendering the sidebar, so we do this.
+      #remember that without the below, the users slice of state will be
+      #replaced by only all the followed users of current_user
+      @users.push(current_user)
       render :index
     elsif (params[:type] == "user")
       user = User.find(params[:id])
       if user
+        @users = []
         @posts = user.posts.includes(:likes)
         render :index
       else

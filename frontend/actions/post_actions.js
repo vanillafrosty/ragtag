@@ -4,11 +4,23 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
 export const CLEAR_POST_ERRORS = 'CLEAR_POST_ERRORS';
+export const RECEIVE_POSTS_AND_USERS = 'RECEIVE_POSTS_AND_USERS';
 
-export const receivePosts = (posts) => {
+//action creator used when fetching posts from user show page
+export const receivePosts = (data) => {
   return {
     type: RECEIVE_POSTS,
-    posts: posts
+    posts: data.posts
+  };
+};
+
+//action creator used when fetching posts for the current user's
+//index page
+export const receivePostsAndUsers = (data) => {
+  return {
+    type: RECEIVE_POSTS_AND_USERS,
+    posts: data.posts,
+    users: data.users
   };
 };
 
@@ -34,11 +46,19 @@ export const clearErrors = () => {
 
 export const fetchPosts = (params) => {
   return (dispatch) => {
-    return ApiUtil.fetchPosts(params).then( posts => {
-      return dispatch(receivePosts(posts));
+    return ApiUtil.fetchPosts(params).then( data => {
+      return dispatch(receivePosts(data));
     });
   };
 };
+
+export const fetchPostsAndUsers = (params) => {
+  return (dispatch) => {
+    return ApiUtil.fetchPosts(params).then( data => {
+      return dispatch(receivePostsAndUsers(data));
+    });
+  };
+}
 
 export const createPost = (post) => {
   return (dispatch) => {

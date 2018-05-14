@@ -10,8 +10,13 @@ import { fetchUser } from '../../actions/user_actions';
 import { createFollow } from '../../actions/follow_actions';
 
 const mapStateToProps = (state, ownProps) => {
+  let user;
   let fetched = state.entities.users[ownProps.match.params.userId];
-  let user = fetched === undefined ? {follows: []} : fetched;
+  if (fetched === undefined || fetched.follows === undefined) {
+    user = {follows: []};
+  } else {
+    user = fetched;
+  }
   let followed = user.follows.includes(state.session.id);
   return {
     user: user,

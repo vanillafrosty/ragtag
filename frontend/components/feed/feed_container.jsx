@@ -2,20 +2,21 @@ import React from 'react';
 import Sidebar from './sidebar';
 import { connect } from 'react-redux';
 import PostIndex from './post_index';
-import { fetchPosts } from '../../actions/post_actions';
+import { fetchPostsAndUsers } from '../../actions/post_actions';
 import { createLike } from '../../actions/like_actions';
 import _ from 'lodash';
 
 const mapStateToProps = (state) => {
   return {
-    user: state.entities.users[state.session.id],
+    currentUser: state.entities.users[state.session.id],
+    users: state.entities.users,
     posts: _.values(state.entities.posts)
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPosts: (params) => dispatch(fetchPosts(params)),
+    fetchPostsAndUsers: (params) => dispatch(fetchPostsAndUsers(params)),
     createLike: (id) => dispatch(createLike(id))
   };
 };
@@ -27,14 +28,14 @@ class FeedContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPosts({ type: 'index' });
+    this.props.fetchPostsAndUsers({ type: 'index' });
   }
 
   render() {
     return (
       <div className="feedContainer">
         <PostIndex posts={this.props.posts} createLike={this.props.createLike} />
-        <Sidebar user={this.props.user} posts={this.props.posts} />
+        <Sidebar user={this.props.currentUser} posts={this.props.posts} />
       </div>
     );
   }
