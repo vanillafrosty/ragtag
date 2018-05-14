@@ -11,10 +11,14 @@ class User < ApplicationRecord
     primary_key: :id,
     class_name: :Post
 
-  has_many :follows,
+  has_many :unled_follows,
     foreign_key: :follower_id,
     primary_key: :id,
     class_name: :Follow
+
+  has_many :followed_people,
+    through: :unled_follows,
+    source: :followee
 
   has_many :led_follows,
     foreign_key: :followee_id,
