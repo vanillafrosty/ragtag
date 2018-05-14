@@ -32,9 +32,9 @@ export const clearErrors = () => {
   };
 };
 
-export const fetchPosts = () => {
+export const fetchPosts = (params) => {
   return (dispatch) => {
-    return ApiUtil.fetchPosts().then( posts => {
+    return ApiUtil.fetchPosts(params).then( posts => {
       return dispatch(receivePosts(posts));
     });
   };

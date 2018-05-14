@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPosts: () => dispatch(fetchPosts()),
+    fetchPosts: (params) => dispatch(fetchPosts(params)),
     createLike: (id) => dispatch(createLike(id))
   };
 };
@@ -27,14 +27,13 @@ class FeedContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPosts();
+    this.props.fetchPosts({ type: 'index' });
   }
 
   render() {
     return (
       <div className="feedContainer">
-        <PostIndex posts={this.props.posts} fetchPosts={this.props.fetchPosts}
-          createLike={this.props.createLike} />
+        <PostIndex posts={this.props.posts} createLike={this.props.createLike} />
         <Sidebar user={this.props.user} posts={this.props.posts} />
       </div>
     );

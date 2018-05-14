@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     createFollow: () => dispatch(createFollow(ownProps.match.params.userId)),
     fetchUser: (id) => dispatch(fetchUser(id)),
     logout: () => dispatch(logout()),
-    fetchPosts: () => dispatch(fetchPosts()),
+    fetchPosts: (params) => dispatch(fetchPosts(params)),
     openCreateModal: () => dispatch(openModal({ status: 'create', postId: null })),
     openShowModal: (postId) => dispatch(openModal({ status: 'show', postId: postId }))
   };
@@ -39,8 +39,9 @@ class ProfileContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPosts();
-    this.props.fetchUser(this.props.match.params.userId);
+    let id = this.props.match.params.userId;
+    this.props.fetchUser(id);
+    this.props.fetchPosts({ type: "user", id: id });
   }
 
   componentWillReceiveProps(nextProps) {
