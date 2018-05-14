@@ -34,8 +34,8 @@ class FeedContainer extends React.Component {
   render() {
     return (
       <div className="feedContainer">
-        <PostIndex posts={this.props.posts} createLike={this.props.createLike}
-          currentUser={this.props.currentUser} />
+        <PostIndex posts={this.props.posts} users={this.props.users}
+          createLike={this.props.createLike} currentUser={this.props.currentUser} />
         <Sidebar user={this.props.currentUser} posts={this.props.posts} />
       </div>
     );

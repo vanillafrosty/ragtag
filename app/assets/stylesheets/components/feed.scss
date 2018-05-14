@@ -34,12 +34,12 @@
 }
 
 .post-index-image {
-  height: 600px;
+  height: 500px;
   width: 600px;
 }
 
 .post-index-image-preview{
-  height: 600px;
+  height: 500px;
   width: 600px;
   object-fit: cover;
 }
@@ -50,14 +50,15 @@
 }
 
 .post-index-profile-pic {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
 }
 
 .post-index-profile-pic img {
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
   object-fit: cover;
 }
 
@@ -68,8 +69,9 @@
 .post-index-info {
   display: flex;
   flex-direction: column;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
 }
 
 .post-index-info-first {

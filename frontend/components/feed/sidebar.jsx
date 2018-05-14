@@ -7,9 +7,11 @@ const SidebarContainer = (props) => {
   return (
     <div className="sidebar-container">
       <div className="sidebar-profile">
-        <div className="sidebar-profile-pic">
-          <img src={props.user.avatar_url} />
-        </div>
+        <Link to={`/user/${props.user.id}`}>
+          <div className="sidebar-profile-pic">
+            <img src={props.user.avatar_url} />
+          </div>
+        </Link>
         <Link to={`/user/${props.user.id}`}>
           <div className="sidebar-profile-name">{props.user.username}</div>
         </Link>

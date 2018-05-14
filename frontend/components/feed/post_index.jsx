@@ -5,7 +5,7 @@ const PostIndex = (props) => {
 
     const posts = props.posts.map( post => {
       return <PostIndexItem key={post.id} post={post} createLike={props.createLike}
-        liked={post.likes.includes(props.currentUser.id)} />
+        liked={post.likes.includes(props.currentUser.id)} user={props.users[post.user_id]} />
     });
 
     return (
