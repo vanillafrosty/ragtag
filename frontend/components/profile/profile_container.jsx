@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ProfileInfo from './profile_info';
 import { logout } from '../../actions/session_actions';
 import _ from 'lodash';
-import { fetchPosts } from '../../actions/post_actions';
+import { fetchPosts, clearPosts } from '../../actions/post_actions';
 import { openModal } from '../../actions/modal_actions';
 import PostLiteContainer from './post_lite_container';
 import { fetchUser } from '../../actions/user_actions';
@@ -33,7 +33,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     logout: () => dispatch(logout()),
     fetchPosts: (params) => dispatch(fetchPosts(params)),
     openCreateModal: () => dispatch(openModal({ status: 'create', postId: null })),
-    openShowModal: (postId) => dispatch(openModal({ status: 'show', postId: postId }))
+    openShowModal: (postId) => dispatch(openModal({ status: 'show', postId: postId })),
+    clearPosts: () => dispatch(clearPosts())
   };
 };
 
@@ -55,6 +56,10 @@ class ProfileContainer extends React.Component {
       this.props.fetchUser(id);
       this.props.fetchPosts({ type: "user", id: id });
     }
+  }
+
+  componentWillUnmount() {
+    this.props.clearPosts();
   }
 
   render() {

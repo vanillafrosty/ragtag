@@ -5,6 +5,7 @@ export const RECEIVE_POST = 'RECEIVE_POST';
 export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
 export const CLEAR_POST_ERRORS = 'CLEAR_POST_ERRORS';
 export const RECEIVE_POSTS_AND_USERS = 'RECEIVE_POSTS_AND_USERS';
+export const CLEAR_POSTS = 'CLEAR_POSTS';
 
 //action creator used when fetching posts from user show page
 export const receivePosts = (data) => {
@@ -28,6 +29,12 @@ export const receivePost = (post) => {
   return {
     type: RECEIVE_POST,
     post: post
+  };
+};
+
+export const clearPosts = () => {
+  return {
+    type: CLEAR_POSTS
   };
 };
 
