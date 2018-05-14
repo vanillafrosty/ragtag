@@ -15,6 +15,7 @@
 
 /node_modules
 /yarn-error.log
+/images
 
 .byebug_history
 node_modules/
