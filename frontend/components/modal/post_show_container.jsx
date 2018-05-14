@@ -14,7 +14,6 @@ export default class PostShowContainer extends React.Component {
 
   render() {
     const heartColor = this.props.liked ? "sidebar-icon-red" : "sidebar-icon";
-    const heartClass = this.props.liked ? "fas fa-heart fa-lg" : "far fa-heart fa-lg";
     return (
       <div className="post-show-container">
         <div className="post-show-image">
@@ -33,7 +32,7 @@ export default class PostShowContainer extends React.Component {
               <h3>{this.props.post.body}</h3>
             </li>
             <li className="post-show-sidebar-info-second">
-              <div className={heartColor} onClick={this.handleClick}><i className={heartClass}></i></div>
+              <div className={heartColor} onClick={this.handleClick}><i className="fas fa-heart fa-lg"></i></div>
               <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
             </li>
             <li className="post-show-sidebar-info-third">
