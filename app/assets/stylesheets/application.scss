@@ -37,3 +37,12 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.sidebar-icon {
+  margin-right: 20px;
+}
+
+.sidebar-icon-red {
+  margin-right: 20px;
+  color: $red;
+}

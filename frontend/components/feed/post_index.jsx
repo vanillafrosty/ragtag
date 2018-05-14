@@ -4,7 +4,8 @@ import PostIndexItem from './post_index_item';
 const PostIndex = (props) => {
 
     const posts = props.posts.map( post => {
-      return <PostIndexItem key={post.id} post={post} createLike={props.createLike} />
+      return <PostIndexItem key={post.id} post={post} createLike={props.createLike}
+        liked={post.likes.includes(props.currentUser.id)} />
     });
 
     return (
