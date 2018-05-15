@@ -3,7 +3,7 @@ class Api::CommentsController < ApplicationController
   def index
     post = Post.find(params[:post_id])
     if post
-      @comments = post.comments
+      @comments = post.comments.includes(:user)
       render :index
     else
       render json: ['Error finding the post'], status: 422
