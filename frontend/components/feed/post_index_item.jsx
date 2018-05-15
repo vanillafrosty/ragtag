@@ -9,29 +9,23 @@ export default class PostIndexItem extends React.Component {
       body: '',
       post_id: this.props.post.id
     };
-    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  // handleChange(key) {
-  //   return e => {
-  //     e.preventDefault();
-  //     this.setState({
-  //       [key]: e.target.value
-  //     });
-  //   };
-  // }
 
+  handleChange(e) {
+    e.preventDefault();
+    this.setState({
+      body: e.target.value
+    });
+  }
 
-  handleKeyPress(e) {
+  handleKeyDown(e) {
     if (e.key === 'Enter') {
       e.preventDefault();
-      this.props.createComment(this.state)
-      // .then( resp => {
-      //   this.setState({body: ''});
-      // });
-    } else {
-      let body = this.state.body + e.key;
-      this.setState({ body: body });
+      this.props.createComment(this.state);
+      this.setState({ body: '' });
     }
   }
 
@@ -77,7 +71,7 @@ export default class PostIndexItem extends React.Component {
           </ul>
           <div className="index-comment-submit">
             <textarea className="index-comment-textarea" maxLength="280" placeholder="Add a comment..."
-              onKeyPress={this.handleKeyPress}>{this.state.body}
+              onKeyDown={this.handleKeyDown} onChange={this.handleChange} value={this.state.body}>
             </textarea>
           </div>
         </div>

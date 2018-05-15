@@ -1,27 +1,21 @@
 import React from 'react';
 import Sidebar from './sidebar';
 import { connect } from 'react-redux';
-import PostIndex from './post_index';
+import PostIndexItemContainer from './post_index_item_container';
 import { fetchIndex, clearPosts } from '../../actions/post_actions';
-import { createLike } from '../../actions/like_actions';
-import { createComment } from '../../actions/comment_actions';
 import _ from 'lodash';
 
 const mapStateToProps = (state) => {
   return {
     currentUser: state.entities.users[state.session.id],
-    users: state.entities.users,
-    posts: _.values(state.entities.posts),
-    comments: state.entities.comments
+    posts: _.values(state.entities.posts)
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchIndex: (params) => dispatch(fetchIndex(params)),
-    createLike: (id) => dispatch(createLike(id)),
-    clearPosts: () => dispatch(clearPosts()),
-    createComment: (comment) => {dispatch(createComment(comment))}
+    clearPosts: () => dispatch(clearPosts())
   };
 };
 
@@ -40,11 +34,15 @@ class FeedContainer extends React.Component {
   }
 
   render() {
+    const post_containers = this.props.posts.map( post => {
+      return <PostIndexItemContainer key={post.id} post={post}
+        currentUser={this.props.currentUser} />
+    });
     return (
       <div className="feedContainer">
-        <PostIndex posts={this.props.posts} users={this.props.users}
-          createLike={this.props.createLike} currentUser={this.props.currentUser}
-          comments={this.props.comments} createComment={this.props.createComment} />
+        <div className="post-index-container">
+          {post_containers}
+        </div>
         <Sidebar user={this.props.currentUser} posts={this.props.posts} />
       </div>
     );
