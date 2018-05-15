@@ -15,6 +15,31 @@
   transform: translate(-50%, -50%);
 }
 
+.post-modal-profile {
+  display: flex;
+  align-items: center;
+}
+
+.post-modal-profile-pic {
+  width: 50px;
+  height: 50px;
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.post-modal-profile-name {
+  padding: 5px;
+}
+
+.post-modal-profile-pic img {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  object-fit: cover;
+}
+
 /*
 ██████   ██████  ███████ ████████     ███    ██ ███████ ██     ██
 ██   ██ ██    ██ ██         ██        ████   ██ ██      ██     ██
@@ -121,31 +146,7 @@ input[type="file"] {
   color: $navy;
 }
 
-.post-new-profile {
-  // margin-top: 50px;
-  display: flex;
-  align-items: center;
-}
 
-.post-new-profile-pic {
-  width: 50px;
-  height: 50px;
-  margin-left: 15px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-}
-
-.post-new-profile-name {
-  padding: 5px;
-}
-
-.post-new-profile-pic img {
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  object-fit: cover;
-}
 
 
 
@@ -184,31 +185,6 @@ input[type="file"] {
   flex-direction: column;
   height: 600px;
   width: 350px;
-}
-
-.post-show-profile {
-  display: flex;
-  align-items: center;
-}
-
-.post-show-profile-pic {
-  width: 50px;
-  height: 50px;
-  margin-left: 15px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-}
-
-.post-show-profile-name {
-  padding: 5px;
-}
-
-.post-show-profile-pic img {
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  object-fit: cover;
 }
 
 .post-show-sidebar-info {
