@@ -21,7 +21,20 @@ export default class PostShowContainer extends React.Component {
   }
 
   render() {
-    const comments = this.props.comments.map((comment, id) => {
+    let post_comments = [];
+    for (let i=0; i<this.props.post.comments.length; i++) {
+      let comment = this.props.comments[this.props.post.comments[i]];
+      if (comment === undefined) {
+        break;
+      }
+      post_comments.push({
+        username: this.props.users[comment.user_id].username,
+        user_id: comment.user_id,
+        body: comment.body
+      });
+    };
+
+    const comments = post_comments.map((comment, id) => {
       return (
         <li key={id}>
           <h3 className="comment-text-name">{comment.username}</h3>
@@ -29,6 +42,7 @@ export default class PostShowContainer extends React.Component {
         </li>
       );
     });
+
     const heartColor = this.props.liked ? "sidebar-icon-red" : "sidebar-icon";
     return (
       <div className="post-show-container">

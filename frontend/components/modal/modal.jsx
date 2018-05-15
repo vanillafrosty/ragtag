@@ -8,7 +8,7 @@ import { createLike } from '../../actions/like_actions';
 import { fetchCommentsAndUsers, clearComments } from '../../actions/comment_actions';
 import _ from 'lodash';
 
-const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post, createLike, liked, fetchComments, comments, clearComments, currentUser}) => {
+const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post, createLike, liked, fetchCommentsAndUsers, comments, clearComments, currentUser}) => {
   if (!modal.status) {
     return null;
   }
@@ -50,7 +50,7 @@ const mapStateToProps = state => {
     errors: state.errors.post,
     users: users,
     liked: liked,
-    comments: _.values(state.entities.comments)
+    comments: state.entities.comments
   };
 };
 
