@@ -14,5 +14,8 @@ json.users do
   json.merge! users_hash
   json.set! @current_user.id do
     json.extract! @current_user, :id, :username
+    json.avatar_url image_path(@current_user.avatar.url)
+    #send up follows as well so that we don't break profile info when we close the modal
+    json.follows @current_user.followers.map{ |follower| follower.id }
   end
 end
