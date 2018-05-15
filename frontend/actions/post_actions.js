@@ -21,7 +21,8 @@ export const receiveIndex = (data) => {
   return {
     type: RECEIVE_INDEX,
     posts: data.posts,
-    users: data.users
+    users: data.users,
+    comments: data.comments
   };
 };
 
