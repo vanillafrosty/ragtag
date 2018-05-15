@@ -1,9 +1,13 @@
+comments_arr = []
+
 json.posts do
   @posts.each do |post|
     json.set! post.id do
       json.extract! post, :id, :body, :user_id
       json.img_url asset_path(post.image.url)
       json.likes post.likes.map{ |like| like.user_id }
+      json.comments post.comments.pluck(:id)
+      comments_arr.concat(post.comments)
     end
   end
 end
@@ -13,6 +17,14 @@ json.users do
   @users.each do |user|
     json.set! user.id do
       json.partial! 'api/users/user', user: user
+    end
+  end
+end
+
+json.comments do
+  comments_arr.each do |comment|
+    json.set! comment.id do
+      json.extract! comment, :id, :body, :post_id, :user_id
     end
   end
 end

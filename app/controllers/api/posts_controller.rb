@@ -7,7 +7,7 @@ class Api::PostsController < ApplicationController
     #params = { type: "index"/"user", id: "5" }
     if (params[:type] == "index")
       #nested includes takes care of all potential N+1 queries
-      all_users = current_user.followed_people.includes(posts: :likes)
+      all_users = current_user.followed_people.includes(posts: [:likes, :comments])
       @posts = [];
       @users = [];
       #we don't really need a nested array when sending @posts back up
