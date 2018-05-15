@@ -41,6 +41,10 @@ const PostIndexItem = (props) => {
         </li>
         {comments}
       </ul>
+      <div className="index-comment-submit">
+        <textarea className="index-comment-textarea" maxLength="280" placeholder="Add a comment...">
+        </textarea>
+      </div>
     </div>
   )
 
