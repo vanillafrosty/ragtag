@@ -8,7 +8,7 @@ class Api::PostsController < ApplicationController
     @current_user = current_user
     if (params[:type] == "index")
       #nested includes takes care of all potential N+1 queries
-      @followed_users = current_user.followed_people.includes(posts: [:likes, :comments])
+      @followed_users = current_user.followed_people.includes(posts: [:likes, {comments: :user}])
       @posts = []
       #we don't really need a nested array when sending @posts back up
       # to our json view...so we concat.
