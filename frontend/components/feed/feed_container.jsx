@@ -2,7 +2,7 @@ import React from 'react';
 import Sidebar from './sidebar';
 import { connect } from 'react-redux';
 import PostIndex from './post_index';
-import { fetchIndex } from '../../actions/post_actions';
+import { fetchIndex, clearPosts } from '../../actions/post_actions';
 import { createLike } from '../../actions/like_actions';
 import _ from 'lodash';
 
@@ -18,7 +18,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchIndex: (params) => dispatch(fetchIndex(params)),
-    createLike: (id) => dispatch(createLike(id))
+    createLike: (id) => dispatch(createLike(id)),
+    clearPosts: () => dispatch(clearPosts())
   };
 };
 
@@ -30,6 +31,10 @@ class FeedContainer extends React.Component {
 
   componentDidMount() {
     this.props.fetchIndex({ type: 'index' });
+  }
+
+  componentWillUnmount() {
+    this.props.clearPosts();
   }
 
   render() {
