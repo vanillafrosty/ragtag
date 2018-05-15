@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS, RECEIVE_POST, RECEIVE_POSTS_AND_USERS, CLEAR_POSTS } from '../actions/post_actions';
+import { RECEIVE_POSTS, RECEIVE_POST, RECEIVE_INDEX, CLEAR_POSTS } from '../actions/post_actions';
 import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
 import merge from 'lodash/merge';
 
@@ -9,7 +9,7 @@ const postsReducer = (state = {}, action) => {
       return {};
     case RECEIVE_POSTS:
       return action.posts;
-    case RECEIVE_POSTS_AND_USERS:
+    case RECEIVE_INDEX:
       if (action.posts === undefined) {
         return {};
       } else {

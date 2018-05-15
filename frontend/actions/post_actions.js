@@ -4,7 +4,7 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
 export const CLEAR_POST_ERRORS = 'CLEAR_POST_ERRORS';
-export const RECEIVE_POSTS_AND_USERS = 'RECEIVE_POSTS_AND_USERS';
+export const RECEIVE_INDEX = 'RECEIVE_INDEX';
 export const CLEAR_POSTS = 'CLEAR_POSTS';
 
 //action creator used when fetching posts from user show page
@@ -17,9 +17,9 @@ export const receivePosts = (data) => {
 
 //action creator used when fetching posts for the current user's
 //index page
-export const receivePostsAndUsers = (data) => {
+export const receiveIndex = (data) => {
   return {
-    type: RECEIVE_POSTS_AND_USERS,
+    type: RECEIVE_INDEX,
     posts: data.posts,
     users: data.users
   };
@@ -59,10 +59,10 @@ export const fetchPosts = (params) => {
   };
 };
 
-export const fetchPostsAndUsers = (params) => {
+export const fetchIndex = (params) => {
   return (dispatch) => {
     return ApiUtil.fetchPosts(params).then( data => {
-      return dispatch(receivePostsAndUsers(data));
+      return dispatch(receiveIndex(data));
     });
   };
 }
