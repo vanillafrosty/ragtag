@@ -8,7 +8,7 @@ export default class PostShowContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchComments(this.props.post.id);
+    this.props.fetchCommentsAndUsers(this.props.post.id);
   }
 
   componentWillUnmount() {

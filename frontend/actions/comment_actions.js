@@ -4,7 +4,15 @@ export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
+export const RECEIVE_COMMENTS_AND_USERS = 'RECEIVE_COMMENTS_AND_USERS';
 
+export const receiveCommentsAndUsers = (data) => {
+  return {
+    type: RECEIVE_COMMENTS_AND_USERS,
+    comments: data.comments,
+    users: data.users
+  };
+};
 
 export const clearComments = () => {
   return {
@@ -40,6 +48,15 @@ export const fetchComments = (postId) => {
     });
   };
 };
+
+export const fetchCommentsAndUsers = (postId) => {
+  return (dispatch) => {
+    return APIUtil.fetchComments(postId).then( data => {
+      return dispatch(receiveCommentsAndUsers(data));
+    });
+  };
+}
+
 
 export const createComment = (postId) => {
   return (dispatch) => {

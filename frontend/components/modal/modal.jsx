@@ -5,7 +5,7 @@ import PostNewContainer from './post_new_container';
 import PostShowContainer from './post_show_container';
 import { createPost, clearErrors } from '../../actions/post_actions';
 import { createLike } from '../../actions/like_actions';
-import { fetchComments, clearComments } from '../../actions/comment_actions';
+import { fetchCommentsAndUsers, clearComments } from '../../actions/comment_actions';
 import _ from 'lodash';
 
 const Modal = ({user, errors, clearErrors, modal, closeModal, createPost, post, createLike, liked, fetchComments, comments, clearComments}) => {
@@ -20,7 +20,7 @@ const Modal = ({user, errors, clearErrors, modal, closeModal, createPost, post, 
       break;
     case 'show':
       component = <PostShowContainer user={user} post={post} createLike={createLike} liked={liked}
-        fetchComments={fetchComments} clearComments={clearComments} comments={comments} />;
+        fetchCommentsAndUsers={fetchCommentsAndUsers} clearComments={clearComments} comments={comments} />;
       break;
     default:
       return null;
@@ -58,7 +58,7 @@ const mapDispatchToProps = dispatch => {
     createPost: (post) => dispatch(createPost(post)),
     clearErrors: () => dispatch(clearErrors()),
     createLike: (id) => dispatch(createLike(id)),
-    fetchComments: (id) => dispatch(fetchComments(id)),
+    fetchCommentsAndUsers: (id) => dispatch(fetchCommentsAndUsers(id)),
     clearComments: () => dispatch(clearComments())
   };
 };
