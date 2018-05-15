@@ -11,6 +11,10 @@ export default class PostShowContainer extends React.Component {
     this.props.fetchComments(this.props.post.id);
   }
 
+  componentWillUnmount() {
+    this.props.clearComments();
+  }
+
   handleClick(e) {
     e.preventDefault();
     this.props.createLike(this.props.post.id);

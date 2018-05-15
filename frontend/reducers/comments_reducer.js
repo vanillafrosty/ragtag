@@ -1,4 +1,4 @@
-import { RECEIVE_COMMENT, RECEIVE_COMMENTS, REMOVE_COMMENT } from '../actions/comment_actions';
+import { RECEIVE_COMMENT, RECEIVE_COMMENTS, REMOVE_COMMENT, CLEAR_COMMENTS } from '../actions/comment_actions';
 import { RECEIVE_INDEX } from '../actions/post_actions';
 import merge from 'lodash/merge';
 
@@ -17,6 +17,8 @@ const commentsReducer = (state = {}, action) => {
       nextState = merge({}, state);
       delete nextState[action.comment.id];
       return nextState;
+    case CLEAR_COMMENTS:
+      return {};
     default:
       return state;
   }
