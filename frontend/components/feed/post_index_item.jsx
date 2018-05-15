@@ -3,15 +3,14 @@ import { Link } from 'react-router-dom';
 
 const PostIndexItem = (props) => {
 
-  // const comments = props.postComments.map(comment => {
-  //   return (
-  //     <li>
-  //       <h3>comment.user_id</h3>
-  //       <h3>comment.body</h3>
-  //
-  //     </li>
-  //   );
-  // });
+  const comments = props.postComments.map((comment, id) => {
+    return (
+      <li key={id}>
+        <h3 className="comment-text-name">{comment.username}</h3>
+        <h3 className="comment-text">{comment.body}</h3>
+      </li>
+    );
+  });
 
   const heartColor = props.liked ? "sidebar-icon-red" : "sidebar-icon";
   return (
@@ -37,10 +36,10 @@ const PostIndexItem = (props) => {
         <li className="post-index-info-second">
           <h3>{props.post.likes.length} likes</h3>
         </li>
-        <li className="post-index-info-third">
+        <li id="post-index-info-third">
           <h3 className="comment-text-name">{props.user.username}</h3><h3 className="comment-text">{props.post.body}</h3>
         </li>
-        {props.postComments.map(comment => comment.body)}
+        {comments}
       </ul>
     </div>
   )
