@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PostIndex from './post_index';
 import { fetchIndex, clearPosts } from '../../actions/post_actions';
 import { createLike } from '../../actions/like_actions';
+import { createComment } from '../../actions/comment_actions';
 import _ from 'lodash';
 
 const mapStateToProps = (state) => {
@@ -19,7 +20,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchIndex: (params) => dispatch(fetchIndex(params)),
     createLike: (id) => dispatch(createLike(id)),
-    clearPosts: () => dispatch(clearPosts())
+    clearPosts: () => dispatch(clearPosts()),
+    createComment: (comment) => {dispatch(createComment(comment))}
   };
 };
 
@@ -42,7 +44,7 @@ class FeedContainer extends React.Component {
       <div className="feedContainer">
         <PostIndex posts={this.props.posts} users={this.props.users}
           createLike={this.props.createLike} currentUser={this.props.currentUser}
-          comments={this.props.comments} />
+          comments={this.props.comments} createComment={this.props.createComment} />
         <Sidebar user={this.props.currentUser} posts={this.props.posts} />
       </div>
     );

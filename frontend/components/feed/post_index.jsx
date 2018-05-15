@@ -26,8 +26,10 @@ const PostIndex = (props) => {
       };
       return <PostIndexItem key={post.id} post={post} createLike={props.createLike}
         liked={post.likes.includes(props.currentUser.id)} user={props.users[post.user_id]}
-        postComments={post_comments} />
+        postComments={post_comments} createComment={props.createComment} />
     });
+
+    console.log('random!!!')
 
     return (
       <div className="post-index-container">
