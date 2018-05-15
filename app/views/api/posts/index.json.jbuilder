@@ -26,7 +26,7 @@ json.users do
   end
   json.set! @current_user.id do
     json.partial! 'api/users/user', user: @current_user
-    json.follows @followed_users.length
+    json.followedPeople @followed_users
   end
 end
 
