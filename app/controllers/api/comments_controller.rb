@@ -19,7 +19,7 @@ class Api::CommentsController < ApplicationController
       if @comment.save
         render :show
       else
-        render @comment.errors.full_messages, status: 422
+        render json: @comment.errors.full_messages, status: 422
       end
     else
       render json: ['Error finding the post'], status: 422
