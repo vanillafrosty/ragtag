@@ -5,9 +5,10 @@ import PostNewContainer from './post_new_container';
 import PostShowContainer from './post_show_container';
 import { createPost, clearErrors } from '../../actions/post_actions';
 import { createLike } from '../../actions/like_actions';
+import { fetchComments } from '../../actions/comment_actions';
+import _ from 'lodash';
 
-
-const Modal = ({user, errors, clearErrors, modal, closeModal, createPost, post, createLike, liked}) => {
+const Modal = ({user, errors, clearErrors, modal, closeModal, createPost, post, createLike, liked, fetchComments, comments}) => {
   if (!modal.status) {
     return null;
   }
@@ -18,7 +19,8 @@ const Modal = ({user, errors, clearErrors, modal, closeModal, createPost, post, 
         errors={errors} clearErrors={clearErrors} />;
       break;
     case 'show':
-      component = <PostShowContainer user={user} post={post} createLike={createLike} liked={liked} />;
+      component = <PostShowContainer user={user} post={post} createLike={createLike} liked={liked}
+        fetchComments={fetchComments} comments={comments} />;
       break;
     default:
       return null;
@@ -45,7 +47,8 @@ const mapStateToProps = state => {
     post: post,
     errors: state.errors.post,
     user: user,
-    liked: liked
+    liked: liked,
+    comments: _.values(state.entities.comments)
   };
 };
 
@@ -54,7 +57,8 @@ const mapDispatchToProps = dispatch => {
     closeModal: () => dispatch(closeModal()),
     createPost: (post) => dispatch(createPost(post)),
     clearErrors: () => dispatch(clearErrors()),
-    createLike: (id) => dispatch(createLike(id))
+    createLike: (id) => dispatch(createLike(id)),
+    fetchComments: (id) => dispatch(fetchComments(id))
   };
 };
 

@@ -7,6 +7,10 @@ export default class PostShowContainer extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchComments(this.props.post.id);
+  }
+
   handleClick(e) {
     e.preventDefault();
     this.props.createLike(this.props.post.id);
@@ -38,6 +42,7 @@ export default class PostShowContainer extends React.Component {
             <li className="post-show-sidebar-info-third">
               <h3>{this.props.post.likes.length} likes</h3>
             </li>
+            {this.props.comments.map( comment => comment.body)}
           </ul>
         </div>
       </div>
