@@ -2,6 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PostIndexItem = (props) => {
+
+  // const comments = props.postComments.map(comment => {
+  //   return (
+  //     <li>
+  //       <h3>comment.user_id</h3>
+  //       <h3>comment.body</h3>
+  //
+  //     </li>
+  //   );
+  // });
+
   const heartColor = props.liked ? "sidebar-icon-red" : "sidebar-icon";
   return (
     <div className="post-index-item">
@@ -27,7 +38,7 @@ const PostIndexItem = (props) => {
           <h3>{props.post.likes.length} likes</h3>
         </li>
         <li className="post-index-info-third">
-          <h3>{props.post.body}</h3>
+          <h3 className="comment-text-name">{props.user.username}</h3><h3 className="comment-text">{props.post.body}</h3>
         </li>
         {props.postComments.map(comment => comment.body)}
       </ul>

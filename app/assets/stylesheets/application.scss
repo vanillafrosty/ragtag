@@ -46,3 +46,11 @@ body {
   margin-right: 20px;
   color: $red;
 }
+
+.comment-text-name {
+  font-weight: 600;
+}
+
+.comment-text, .comment-text-name {
+  padding-right: 10px;
+}
