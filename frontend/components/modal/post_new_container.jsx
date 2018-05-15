@@ -66,6 +66,13 @@ export default class PostNewContainer extends React.Component {
 
           <div className="post-new-side">
             <div className="x-button" onClick={this.props.closeModal}><i className="fas fa-times fa-lg"></i></div>
+            <div className="post-new-profile">
+              <div className="post-new-profile-pic">
+                <img src={this.props.currentUser.avatar_url} />
+              </div>
+              <div className="post-new-profile-name">{this.props.currentUser.username}</div>
+            </div>
+            <div className="post-show-divide"></div>
             <div className="post-new-submit">
               <div className="post-new-errors">{styledErrors}</div>
               <label htmlFor="file-upload" className="post-file-upload">
