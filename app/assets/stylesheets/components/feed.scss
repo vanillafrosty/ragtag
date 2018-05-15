@@ -34,12 +34,12 @@
 }
 
 .post-index-image {
-  height: 500px;
+  height: 600px;
   width: 600px;
 }
 
 .post-index-image-preview{
-  height: 500px;
+  height: 600px;
   width: 600px;
   object-fit: cover;
 }
@@ -96,6 +96,13 @@
   padding-top: 15px;
   resize: none;
   width: 100%;
+}
+
+.post-index-all-text {
+  height: 290px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /*

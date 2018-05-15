@@ -14,12 +14,22 @@ end
 
 
 json.users do
-  @users.each do |user|
+  @followed_users.each do |user|
     json.set! user.id do
       json.partial! 'api/users/user', user: user
     end
   end
+  comments_arr.each do |comment|
+    json.set! comment.user.id do
+      json.partial! 'api/users/user', user: comment.user
+    end
+  end
+  json.set! @current_user.id do
+    json.partial! 'api/users/user', user: @current_user
+    json.follows @followed_users.length
+  end
 end
+
 
 json.comments do
   comments_arr.each do |comment|

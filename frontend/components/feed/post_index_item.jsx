@@ -28,22 +28,24 @@ const PostIndexItem = (props) => {
       <div className="post-index-image">
         <img className="post-index-image-preview" src={props.post.img_url} />
       </div>
-      <ul className="post-index-info">
-        <li className="post-index-info-first">
-          <div className={heartColor} onClick={(e) => { props.createLike(props.post.id) }}><i className="fas fa-heart fa-lg"></i></div>
-          <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
-        </li>
-        <li className="post-index-info-second">
-          <h3>{props.post.likes.length} likes</h3>
-        </li>
-        <li id="post-index-info-third">
-          <h3 className="comment-text-name">{props.user.username}</h3><h3 className="comment-text">{props.post.body}</h3>
-        </li>
-        {comments}
-      </ul>
-      <div className="index-comment-submit">
-        <textarea className="index-comment-textarea" maxLength="280" placeholder="Add a comment...">
-        </textarea>
+      <div className="post-index-all-text">
+        <ul className="post-index-info">
+          <li className="post-index-info-first">
+            <div className={heartColor} onClick={(e) => { props.createLike(props.post.id) }}><i className="fas fa-heart fa-lg"></i></div>
+            <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
+          </li>
+          <li className="post-index-info-second">
+            <h3>{props.post.likes.length} likes</h3>
+          </li>
+          <li id="post-index-info-third">
+            <h3 className="comment-text-name">{props.user.username}</h3><h3 className="comment-text">{props.post.body}</h3>
+          </li>
+          {comments}
+        </ul>
+        <div className="index-comment-submit">
+          <textarea className="index-comment-textarea" maxLength="280" placeholder="Add a comment...">
+          </textarea>
+        </div>
       </div>
     </div>
   )
