@@ -29,6 +29,7 @@ const PostIndexItem = (props) => {
         <li className="post-index-info-third">
           <h3>{props.post.body}</h3>
         </li>
+        {props.postComments.map(comment => comment.body)}
       </ul>
     </div>
   )

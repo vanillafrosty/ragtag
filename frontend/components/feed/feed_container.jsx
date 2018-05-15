@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
   return {
     currentUser: state.entities.users[state.session.id],
     users: state.entities.users,
-    posts: _.values(state.entities.posts)
+    posts: _.values(state.entities.posts),
+    comments: state.entities.comments
   };
 };
 
@@ -35,7 +36,8 @@ class FeedContainer extends React.Component {
     return (
       <div className="feedContainer">
         <PostIndex posts={this.props.posts} users={this.props.users}
-          createLike={this.props.createLike} currentUser={this.props.currentUser} />
+          createLike={this.props.createLike} currentUser={this.props.currentUser}
+          comments={this.props.comments} />
         <Sidebar user={this.props.currentUser} posts={this.props.posts} />
       </div>
     );
