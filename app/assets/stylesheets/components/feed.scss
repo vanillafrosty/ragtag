@@ -67,11 +67,13 @@
 }
 
 .post-index-info {
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 5px;
+  overflow-y: auto;
+  // overflow-wrap: break-word;
 }
 
 
