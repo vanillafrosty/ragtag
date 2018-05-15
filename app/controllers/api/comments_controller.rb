@@ -4,6 +4,7 @@ class Api::CommentsController < ApplicationController
     post = Post.find(params[:post_id])
     if post
       @comments = post.comments.includes(:user)
+      @current_user = current_user
       render :index
     else
       render json: ['Error finding the post'], status: 422

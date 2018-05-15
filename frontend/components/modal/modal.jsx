@@ -8,18 +8,18 @@ import { createLike } from '../../actions/like_actions';
 import { fetchCommentsAndUsers, clearComments } from '../../actions/comment_actions';
 import _ from 'lodash';
 
-const Modal = ({user, errors, clearErrors, modal, closeModal, createPost, post, createLike, liked, fetchComments, comments, clearComments}) => {
+const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post, createLike, liked, fetchComments, comments, clearComments, currentUser}) => {
   if (!modal.status) {
     return null;
   }
   let component;
   switch (modal.status) {
     case 'create':
-      component = <PostNewContainer closeModal={closeModal} createPost={createPost}
+      component = <PostNewContainer currentUser={currentUser} closeModal={closeModal} createPost={createPost}
         errors={errors} clearErrors={clearErrors} />;
       break;
     case 'show':
-      component = <PostShowContainer user={user} post={post} createLike={createLike} liked={liked}
+      component = <PostShowContainer currentUser={currentUser} users={users} post={post} createLike={createLike} liked={liked}
         fetchCommentsAndUsers={fetchCommentsAndUsers} clearComments={clearComments} comments={comments} />;
       break;
     default:
@@ -35,18 +35,20 @@ const Modal = ({user, errors, clearErrors, modal, closeModal, createPost, post, 
 }
 
 const mapStateToProps = state => {
-  let modal, post, user, liked;
+  let modal, post, users, liked, currentUser;
   modal = state.ui.modal;
+  currentUser = state.entities.users[state.session.id];
   if (modal.status === 'show') {
     post = state.entities.posts[modal.postId];
-    user = state.entities.users[post.user_id];
-    liked = post.likes.includes(user.id);
+    users = state.entities.users;
+    liked = post.likes.includes(currentUser.id);
   }
   return {
+    currentUser: currentUser,
     modal: modal,
     post: post,
     errors: state.errors.post,
-    user: user,
+    users: users,
     liked: liked,
     comments: _.values(state.entities.comments)
   };

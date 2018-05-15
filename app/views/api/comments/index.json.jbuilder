@@ -12,4 +12,7 @@ end
 
 json.users do
   json.merge! users_hash
+  json.set! @current_user.id do
+    json.extract! @current_user, :id, :username
+  end
 end
