@@ -194,6 +194,7 @@ input[type="file"] {
 }
 
 .post-show-sidebar-info li {
+  display: flex;
   padding-top: 5px;
   padding-bottom: 5px;
 }
@@ -203,9 +204,9 @@ input[type="file"] {
   width: 80%;
   margin: auto;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 5px;
 }
 
-.post-show-sidebar-info-second {
-  display: flex;
+#post-show-sidebar-info-third {
+  padding-bottom: 15px;
 }

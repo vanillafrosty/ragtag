@@ -21,6 +21,14 @@ export default class PostShowContainer extends React.Component {
   }
 
   render() {
+    const comments = this.props.comments.map((comment, id) => {
+      return (
+        <li key={id}>
+          <h3 className="comment-text-name">{comment.username}</h3>
+          <h3 className="comment-text">{comment.body}</h3>
+        </li>
+      );
+    });
     const heartColor = this.props.liked ? "sidebar-icon-red" : "sidebar-icon";
     return (
       <div className="post-show-container">
@@ -37,16 +45,16 @@ export default class PostShowContainer extends React.Component {
           <div className="post-show-divide"></div>
           <ul className="post-show-sidebar-info">
             <li className="post-show-sidebar-info-first">
-              <h3>{this.props.post.body}</h3>
-            </li>
-            <li className="post-show-sidebar-info-second">
               <div className={heartColor} onClick={this.handleClick}><i className="fas fa-heart fa-lg"></i></div>
               <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
             </li>
-            <li className="post-show-sidebar-info-third">
+            <li className="post-show-sidebar-info-second">
               <h3>{this.props.post.likes.length} likes</h3>
             </li>
-            {this.props.comments.map( comment => comment.body)}
+            <li id="post-show-sidebar-info-third">
+              <h3 className="comment-text-name">{this.props.user.username}</h3><h3 className="comment-text">{this.props.post.body}</h3>
+            </li>
+            {comments}
           </ul>
         </div>
       </div>
