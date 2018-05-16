@@ -43,7 +43,7 @@ class FeedContainer extends React.Component {
         <div className="post-index-container">
           {post_containers}
         </div>
-        <Sidebar user={this.props.currentUser} posts={this.props.posts} />
+        <Sidebar user={this.props.currentUser} />
       </div>
     );
   }

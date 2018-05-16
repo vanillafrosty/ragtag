@@ -1,5 +1,5 @@
 import React from 'react';
-import NavbarContainer from './navbar_container';
+import NavbarContainer from './nav/navbar_container';
 import { Switch } from 'react-router-dom';
 import { ProtectedRoute } from '../util/route_util';
 import FeedContainer from './feed/feed_container';
