@@ -113,11 +113,9 @@ input[type="file"] {
 }
 
 .post-new-submit textarea {
+  padding-left: 5px;
   resize: none;
-  border-width: 1px;
-  border-style: solid;
-  border-color: $navy;
-  border-radius: 5px;
+  @extend %border-navy-thin;
 }
 
 .post-new-submit button {
