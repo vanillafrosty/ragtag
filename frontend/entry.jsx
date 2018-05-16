@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
-import { fetchPosts } from './util/post_api_util';
+import { updateUser } from './util/user_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -18,6 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
   window.store = store;
-  window.fetchPosts = fetchPosts;
+  window.updateUser = updateUser;
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 });

@@ -19,6 +19,15 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = current_user
+    if @user.update_attributes(update_params)
+      render :show
+    else
+      render json: @user.errors.full_messages, status: 422
+    end
+  end
+
   def createFollow
     user = User.find(params[:user_id])
     @follow = user.led_follows.new(follower_id: current_user.id)
@@ -44,6 +53,10 @@ class Api::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:username, :password)
+  end
+
+  def update_params
+    params.require(:user).permit(:bio)
   end
 
 end
