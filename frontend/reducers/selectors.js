@@ -11,7 +11,7 @@ export const selectPostComments = (post, comments, users) => {
     //navigating back to index still might break because the comments are the index posts'
     //comments and not the user show page's comments
     if (comment === undefined) {
-      return null;
+      return [];
     }
     post_comments.push({
       username: users[comment.user_id].username,

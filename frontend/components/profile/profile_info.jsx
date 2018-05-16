@@ -21,7 +21,6 @@ export default class ProfileInfo extends React.Component {
 
   render() {
     const followPrompt = this.props.followed ? 'Unfollow' : 'Follow';
-    console.log(this.state.editing);
     return (
       <div className="profile-info-container">
         <div className="profile-pic">
@@ -40,7 +39,7 @@ export default class ProfileInfo extends React.Component {
             <div className="profile-text">{`${this.props.user.follows.length} followers`}</div>
           </li>
           <li className="profile-info-third">
-            BIO HERE
+            <h3 className="profile-bio">{this.props.user.bio}</h3>
           </li>
         </ul>
 

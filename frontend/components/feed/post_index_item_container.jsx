@@ -9,10 +9,11 @@ const mapStateToProps = (state, ownProps) => {
   let users = state.entities.users;
   let comments = state.entities.comments;
   let liked = ownProps.post.likes.includes(ownProps.currentUser.id);
+  let postComments = selectPostComments(ownProps.post, comments, users);
   return {
     liked: liked,
     user: users[ownProps.post.user_id],
-    postComments: selectPostComments(ownProps.post, comments, users)
+    postComments: postComments
   };
 };
 
@@ -26,12 +27,3 @@ const mapDispatchToProps = (dispatch) => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostIndexItem);
-
-
-
-// postComments={post_comments}
-// key={post.id} post={post}
-// createLike={props.createLike}
-// createComment={props.createComment}
-// liked={post.likes.includes(props.currentUser.id)}
-// user={props.users[post.user_id]}
