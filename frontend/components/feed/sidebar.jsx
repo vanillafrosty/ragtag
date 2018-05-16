@@ -13,7 +13,7 @@ const SidebarContainer = (props) => {
           </div>
         </Link>
         <Link to={`/user/${props.user.id}`}>
-          <div className="sidebar-profile-name">{props.user.username}</div>
+          <div className="feed-profile-name">{props.user.username}</div>
         </Link>
       </div>
       <div className="sidebar-divide"></div>

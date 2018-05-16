@@ -49,7 +49,7 @@ export default class PostIndexItem extends React.Component {
             </div>
           </Link>
           <Link to={`/user/${this.props.user.id}`}>
-            <div className="post-index-profile-name">{this.props.user.username}</div>
+            <div className="feed-profile-name">{this.props.user.username}</div>
           </Link>
         </div>
         <div className="post-index-image">

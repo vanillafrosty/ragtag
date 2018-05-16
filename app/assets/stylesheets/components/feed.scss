@@ -5,6 +5,11 @@
   width: 952px;
 }
 
+.feed-profile-name {
+  padding: 5px;
+  font-weight: 500;
+}
+
 
 /*
 ██████   ██████  ███████ ████████ ███████
@@ -62,9 +67,6 @@
   object-fit: cover;
 }
 
-.post-index-profile-name {
-  padding: 5px;
-}
 
 .post-index-info {
   // display: flex;
@@ -140,9 +142,6 @@
   margin: 10px;
 }
 
-.sidebar-profile-name {
-  padding: 5px;
-}
 
 .sidebar-profile-pic img {
   width: 50px;
