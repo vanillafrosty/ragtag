@@ -56,7 +56,7 @@ class Api::UsersController < ApplicationController
   end
 
   def update_params
-    params.require(:user).permit(:bio)
+    params.require(:user).permit(:bio, :avatar)
   end
 
 end

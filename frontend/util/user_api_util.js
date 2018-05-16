@@ -12,3 +12,13 @@ export const updateUser = (user) => {
     data: {user: user}
   });
 };
+
+export const updateUserPic = (user) => {
+  return $.ajax({
+    method: 'PATCH',
+    url: `api/users/${user.id}`,
+    contentType: false,
+    processData: false,
+    data: user
+  });
+};

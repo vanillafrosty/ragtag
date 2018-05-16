@@ -24,3 +24,11 @@ export const updateUser = (user) => {
     });
   };
 };
+
+export const updateUserPic = (user) => {
+  return (dispatch) => {
+    return APIUtil.updateUserPic(user).then( user => {
+      return dispatch(receiveUser(user));
+    });
+  };
+};

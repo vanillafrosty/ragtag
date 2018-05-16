@@ -15,6 +15,7 @@ export default class ProfileInfo extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.updateFile = this.updateFile.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
@@ -56,6 +57,19 @@ export default class ProfileInfo extends React.Component {
     }
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const file = this.state.image;
+
+    const formData = new FormData();
+    formData.append("user[id]", this.props.currentUser);
+    if (file) { formData.append("user[avatar]", file); }
+
+    this.props.updateUserPic(formData).then( resp => {
+      this.setState({ editing: false });
+    });
+  }
+
   render() {
     const followPrompt = this.props.followed ? 'Unfollow' : 'Follow';
     return (
@@ -68,7 +82,7 @@ export default class ProfileInfo extends React.Component {
                 <i className="fas fa-camera-retro"></i> New
               </label>
               <input id="file-upload" type="file" onChange={this.updateFile}/>
-              <i className="fas fa-chevron-up"></i>
+              <span onClick={this.handleSubmit}><i className="fas fa-chevron-up"></i></span>
             </div>}
         </div>
         <ul className={this.state.editing === false ? "profile-info" : "profile-info-edit"}>
