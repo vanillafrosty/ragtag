@@ -95,6 +95,12 @@
   word-break: break-word;
 }
 
+.profile-bio-edit {
+  resize: none;
+  @extend %border-light;
+  border-radius: 5px;
+}
+
 /*
 ██████  ██ ██    ██ ██ ██████  ███████
 ██   ██ ██ ██    ██ ██ ██   ██ ██

@@ -6,7 +6,7 @@ import _ from 'lodash';
 import { fetchPosts, clearPosts } from '../../actions/post_actions';
 import { openModal } from '../../actions/modal_actions';
 import PostLiteContainer from './post_lite_container';
-import { fetchUser } from '../../actions/user_actions';
+import { fetchUser, updateUser } from '../../actions/user_actions';
 import { createFollow } from '../../actions/follow_actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -30,6 +30,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     createFollow: () => dispatch(createFollow(ownProps.match.params.userId)),
     fetchUser: (id) => dispatch(fetchUser(id)),
+    updateUser: (user) => dispatch(updateUser(user)),
     logout: () => dispatch(logout()),
     fetchPosts: (params) => dispatch(fetchPosts(params)),
     openCreateModal: () => dispatch(openModal({ status: 'create', postId: null })),
@@ -63,13 +64,13 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
-    const { user, posts, logout, openCreateModal, openShowModal, currentUser, createFollow, followed } = this.props;
+    const { user, posts, logout, openCreateModal, openShowModal, currentUser, createFollow, followed, updateUser } = this.props;
     let postLiteArr = posts.map( post => {
       return <PostLiteContainer key={post.id} openShowModal={openShowModal} post={post} />
     });
     return (
       <div className="profile-container">
-        <ProfileInfo user={user} currentUser={currentUser} followed={followed}
+        <ProfileInfo user={user} currentUser={currentUser} updateUser={updateUser} followed={followed}
           createFollow={createFollow} posts={posts} logout={logout} openCreateModal={openCreateModal} />
         <div className="profile-divide"></div>
         <div>
