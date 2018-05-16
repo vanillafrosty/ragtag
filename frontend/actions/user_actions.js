@@ -16,3 +16,11 @@ export const fetchUser = (id) => {
     });
   };
 };
+
+export const updateUser = (user) => {
+  return (dispatch) => {
+    return APIUtil.updateUser(user).then( user => {
+      return dispatch(receiveUser(user));
+    });
+  };
+};

@@ -13,7 +13,8 @@ const ProfileInfo = (props) => {
       <ul className="profile-info">
         <li className="profile-info-first">
           <div className="user-text">{props.user.username}</div>
-          {props.user.id === props.currentUser ? '' : (<button type="button" onClick={props.createFollow}>{followPrompt}</button>)}
+          {props.user.id === props.currentUser ? (<button type="button">Edit Bio</button>) :
+            (<button type="button" onClick={props.createFollow}>{followPrompt}</button>)}
           <button type="button" onClick={props.openCreateModal}>New Post</button>
           <button type="button" onClick={props.logout}>Logout</button>
         </li>

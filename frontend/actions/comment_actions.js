@@ -58,9 +58,9 @@ export const fetchCommentsAndUsers = (postId) => {
 }
 
 
-export const createComment = (postId) => {
+export const createComment = (comment) => {
   return (dispatch) => {
-    return APIUtil.createComment(postId).then( comment => {
+    return APIUtil.createComment(comment).then( comment => {
       return dispatch(receiveComment(comment));
     });
   };
