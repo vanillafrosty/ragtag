@@ -7,11 +7,14 @@ export default class ProfileInfo extends React.Component {
     super(props);
     this.state = {
       editing: false,
-      bio: this.props.user.bio
+      bio: this.props.user.bio,
+      image: null,
+      imgUrl: this.props.user.avatar_url
     };
     this.handleEdit = this.handleEdit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.updateFile = this.updateFile.bind(this);
   }
 
 
@@ -19,7 +22,8 @@ export default class ProfileInfo extends React.Component {
     e.preventDefault();
     this.setState({
       editing: !this.state.editing,
-      bio: this.props.user.bio
+      bio: this.props.user.bio,
+      imgUrl: this.props.user.avatar_url
     });
   }
 
@@ -38,17 +42,39 @@ export default class ProfileInfo extends React.Component {
     }
   }
 
+  updateFile(e) {
+    e.preventDefault();
+    let file = e.currentTarget.files[0];
+    var fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({ image: file, imgUrl: fileReader.result });
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    } else {
+      this.setState({ imgUrl: "", image: null });
+    }
+  }
+
   render() {
     const followPrompt = this.props.followed ? 'Unfollow' : 'Follow';
     return (
-      <div className="profile-info-container">
-        <div className="profile-pic">
-          <img src={this.props.user.avatar_url} />
+      <div className={this.state.editing === false ? "profile-info-container" : "profile-info-container-edit"}>
+        <div className={this.state.editing === false ? "profile-pic" : "profile-pic-edit"}>
+          <img src={this.state.editing === false ? this.props.user.avatar_url : this.state.imgUrl} />
+          {this.state.editing === false ? '' :
+            <div className="profile-pic-edit-buttons">
+              <label htmlFor="file-upload" className="profile-file-upload">
+                <i className="fas fa-camera-retro"></i> New
+              </label>
+              <input id="file-upload" type="file" onChange={this.updateFile}/>
+              <i className="fas fa-chevron-up"></i>
+            </div>}
         </div>
-        <ul className="profile-info">
+        <ul className={this.state.editing === false ? "profile-info" : "profile-info-edit"}>
           <li className="profile-info-first">
             <div className="user-text">{this.props.user.username}</div>
-            {this.props.user.id === this.props.currentUser ? (<button type="button" onClick={this.handleEdit}>Edit Bio</button>) :
+            {this.props.user.id === this.props.currentUser ? (<button type="button" onClick={this.handleEdit}>Edit Profile</button>) :
               (<button type="button" onClick={this.props.createFollow}>{followPrompt}</button>)}
             {this.props.user.id === this.props.currentUser ? <button type="button" onClick={this.props.openCreateModal}>New Post</button> : ''}
             {this.props.user.id === this.props.currentUser ? <button type="button" onClick={this.props.logout}>Logout</button> : ''}
@@ -59,7 +85,7 @@ export default class ProfileInfo extends React.Component {
           </li>
           <li className="profile-info-third">
             {this.state.editing === false ? <h3 className="profile-bio">{this.props.user.bio}</h3> :
-              <textarea className="profile-bio-edit" maxLength="280"
+              <textarea className="profile-bio-edit" maxLength="280" placeholder="Bio..."
                 onKeyDown={this.handleKeyDown} onChange={this.handleChange} value={this.state.bio}>
               </textarea>
             }
