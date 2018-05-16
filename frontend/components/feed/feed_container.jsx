@@ -3,12 +3,16 @@ import Sidebar from './sidebar';
 import { connect } from 'react-redux';
 import PostIndexItemContainer from './post_index_item_container';
 import { fetchIndex, clearPosts } from '../../actions/post_actions';
+import { selectFollowed } from '../../reducers/selectors';
 import _ from 'lodash';
 
 const mapStateToProps = (state) => {
+  let currentUser = state.entities.users[state.session.id];
+  let followedUsers = selectFollowed(state.entities.users, currentUser);
   return {
-    currentUser: state.entities.users[state.session.id],
-    posts: _.values(state.entities.posts)
+    currentUser: currentUser,
+    posts: _.values(state.entities.posts),
+    followedUsers: followedUsers
   };
 };
 
@@ -43,7 +47,7 @@ class FeedContainer extends React.Component {
         <div className="post-index-container">
           {post_containers}
         </div>
-        <Sidebar user={this.props.currentUser} />
+        <Sidebar user={this.props.currentUser} followedUsers={this.props.followedUsers} />
       </div>
     );
   }
