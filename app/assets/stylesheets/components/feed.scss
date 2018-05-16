@@ -153,7 +153,7 @@
 .sidebar-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 10px;
 }
 
 .sidebar-info-first {
@@ -161,7 +161,6 @@
 }
 
 .sidebar-text {
-  padding: 10px;
 }
 
 .sidebar-divide {

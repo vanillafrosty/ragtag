@@ -26,7 +26,7 @@ json.users do
   end
   json.set! @current_user.id do
     json.partial! 'api/users/user', user: @current_user
-    json.followedPeople @followed_users
+    json.followedUsers @followed_users.pluck(:id)
   end
 end
 

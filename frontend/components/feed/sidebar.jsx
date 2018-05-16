@@ -19,7 +19,7 @@ const SidebarContainer = (props) => {
       <div className="sidebar-divide"></div>
       <ul className="sidebar-info">
         <li className="sidebar-info-first">
-          <div className="sidebar-text"></div>
+          <div className="sidebar-text">Following</div>
         </li>
       </ul>
     </div>
