@@ -35,7 +35,7 @@
   height: 950px;
   @extend %border-light;
   margin-bottom: 75px;
-  background-color: #ffffff;
+  background-color: $white;
 }
 
 .post-index-image {
@@ -123,7 +123,7 @@
   width: 275px;
   height: 400px;
   margin-left: 75px;
-  background-color: #ffffff;
+  background-color: $white;
   position: sticky;
   top: 126px;
   display: flex;

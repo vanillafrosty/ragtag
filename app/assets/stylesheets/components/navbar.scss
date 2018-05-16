@@ -1,8 +1,9 @@
 .navbarHeader {
   position: sticky;
   top: 0;
-  background-color: #ffffff;
+  background-color: $white;
   border-bottom: 1px solid #E3E3E3;
+  font-family: $raleway;
 }
 
 .navbarContainer {
@@ -10,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
   height: 75px;
-  background-color: #ffffff;
+  background-color: $white;
   width: 950px;
   margin: auto;
 }
@@ -35,4 +36,26 @@
   width: 64px;
   height: 48px;
   border-right: 1px solid $navy;
+}
+
+
+/*
+███████ ███████  █████  ██████   ██████ ██   ██ ██████   █████  ██████
+██      ██      ██   ██ ██   ██ ██      ██   ██ ██   ██ ██   ██ ██   ██
+███████ █████   ███████ ██████  ██      ███████ ██████  ███████ ██████
+     ██ ██      ██   ██ ██   ██ ██      ██   ██ ██   ██ ██   ██ ██   ██
+███████ ███████ ██   ██ ██   ██  ██████ ██   ██ ██████  ██   ██ ██   ██
+*/
+
+.searchbar {
+  background-color: $white-gray;
+  width: 208px;
+  @extend %border-dark;
+  height: 25px;
+  border-radius: 3px;
+  padding-left: 5px;
+}
+
+.searchbar:focus {
+  background-color: $white;
 }

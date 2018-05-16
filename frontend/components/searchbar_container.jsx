@@ -9,8 +9,8 @@ export default class SearchbarContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        THIS IS A SEARCHBAR
+      <div className="searchbar-container">
+        <input className="searchbar" type="text" maxLength="60" placeholder="Search" />
       </div>
     );
   }

@@ -19,7 +19,7 @@
   @extend %border-light;
   font-family: $raleway;
   display: flex;
-  background-color: #ffffff;
+  background-color: $white;
   width: 950px;
   margin: auto;
   margin-top: 40px;
@@ -32,7 +32,7 @@
   @extend %border-light;
   font-family: $raleway;
   display: flex;
-  background-color: #ffffff;
+  background-color: $white;
   width: 950px;
   margin: auto;
   margin-top: 40px;
@@ -191,7 +191,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background-color: #ffffff;
+  background-color: $white;
   width: 950px;
   margin: auto;
   margin-top: 40px;
