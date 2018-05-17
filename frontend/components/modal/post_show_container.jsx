@@ -5,12 +5,15 @@ export default class PostShowContainer extends React.Component {
   constructor(props){
     super(props);
     this.handleLike = this.handleLike.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
     this.state = {
+      dropDown: false,
       editing: false,
-      body: '',
+      commentBody: '',
+      captionBody: this.props.post.body,
       post_id: this.props.post.id
     };
   }
@@ -31,14 +34,27 @@ export default class PostShowContainer extends React.Component {
   handleEdit(e) {
     e.preventDefault();
     this.setState({
-      editing: !this.state.editing
+      editing: !this.state.editing,
+      dropDown: !this.state.dropDown
     });
+  }
+
+  handleDrop(e) {
+    e.preventDefault();
+    this.setState({
+      dropDown: !this.state.dropDown
+    });
+    if (this.state.editing) {
+      this.setState({
+        editing: !this.state.editing
+      });
+    };
   }
 
   handleChange(e) {
     e.preventDefault();
     this.setState({
-      body: e.target.value
+      commentBody: e.target.value
     });
   }
 
@@ -46,7 +62,7 @@ export default class PostShowContainer extends React.Component {
     if (e.key === 'Enter') {
       e.preventDefault();
       this.props.createComment(this.state);
-      this.setState({ body: '' });
+      this.setState({ commentBody: '' });
     }
   }
 
@@ -80,10 +96,10 @@ export default class PostShowContainer extends React.Component {
           <img className="post-show-image-preview" src={this.props.post.img_url} />
         </div>
         <div className="post-show-side">
-          <div className="down-button" onClick={this.handleEdit}><i className="fas fa-chevron-down fa-lg"></i></div>
-          {this.state.editing === false ? '' :
+          <div className="down-button" onClick={this.handleDrop}><i className="fas fa-chevron-down fa-lg"></i></div>
+          {this.state.dropDown === false ? '' :
             <ul className="down-dropdown">
-              <li className="down-dropdown-button-li">Edit</li>
+              <li className="down-dropdown-button-li" onClick={this.handleEdit}>Edit</li>
               <li className="down-dropdown-button-li">Delete</li>
             </ul>}
           <div className="post-modal-profile">
@@ -103,13 +119,16 @@ export default class PostShowContainer extends React.Component {
                 <h3>{this.props.post.likes.length} likes</h3>
               </li>
               <li id="post-show-sidebar-info-third">
-                <h3 className="comment-text-name">{this.props.currentUser.username}</h3><h3 className="comment-text">{this.props.post.body}</h3>
+                {this.state.editing === false ? <span className="post-show-sidebar-info-span"><h3 className="comment-text-name">{this.props.currentUser.username}</h3><h3 className="comment-text">{this.props.post.body}</h3></span> :
+                  <textarea className="post-show-edit" maxLength="280" placeholder="Caption..." value={this.state.captionBody}>
+                  </textarea>
+                }
               </li>
               {comments}
             </ul>
             <div className="comment-submit">
               <textarea className="comment-textarea" maxLength="280" placeholder="Add a comment..."
-                onKeyDown={this.handleKeyDown} onChange={this.handleChange} value={this.state.body}>
+                onKeyDown={this.handleKeyDown} onChange={this.handleChange} value={this.state.commentBody}>
               </textarea>
             </div>
           </div>
