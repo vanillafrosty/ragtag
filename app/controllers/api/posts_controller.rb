@@ -29,7 +29,7 @@ class Api::PostsController < ApplicationController
       user = User.find(params[:id])
       if user
         @followed_users = []
-        @posts = user.posts.includes(:likes, :comments)
+        @posts = user.posts.includes(:likes, {comments: :user})
         render :index
       else
         render json: ['Cannot find user with that ID'], status: 422
