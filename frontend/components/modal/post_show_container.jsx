@@ -6,9 +6,9 @@ export default class PostShowContainer extends React.Component {
     super(props);
     this.handleLike = this.handleLike.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleCaptionKeyDown = this.handleCaptionKeyDown.bind(this);
     this.state = {
       dropDown: false,
       editing: false,
@@ -35,7 +35,8 @@ export default class PostShowContainer extends React.Component {
     e.preventDefault();
     this.setState({
       editing: !this.state.editing,
-      dropDown: !this.state.dropDown
+      dropDown: !this.state.dropDown,
+      captionBody: this.props.post.body
     });
   }
 
@@ -51,11 +52,13 @@ export default class PostShowContainer extends React.Component {
     };
   }
 
-  handleChange(e) {
-    e.preventDefault();
-    this.setState({
-      commentBody: e.target.value
-    });
+  handleChange(key) {
+    return (e) => {
+      e.preventDefault();
+      this.setState({
+        [key]: e.target.value
+      });
+    };
   }
 
   handleKeyDown(e) {
@@ -64,6 +67,15 @@ export default class PostShowContainer extends React.Component {
       this.props.createComment(this.state);
       this.setState({ commentBody: '' });
     }
+  }
+
+
+  handleCaptionKeyDown(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      // this.props.updatePost(this.state);
+      console.log("ENTER HERE");
+    };
   }
 
   render() {
@@ -120,7 +132,8 @@ export default class PostShowContainer extends React.Component {
               </li>
               <li id="post-show-sidebar-info-third">
                 {this.state.editing === false ? <span className="post-show-sidebar-info-span"><h3 className="comment-text-name">{this.props.currentUser.username}</h3><h3 className="comment-text">{this.props.post.body}</h3></span> :
-                  <textarea className="post-show-edit" maxLength="280" placeholder="Caption..." value={this.state.captionBody}>
+                  <textarea className="post-show-edit" maxLength="280" placeholder="Caption..." value={this.state.captionBody}
+                    onKeyDown={this.handleCaptionKeyDown} onChange={this.handleChange('captionBody')}>
                   </textarea>
                 }
               </li>
@@ -128,7 +141,7 @@ export default class PostShowContainer extends React.Component {
             </ul>
             <div className="comment-submit">
               <textarea className="comment-textarea" maxLength="280" placeholder="Add a comment..."
-                onKeyDown={this.handleKeyDown} onChange={this.handleChange} value={this.state.commentBody}>
+                onKeyDown={this.handleKeyDown} onChange={this.handleChange('commentBody')} value={this.state.commentBody}>
               </textarea>
             </div>
           </div>
