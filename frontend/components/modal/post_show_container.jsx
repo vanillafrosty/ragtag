@@ -14,7 +14,8 @@ export default class PostShowContainer extends React.Component {
       editing: false,
       commentBody: '',
       captionBody: this.props.post.body,
-      post_id: this.props.post.id
+      post_id: this.props.post.id,
+      dropDownClass: "down-button"
     };
   }
 
@@ -36,20 +37,31 @@ export default class PostShowContainer extends React.Component {
     this.setState({
       editing: !this.state.editing,
       dropDown: !this.state.dropDown,
-      captionBody: this.props.post.body
+      captionBody: this.props.post.body,
+      dropDownClass: "down-button rotate"
     });
   }
 
   handleDrop(e) {
+    //DO NOT drop down the actual menu if we're clicking the drop
+    //and the bio is in edit mode!!!
     e.preventDefault();
-    this.setState({
-      dropDown: !this.state.dropDown
-    });
     if (this.state.editing) {
       this.setState({
-        editing: !this.state.editing
+        editing: !this.state.editing,
+        dropDownClass: "down-button"
       });
-    };
+    } else if (this.state.dropDownClass === "down-button") {
+      this.setState({
+        dropDownClass: "down-button rotate",
+        dropDown: !this.state.dropDown
+      });
+    } else {
+      this.setState({
+        dropDownClass: "down-button",
+        dropDown: !this.state.dropDown
+      });
+    }
   }
 
   handleChange(key) {
@@ -114,7 +126,9 @@ export default class PostShowContainer extends React.Component {
           <img className="post-show-image-preview" src={this.props.post.img_url} />
         </div>
         <div className="post-show-side">
-          <div className="down-button" onClick={this.handleDrop}><i className="fas fa-chevron-down fa-lg"></i></div>
+          <div className={this.state.dropDownClass} onClick={this.handleDrop}>
+            <i className="fas fa-chevron-down fa-lg"></i>
+          </div>
           {this.state.dropDown === false ? '' :
             <ul className="down-dropdown">
               <li className="down-dropdown-button-li" onClick={this.handleEdit}>Edit</li>

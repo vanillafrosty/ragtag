@@ -239,6 +239,10 @@ input[type="file"] {
   align-items: center;
 }
 
+.rotate {
+  transform: rotate(180deg);
+}
+
 .down-dropdown-button-li{
   cursor: pointer;
   color: $navy;
