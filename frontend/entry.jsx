@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
-import { removePost } from './util/post_api_util';
+import { deletePost } from './actions/post_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -18,6 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
   window.store = store;
-  window.removePost = removePost;
+  window.deletePost = deletePost;
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 });

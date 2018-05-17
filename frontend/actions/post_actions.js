@@ -6,6 +6,15 @@ export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
 export const CLEAR_POST_ERRORS = 'CLEAR_POST_ERRORS';
 export const RECEIVE_INDEX = 'RECEIVE_INDEX';
 export const CLEAR_POSTS = 'CLEAR_POSTS';
+export const REMOVE_POST = 'REMOVE_POST';
+
+
+export const removePost = (post) => {
+  return {
+    type: REMOVE_POST,
+    id: post.id
+  };
+};
 
 //action creator used when fetching posts from user show page
 export const receivePosts = (data) => {
@@ -84,4 +93,12 @@ export const updatePost = (post) => {
       return dispatch(receivePost(post));
     });
   };
-}
+};
+
+export const deletePost = (id) => {
+  return (dispatch) => {
+    return ApiUtil.removePost(id).then( post => {
+      return dispatch(removePost(post));
+    });
+  };
+};
