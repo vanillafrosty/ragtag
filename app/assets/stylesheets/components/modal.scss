@@ -210,3 +210,17 @@ input[type="file"] {
 #post-show-sidebar-info-third {
   padding-bottom: 15px;
 }
+
+.down-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  height: 48px;
+  width: 48px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $navy;
+}

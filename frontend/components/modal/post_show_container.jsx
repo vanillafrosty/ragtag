@@ -50,6 +50,7 @@ export default class PostShowContainer extends React.Component {
           <img className="post-show-image-preview" src={this.props.post.img_url} />
         </div>
         <div className="post-show-side">
+          <div className="down-button"><i class="fas fa-chevron-down"></i></div>
           <div className="post-modal-profile">
             <div className="post-modal-profile-pic">
               <img src={this.props.currentUser.avatar_url} />
