@@ -64,7 +64,10 @@ export default class PostShowContainer extends React.Component {
   handleKeyDown(e) {
     if (e.key === 'Enter') {
       e.preventDefault();
-      this.props.createComment(this.state);
+      this.props.createComment({
+        post_id: this.state.post_id,
+        body: this.state.commentBody
+      });
       this.setState({ commentBody: '' });
     }
   }
@@ -73,8 +76,11 @@ export default class PostShowContainer extends React.Component {
   handleCaptionKeyDown(e) {
     if (e.key === 'Enter') {
       e.preventDefault();
-      // this.props.updatePost(this.state);
-      console.log("ENTER HERE");
+      this.props.updatePost({
+        id: this.state.post_id,
+        body: this.state.captionBody
+      });
+      this.setState({ editing: false });
     };
   }
 

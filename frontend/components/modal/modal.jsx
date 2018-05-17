@@ -3,12 +3,12 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import PostNewContainer from './post_new_container';
 import PostShowContainer from './post_show_container';
-import { createPost, clearErrors } from '../../actions/post_actions';
+import { createPost, clearErrors, updatePost } from '../../actions/post_actions';
 import { createLike } from '../../actions/like_actions';
 import { fetchCommentsAndUsers, clearComments, createComment } from '../../actions/comment_actions';
 import _ from 'lodash';
 
-const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post, createLike, liked, fetchCommentsAndUsers, comments, clearComments, currentUser, createComment}) => {
+const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post, updatePost, createLike, liked, fetchCommentsAndUsers, comments, clearComments, currentUser, createComment}) => {
   if (!modal.status) {
     return null;
   }
@@ -20,7 +20,7 @@ const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post,
       break;
     case 'show':
       component = <PostShowContainer currentUser={currentUser} users={users} post={post} createLike={createLike} liked={liked}
-        fetchCommentsAndUsers={fetchCommentsAndUsers} clearComments={clearComments} comments={comments} createComment={createComment} />;
+        fetchCommentsAndUsers={fetchCommentsAndUsers} clearComments={clearComments} comments={comments} createComment={createComment} updatePost={updatePost} />;
       break;
     default:
       return null;
@@ -58,6 +58,7 @@ const mapDispatchToProps = dispatch => {
   return {
     closeModal: () => dispatch(closeModal()),
     createPost: (post) => dispatch(createPost(post)),
+    updatePost: (post) => dispatch(updatePost(post)),
     clearErrors: () => dispatch(clearErrors()),
     createLike: (id) => dispatch(createLike(id)),
     fetchCommentsAndUsers: (id) => dispatch(fetchCommentsAndUsers(id)),
