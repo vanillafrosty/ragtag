@@ -224,3 +224,30 @@ input[type="file"] {
   justify-content: center;
   color: $navy;
 }
+
+.down-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  background-color: $sky-blue;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.down-dropdown-button-li{
+  cursor: pointer;
+  color: $navy;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 1px solid $white-gray;
+  text-align: center;
+  background-color: $sky-blue;
+}
+
+.down-dropdown-button-li:hover{
+  color: $white;
+  background-color: $navy;
+}
