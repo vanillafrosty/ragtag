@@ -77,3 +77,11 @@ export const createPost = (post) => {
     });
   };
 };
+
+export const updatePost = (post) => {
+  return (dispatch) => {
+    return ApiUtil.updatePost(post).then( post => {
+      return dispatch(receivePost(post));
+    });
+  };
+}
