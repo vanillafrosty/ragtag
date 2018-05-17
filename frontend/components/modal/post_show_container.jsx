@@ -4,7 +4,11 @@ export default class PostShowContainer extends React.Component {
 
   constructor(props){
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleLike = this.handleLike.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.state = {
+      editing: false
+    };
   }
 
   componentDidMount() {
@@ -15,9 +19,16 @@ export default class PostShowContainer extends React.Component {
     this.props.clearComments();
   }
 
-  handleClick(e) {
+  handleLike(e) {
     e.preventDefault();
     this.props.createLike(this.props.post.id);
+  }
+
+  handleEdit(e) {
+    e.preventDefault();
+    this.setState({
+      editing: !this.state.editing
+    });
   }
 
   render() {
@@ -50,11 +61,12 @@ export default class PostShowContainer extends React.Component {
           <img className="post-show-image-preview" src={this.props.post.img_url} />
         </div>
         <div className="post-show-side">
-          <div className="down-button"><i className="fas fa-chevron-down fa-lg"></i></div>
-          <ul className="down-dropdown">
-            <li className="down-dropdown-button-li">Edit</li>
-            <li className="down-dropdown-button-li">Delete</li>
-          </ul>
+          <div className="down-button" onClick={this.handleEdit}><i className="fas fa-chevron-down fa-lg"></i></div>
+          {this.state.editing === false ? '' :
+            <ul className="down-dropdown">
+              <li className="down-dropdown-button-li">Edit</li>
+              <li className="down-dropdown-button-li">Delete</li>
+            </ul>}
           <div className="post-modal-profile">
             <div className="post-modal-profile-pic">
               <img src={this.props.currentUser.avatar_url} />
@@ -64,7 +76,7 @@ export default class PostShowContainer extends React.Component {
           <div className="post-show-divide"></div>
           <ul className="post-show-sidebar-info">
             <li className="post-show-sidebar-info-first">
-              <div className={heartColor} onClick={this.handleClick}><i className="fas fa-heart fa-lg"></i></div>
+              <div className={heartColor} onClick={this.handleLike}><i className="fas fa-heart fa-lg"></i></div>
               <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
             </li>
             <li className="post-show-sidebar-info-second">
