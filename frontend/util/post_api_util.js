@@ -23,3 +23,11 @@ export const updatePost = (post) => {
     data: {post: post}
   });
 };
+
+
+export const removePost = (id) => {
+  return $.ajax({
+    method: 'DELETE',
+    url: `api/posts/${id}`
+  });
+};

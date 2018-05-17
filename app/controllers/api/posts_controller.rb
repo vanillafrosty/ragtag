@@ -61,6 +61,16 @@ class Api::PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    if @post
+      @post.destroy
+      render :show
+    else
+      render json: ['Error destroying the post'], status: 422
+    end
+  end
+
   def createLike
     post = Post.find(params[:post_id])
     @like = post.likes.new(user_id: current_user.id)
