@@ -134,6 +134,13 @@ export default class PostShowContainer extends React.Component {
               <li className="down-dropdown-button-li" onClick={this.handleEdit}>Edit</li>
               <li className="down-dropdown-button-li">Delete</li>
             </ul>}
+          <div className="post-delete-container">
+            <div className="post-delete-prompt">Are you sure you want to delete this post?</div>
+            <ul className="post-delete-buttons">
+              <li className="post-delete-buttons-li">Yes</li>
+              <li className="post-delete-buttons-li">Cancel</li>
+            </ul>
+          </div>
           <div className="post-modal-profile">
             <div className="post-modal-profile-pic">
               <img src={this.props.currentUser.avatar_url} />
