@@ -49,8 +49,8 @@ export default class SessionForm extends React.Component {
     if (this.props.errors.length === 0) {
       renderedErrors = '';
     } else {
-      renderedErrors = this.props.errors.map( (err) => {
-        return <li>{err}</li>
+      renderedErrors = this.props.errors.map( (err, idx) => {
+        return <li key={idx}>{err}</li>
       });
     }
     return (
