@@ -46,10 +46,19 @@ class Api::PostsController < ApplicationController
     end
   end
 
-  def show
-  end
+  # def show
+  # end
+  #
+  # def likes
+  # end
 
-  def likes
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(update_params)
+      render :show
+    else
+      render json: @post.errors.full_messages, status: 422
+    end
   end
 
   def createLike
@@ -76,6 +85,10 @@ class Api::PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:body, :image)
+  end
+
+  def update_params
+    params.require(:post).permit(:body)
   end
 
 
