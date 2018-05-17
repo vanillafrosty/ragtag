@@ -3,14 +3,16 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import PostNewContainer from './post_new_container';
 import PostShowContainer from './post_show_container';
-import { createPost, clearErrors, updatePost } from '../../actions/post_actions';
+import { createPost, clearErrors, updatePost, deletePost } from '../../actions/post_actions';
 import { createLike } from '../../actions/like_actions';
 import { fetchCommentsAndUsers, clearComments, createComment } from '../../actions/comment_actions';
 import _ from 'lodash';
 
-const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post, updatePost, createLike, liked, fetchCommentsAndUsers, comments, clearComments, currentUser, createComment}) => {
+const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post, updatePost, deletePost, createLike, liked, fetchCommentsAndUsers, comments, clearComments, currentUser, createComment}) => {
+
   if (!modal.status) {
     return null;
+
   }
   let component;
   switch (modal.status) {
@@ -20,7 +22,7 @@ const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post,
       break;
     case 'show':
       component = <PostShowContainer currentUser={currentUser} users={users} post={post} createLike={createLike} liked={liked}
-        fetchCommentsAndUsers={fetchCommentsAndUsers} clearComments={clearComments} comments={comments} createComment={createComment} updatePost={updatePost} />;
+        fetchCommentsAndUsers={fetchCommentsAndUsers} clearComments={clearComments} comments={comments} createComment={createComment} updatePost={updatePost} deletePost={deletePost} closeModal={closeModal} />;
       break;
     default:
       return null;
@@ -40,6 +42,11 @@ const mapStateToProps = state => {
   currentUser = state.entities.users[state.session.id];
   if (modal.status === 'show') {
     post = state.entities.posts[modal.postId];
+    //when we remove a post, the modal will try to re-render before it fails the modal.status check.
+    //since the post will be removed from the redux state, we fail unless we put a dummy post here.
+    if (typeof post === 'undefined') {
+      return { likes: [] };
+    }
     users = state.entities.users;
     liked = post.likes.includes(currentUser.id);
   }
@@ -59,6 +66,7 @@ const mapDispatchToProps = dispatch => {
     closeModal: () => dispatch(closeModal()),
     createPost: (post) => dispatch(createPost(post)),
     updatePost: (post) => dispatch(updatePost(post)),
+    deletePost: (id) => { return dispatch(deletePost(id)) },
     clearErrors: () => dispatch(clearErrors()),
     createLike: (id) => dispatch(createLike(id)),
     fetchCommentsAndUsers: (id) => dispatch(fetchCommentsAndUsers(id)),

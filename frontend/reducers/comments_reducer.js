@@ -14,7 +14,11 @@ const commentsReducer = (state = {}, action) => {
         return action.comments;
       }
     case RECEIVE_COMMENTS_AND_USERS:
-      return action.comments;
+      if (action.comments === undefined) {
+        return {};
+      } else {
+        return action.comments;
+      }
     case RECEIVE_COMMENT:
       let nextState = merge({}, state);
       nextState[action.comment.id] = action.comment;

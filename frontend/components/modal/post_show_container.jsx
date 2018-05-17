@@ -10,6 +10,7 @@ export default class PostShowContainer extends React.Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleCaptionKeyDown = this.handleCaptionKeyDown.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
     this.state = {
       dropDown: false,
       deleting: false,
@@ -57,6 +58,13 @@ export default class PostShowContainer extends React.Component {
         dropDownClass: "down-button"
       });
     }
+  }
+
+  handleRemove(e) {
+    e.preventDefault();
+    this.props.deletePost(this.props.post.id).then( success => {
+      this.props.closeModal();
+    });
   }
 
   handleDrop(e) {
@@ -155,7 +163,7 @@ export default class PostShowContainer extends React.Component {
             <div className="post-delete-container">
               <div className="post-delete-prompt">Are you sure you want to delete this post?</div>
               <ul className="post-delete-buttons">
-                <li className="post-delete-buttons-li">Yes</li>
+                <li className="post-delete-buttons-li" onClick={this.handleRemove}>Yes</li>
                 <li className="post-delete-buttons-li" onClick={this.handleDelete}>Cancel</li>
               </ul>
             </div>}
