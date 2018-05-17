@@ -28,12 +28,15 @@ class Api::PostsController < ApplicationController
     elsif (params[:type] == "user")
       user = User.find(params[:id])
       if user
-        @followed_users = []
+        # @followed_users = []
         @posts = user.posts.includes(:likes, {comments: :user})
-        render :index
+        render :indexShow
       else
         render json: ['Cannot find user with that ID'], status: 422
       end
+    elsif (params[:type] == "omega")
+      @followed_users = []
+      @posts = Post.all.includes(:user, :likes, {comments: :user})
     end
   end
 
