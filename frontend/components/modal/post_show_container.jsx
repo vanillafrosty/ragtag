@@ -8,9 +8,11 @@ export default class PostShowContainer extends React.Component {
     this.handleDrop = this.handleDrop.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.handleCaptionKeyDown = this.handleCaptionKeyDown.bind(this);
     this.state = {
       dropDown: false,
+      deleting: false,
       editing: false,
       commentBody: '',
       captionBody: this.props.post.body,
@@ -40,6 +42,21 @@ export default class PostShowContainer extends React.Component {
       captionBody: this.props.post.body,
       dropDownClass: "down-button rotate"
     });
+  }
+
+  handleDelete(e) {
+    e.preventDefault();
+    if (this.state.deleting) {
+      this.setState({
+        deleting: !this.state.deleting
+      });
+    } else {
+      this.setState({
+        deleting: !this.state.deleting,
+        dropDown: !this.state.dropDown,
+        dropDownClass: "down-button"
+      });
+    }
   }
 
   handleDrop(e) {
@@ -132,15 +149,16 @@ export default class PostShowContainer extends React.Component {
           {this.state.dropDown === false ? '' :
             <ul className="down-dropdown">
               <li className="down-dropdown-button-li" onClick={this.handleEdit}>Edit</li>
-              <li className="down-dropdown-button-li">Delete</li>
+              <li className="down-dropdown-button-li" onClick={this.handleDelete}>Delete</li>
             </ul>}
-          <div className="post-delete-container">
-            <div className="post-delete-prompt">Are you sure you want to delete this post?</div>
-            <ul className="post-delete-buttons">
-              <li className="post-delete-buttons-li">Yes</li>
-              <li className="post-delete-buttons-li">Cancel</li>
-            </ul>
-          </div>
+          {this.state.deleting === false? '' :
+            <div className="post-delete-container">
+              <div className="post-delete-prompt">Are you sure you want to delete this post?</div>
+              <ul className="post-delete-buttons">
+                <li className="post-delete-buttons-li">Yes</li>
+                <li className="post-delete-buttons-li" onClick={this.handleDelete}>Cancel</li>
+              </ul>
+            </div>}
           <div className="post-modal-profile">
             <div className="post-modal-profile-pic">
               <img src={this.props.currentUser.avatar_url} />
