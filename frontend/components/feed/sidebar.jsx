@@ -6,7 +6,7 @@ const SidebarContainer = (props) => {
 
   const followedUsers = props.followedUsers.map( user => {
     return (
-      <li key={user.id} className="sidebar-profile">
+      <div key={user.id} className="sidebar-profile">
         <Link to={`/user/${user.id}`}>
           <div className="sidebar-profile-pic">
             <img src={user.avatar_url} />
@@ -15,7 +15,7 @@ const SidebarContainer = (props) => {
         <Link to={`/user/${user.id}`}>
           <div className="feed-profile-name">{user.username}</div>
         </Link>
-      </li>
+      </div>
     )
   });
 
@@ -36,7 +36,9 @@ const SidebarContainer = (props) => {
         <li className="sidebar-info-first">
           <div className="sidebar-text">Following</div>
         </li>
-        {followedUsers}
+        <li className="sidebar-followed">
+          {followedUsers}
+        </li>
       </ul>
     </div>
   );

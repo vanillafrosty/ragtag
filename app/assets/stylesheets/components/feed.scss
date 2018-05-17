@@ -121,7 +121,7 @@
 .sidebar-container {
   @extend %border-light;
   width: 275px;
-  height: 400px;
+  height: 300px;
   margin-left: 75px;
   background-color: $white;
   position: sticky;
@@ -154,10 +154,16 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
+  height: 235px;
+}
+
+.sidebar-followed {
+  overflow-y: auto;
 }
 
 .sidebar-info-first {
   display: flex;
+  margin-bottom: 15px;
 }
 
 .sidebar-text {
