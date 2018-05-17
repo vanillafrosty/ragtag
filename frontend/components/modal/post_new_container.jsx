@@ -68,9 +68,9 @@ export default class PostNewContainer extends React.Component {
             <div className="x-button" onClick={this.props.closeModal}><i className="fas fa-times fa-lg"></i></div>
             <div className="post-modal-profile">
               <div className="post-modal-profile-pic">
-                <img src={this.props.currentUser.avatar_url} />
+                <img src={this.props.sessionUser.avatar_url} />
               </div>
-              <div className="post-modal-profile-name">{this.props.currentUser.username}</div>
+              <div className="post-modal-profile-name">{this.props.sessionUser.username}</div>
             </div>
             <div className="post-show-divide"></div>
             <div className="post-new-submit">

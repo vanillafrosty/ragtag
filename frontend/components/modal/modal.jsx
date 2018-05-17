@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import PostNewContainer from './post_new_container';
@@ -8,7 +9,7 @@ import { createLike } from '../../actions/like_actions';
 import { fetchCommentsAndUsers, clearComments, createComment } from '../../actions/comment_actions';
 import _ from 'lodash';
 
-const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post, updatePost, deletePost, createLike, liked, fetchCommentsAndUsers, comments, clearComments, currentUser, createComment}) => {
+const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post, updatePost, deletePost, createLike, liked, fetchCommentsAndUsers, comments, clearComments, sessionUser, currentUser, createComment}) => {
 
   if (!modal.status) {
     return null;
@@ -17,11 +18,11 @@ const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post,
   let component;
   switch (modal.status) {
     case 'create':
-      component = <PostNewContainer currentUser={currentUser} closeModal={closeModal} createPost={createPost}
+      component = <PostNewContainer sessionUser={sessionUser} closeModal={closeModal} createPost={createPost}
         errors={errors} clearErrors={clearErrors} />;
       break;
     case 'show':
-      component = <PostShowContainer currentUser={currentUser} users={users} post={post} createLike={createLike} liked={liked}
+      component = <PostShowContainer sessionUser={sessionUser} currentUser={currentUser} users={users} post={post} createLike={createLike} liked={liked}
         fetchCommentsAndUsers={fetchCommentsAndUsers} clearComments={clearComments} comments={comments} createComment={createComment} updatePost={updatePost} deletePost={deletePost} closeModal={closeModal} />;
       break;
     default:
@@ -36,10 +37,19 @@ const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post,
   );
 }
 
-const mapStateToProps = state => {
-  let modal, post, users, liked, currentUser;
+const mapStateToProps = (state, ownProps) => {
+  let modal, post, users, liked, sessionUser, currentUser;
   modal = state.ui.modal;
-  currentUser = state.entities.users[state.session.id];
+  sessionUser = state.entities.users[state.session.id];
+  let matched = ownProps.location.pathname.match(/\d+/);
+  if (matched) {
+    currentUser = state.entities.users[matched[0]];
+  }
+  //set dummy currentUser before postShowContainer calls fetchCommentsAndUsers (remember fetchCommentsAndUsers
+  //will force include session user and the post's user)
+  if (currentUser === undefined) {
+    currentUser = {};
+  }
   if (modal.status === 'show') {
     post = state.entities.posts[modal.postId];
     //when we remove a post, the modal will try to re-render before it fails the modal.status check.
@@ -48,9 +58,10 @@ const mapStateToProps = state => {
       return { likes: [] };
     }
     users = state.entities.users;
-    liked = post.likes.includes(currentUser.id);
+    liked = post.likes.includes(sessionUser.id);
   }
   return {
+    sessionUser: sessionUser,
     currentUser: currentUser,
     modal: modal,
     post: post,
@@ -75,4 +86,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Modal));

@@ -12,6 +12,11 @@ end
 
 json.users do
   json.merge! users_hash
+  json.set! @post_user.id do
+    json.extract! @post_user, :id, :username
+    json.avatar_url image_path(@post_user.avatar.url)
+    json.follows @post_user.followers.pluck(:id)
+  end
   json.set! @current_user.id do
     json.extract! @current_user, :id, :username
     json.avatar_url image_path(@current_user.avatar.url)

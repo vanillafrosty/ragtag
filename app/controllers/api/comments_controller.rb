@@ -4,6 +4,11 @@ class Api::CommentsController < ApplicationController
     post = Post.find(params[:post_id])
     if post
       @comments = post.comments.includes(:user)
+      #force send post's user and current session user otherwise we may not necessarily
+      #have them (it's not guaranteed the post's user/session user have commented on the post)
+      #we need the post's user to render the post show modal and we need current user to render
+      #profile info 
+      @post_user = post.user
       @current_user = current_user
       render :index
     else
