@@ -23,7 +23,7 @@ export default class Navbar extends React.Component {
             <li>
               <i className="far fa-compass fa-lg"></i>
             </li>
-            <li>
+            <li className="grayed-icon">
               <i className="far fa-heart fa-lg"></i>
             </li>
             <li>

@@ -69,8 +69,8 @@ export default class PostIndexItem extends React.Component {
             </li>
             {comments}
           </ul>
-          <div className="index-comment-submit">
-            <textarea className="index-comment-textarea" maxLength="280" placeholder="Add a comment..."
+          <div className="comment-submit">
+            <textarea className="comment-textarea" maxLength="280" placeholder="Add a comment..."
               onKeyDown={this.handleKeyDown} onChange={this.handleChange} value={this.state.body}>
             </textarea>
           </div>

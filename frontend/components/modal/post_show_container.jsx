@@ -6,8 +6,12 @@ export default class PostShowContainer extends React.Component {
     super(props);
     this.handleLike = this.handleLike.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.state = {
-      editing: false
+      editing: false,
+      body: '',
+      post_id: this.props.post.id
     };
   }
 
@@ -29,6 +33,21 @@ export default class PostShowContainer extends React.Component {
     this.setState({
       editing: !this.state.editing
     });
+  }
+
+  handleChange(e) {
+    e.preventDefault();
+    this.setState({
+      body: e.target.value
+    });
+  }
+
+  handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      this.props.createComment(this.state);
+      this.setState({ body: '' });
+    }
   }
 
   render() {
@@ -74,19 +93,26 @@ export default class PostShowContainer extends React.Component {
             <div className="post-modal-profile-name">{this.props.currentUser.username}</div>
           </div>
           <div className="post-show-divide"></div>
-          <ul className="post-show-sidebar-info">
-            <li className="post-show-sidebar-info-first">
-              <div className={heartColor} onClick={this.handleLike}><i className="fas fa-heart fa-lg"></i></div>
-              <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
-            </li>
-            <li className="post-show-sidebar-info-second">
-              <h3>{this.props.post.likes.length} likes</h3>
-            </li>
-            <li id="post-show-sidebar-info-third">
-              <h3 className="comment-text-name">{this.props.currentUser.username}</h3><h3 className="comment-text">{this.props.post.body}</h3>
-            </li>
-            {comments}
-          </ul>
+          <div className="post-show-all-text">
+            <ul className="post-show-sidebar-info">
+              <li className="post-show-sidebar-info-first">
+                <div className={heartColor} onClick={this.handleLike}><i className="fas fa-heart fa-lg"></i></div>
+                <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
+              </li>
+              <li className="post-show-sidebar-info-second">
+                <h3>{this.props.post.likes.length} likes</h3>
+              </li>
+              <li id="post-show-sidebar-info-third">
+                <h3 className="comment-text-name">{this.props.currentUser.username}</h3><h3 className="comment-text">{this.props.post.body}</h3>
+              </li>
+              {comments}
+            </ul>
+            <div className="comment-submit">
+              <textarea className="comment-textarea" maxLength="280" placeholder="Add a comment..."
+                onKeyDown={this.handleKeyDown} onChange={this.handleChange} value={this.state.body}>
+              </textarea>
+            </div>
+          </div>
         </div>
       </div>
     );

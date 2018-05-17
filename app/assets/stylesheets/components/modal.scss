@@ -229,7 +229,6 @@ input[type="file"] {
   position: absolute;
   top: 50px;
   right: 10px;
-  background-color: $sky-blue;
   width: 80px;
   display: flex;
   flex-direction: column;
@@ -243,6 +242,7 @@ input[type="file"] {
   padding-top: 5px;
   padding-bottom: 5px;
   border: 1px solid $white-gray;
+  border-radius: 5px;
   text-align: center;
   background-color: $sky-blue;
 }
@@ -250,4 +250,12 @@ input[type="file"] {
 .down-dropdown-button-li:hover{
   color: $white;
   background-color: $navy;
+}
+
+
+.post-show-all-text {
+  height: 529px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
