@@ -5,7 +5,6 @@ const postErrorsReducer = (state = [], action) => {
     case RECEIVE_POST_ERRORS:
       return action.errors;
     case RECEIVE_POST:
-      return [];
     case CLEAR_POST_ERRORS:
       return [];
     default:

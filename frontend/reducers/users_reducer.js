@@ -8,10 +8,6 @@ import { RECEIVE_COMMENTS_AND_USERS } from '../actions/comment_actions';
 
 const usersReducer = (state = {}, action) => {
   switch(action.type) {
-    case RECEIVE_COMMENTS_AND_USERS:
-      return action.users;
-    case RECEIVE_CURRENT_USER:
-      return merge({}, state, { [action.user.id]: action.user });
     case RECEIVE_FOLLOW:
       let nextState = merge({}, state);
       nextState = merge({}, state);
@@ -26,8 +22,10 @@ const usersReducer = (state = {}, action) => {
       let follower_index = follows.indexOf(follower_id);
       follows.splice(follower_index, 1);
       return nextState;
+    case RECEIVE_CURRENT_USER:
     case RECEIVE_USER:
       return merge({}, state, { [action.user.id]: action.user });
+    case RECEIVE_COMMENTS_AND_USERS:
     case RECEIVE_INDEX:
       return action.users;
     default:

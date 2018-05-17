@@ -9,11 +9,6 @@ const postsReducer = (state = {}, action) => {
     case CLEAR_POSTS:
       return {};
     case RECEIVE_POSTS:
-      if (action.posts === undefined) {
-        return {};
-      } else {
-        return action.posts;
-      }
     case RECEIVE_INDEX:
       if (action.posts === undefined) {
         return {};

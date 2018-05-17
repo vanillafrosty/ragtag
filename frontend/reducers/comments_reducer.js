@@ -8,11 +8,6 @@ import merge from 'lodash/merge';
 const commentsReducer = (state = {}, action) => {
   switch(action.type) {
     case RECEIVE_INDEX:
-      if (action.comments === undefined) {
-        return {};
-      } else {
-        return action.comments;
-      }
     case RECEIVE_COMMENTS_AND_USERS:
       if (action.comments === undefined) {
         return {};
