@@ -1,7 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import _ from 'lodash';
+import { fetchSearchUsers } from '../../actions/search_actions';
 
 
-export default class SearchbarContainer extends React.Component {
+const mapStateToProps = (state) => {
+  let searchedUsers = state.entities.search.users;
+  return {
+    searchedUsers: _.values(searchedUsers)
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchSearchUsers: (str) => dispatch(fetchSearchUsers(str))
+  };
+};
+
+
+class SearchbarContainer extends React.Component {
 
   constructor(props) {
     super(props);
@@ -16,3 +33,5 @@ export default class SearchbarContainer extends React.Component {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchbarContainer);
