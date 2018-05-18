@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchIndex: (params) => dispatch(fetchIndex(params)),
+    fetchIndex: () => dispatch(fetchIndex()),
     clearPosts: () => dispatch(clearPosts())
   };
 };
@@ -30,7 +30,7 @@ class FeedContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchIndex({ type: 'index' });
+    this.props.fetchIndex();
   }
 
   componentWillUnmount() {

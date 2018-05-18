@@ -69,9 +69,17 @@ export const fetchPosts = (params) => {
   };
 };
 
-export const fetchIndex = (params) => {
+export const fetchIndex = () => {
   return (dispatch) => {
-    return ApiUtil.fetchPosts(params).then( data => {
+    return ApiUtil.fetchPosts({ type: 'index' }).then( data => {
+      return dispatch(receiveIndex(data));
+    });
+  };
+}
+
+export const fetchExplore = () => {
+  return (dispatch) => {
+    return ApiUtil.fetchPosts({ type: 'explore' }).then( data => {
       return dispatch(receiveIndex(data));
     });
   };

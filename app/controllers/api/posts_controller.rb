@@ -28,15 +28,19 @@ class Api::PostsController < ApplicationController
     elsif (params[:type] == "user")
       user = User.find(params[:id])
       if user
-        # @followed_users = []
         @posts = user.posts.includes(:likes, {comments: :user})
         render :indexShow
       else
         render json: ['Cannot find user with that ID'], status: 422
       end
-    elsif (params[:type] == "omega")
-      @followed_users = []
-      @posts = Post.all.includes(:user, :likes, {comments: :user})
+    elsif (params[:type] == "explore")
+      #activeRecord can order by created_at, which we may do later. for now,
+      #random may actually make the explore page look more random.
+      @posts = Post.order("RANDOM()").limit(21).includes(:user, :likes, {comments: :user})
+      # @posts = Post.all.includes(:user, :likes, {comments: :user})
+      render :explore
+    else
+      render json: ['Invalid request type'], status: 422
     end
   end
 
