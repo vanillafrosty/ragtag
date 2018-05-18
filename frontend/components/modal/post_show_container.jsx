@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class PostShowContainer extends React.Component {
 
@@ -141,7 +142,7 @@ export default class PostShowContainer extends React.Component {
     const comments = post_comments.map((comment, id) => {
       return (
         <li key={id}>
-          <h3 className="comment-text-name">{comment.username}</h3>
+          <Link to={`/user/${comment.user_id}`} onClick={this.props.closeModal}><h3 className="comment-text-name">{comment.username}</h3></Link>
           <h3 className="comment-text">{comment.body}</h3>
         </li>
       );
@@ -176,9 +177,9 @@ export default class PostShowContainer extends React.Component {
             </div>}
           <div className="post-modal-profile">
             <div className="post-modal-profile-pic">
-              <img src={this.props.currentUser.avatar_url} />
+              <Link to={`/user/${this.props.currentUser.id}`} onClick={this.props.closeModal}><img src={this.props.currentUser.avatar_url} /></Link>
             </div>
-            <div className="post-modal-profile-name">{this.props.currentUser.username}</div>
+            <Link to={`/user/${this.props.currentUser.id}`} onClick={this.props.closeModal}><div className="post-modal-profile-name">{this.props.currentUser.username}</div></Link>
           </div>
           <div className="post-show-divide"></div>
           <div className="post-show-all-text">
@@ -191,7 +192,11 @@ export default class PostShowContainer extends React.Component {
                 <h3>{this.props.post.likes.length} likes</h3>
               </li>
               <li id="post-show-sidebar-info-third">
-                {this.state.editing === false ? <span className="post-show-sidebar-info-span"><h3 className="comment-text-name">{this.props.currentUser.username}</h3><h3 className="comment-text">{this.props.post.body}</h3></span> :
+                {this.state.editing === false ?
+                  <span className="post-show-sidebar-info-span">
+                    <Link to={`/user/${this.props.currentUser.id}`} onClick={this.props.closeModal}><h3 className="comment-text-name">{this.props.currentUser.username}</h3></Link>
+                    <h3 className="comment-text">{this.props.post.body}</h3>
+                  </span> :
                   <textarea className="post-show-edit" maxLength="280" placeholder="Caption..." value={this.state.captionBody}
                     onKeyDown={this.handleCaptionKeyDown} onChange={this.handleChange('captionBody')}>
                   </textarea>

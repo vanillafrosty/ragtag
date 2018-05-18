@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class PostExploreContainer extends React.Component {
 
@@ -58,7 +59,7 @@ export default class PostExploreContainer extends React.Component {
     const comments = post_comments.map((comment, id) => {
       return (
         <li key={id}>
-          <h3 className="comment-text-name">{comment.username}</h3>
+          <Link to={`/user/${comment.user_id}`} onClick={this.props.closeModal}><h3 className="comment-text-name">{comment.username}</h3></Link>
           <h3 className="comment-text">{comment.body}</h3>
         </li>
       );
@@ -76,9 +77,9 @@ export default class PostExploreContainer extends React.Component {
         <div className="post-show-side">
           <div className="post-modal-profile">
             <div className="post-modal-profile-pic">
-              <img src={currentUser.avatar_url} />
+              <Link to={`/user/${currentUser.id}`} onClick={this.props.closeModal}><img src={currentUser.avatar_url} /></Link>
             </div>
-            <div className="post-modal-profile-name">{currentUser.username}</div>
+            <Link to={`/user/${currentUser.id}`} onClick={this.props.closeModal}><div className="post-modal-profile-name">{currentUser.username}</div></Link>
           </div>
           <div className="post-show-divide"></div>
           <div className="post-show-all-text">
@@ -92,7 +93,7 @@ export default class PostExploreContainer extends React.Component {
               </li>
               <li id="post-show-sidebar-info-third">
                 <span className="post-show-sidebar-info-span">
-                  <h3 className="comment-text-name">{currentUser.username}</h3>
+                  <Link to={`/user/${currentUser.id}`} onClick={this.props.closeModal}><h3 className="comment-text-name">{currentUser.username}</h3></Link>
                   <h3 className="comment-text">{this.props.post.body}</h3>
                 </span>
               </li>

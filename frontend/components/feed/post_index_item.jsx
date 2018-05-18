@@ -35,7 +35,7 @@ export default class PostIndexItem extends React.Component {
     const comments = this.props.postComments.map((comment, id) => {
       return (
         <li key={id}>
-          <h3 className="comment-text-name">{comment.username}</h3>
+          <Link to={`/user/${comment.user_id}`}><h3 className="comment-text-name">{comment.username}</h3></Link>
           <h3 className="comment-text">{comment.body}</h3>
         </li>
       );
@@ -65,7 +65,8 @@ export default class PostIndexItem extends React.Component {
               <h3>{this.props.post.likes.length} likes</h3>
             </li>
             <li id="post-index-info-third">
-              <h3 className="comment-text-name">{this.props.user.username}</h3><h3 className="comment-text">{this.props.post.body}</h3>
+              <Link to={`/user/${this.props.user.id}`}><h3 className="comment-text-name">{this.props.user.username}</h3></Link>
+              <h3 className="comment-text">{this.props.post.body}</h3>
             </li>
             {comments}
           </ul>

@@ -60,7 +60,7 @@ const mapStateToProps = (state, ownProps) => {
     //when we remove a post, the modal will try to re-render before it fails the modal.status check.
     //since the post will be removed from the redux state, we fail unless we put a dummy post here.
     if (typeof post === 'undefined') {
-      return { likes: [] };
+      post = { likes: [], comments: [] };
     }
     users = state.entities.users;
     liked = post.likes.includes(sessionUser.id);
