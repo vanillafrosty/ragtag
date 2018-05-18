@@ -21,7 +21,7 @@ export default class Navbar extends React.Component {
           <SearchbarContainer />
           <ul className="navbar-buttons">
             <li>
-              <i className="far fa-compass fa-lg"></i>
+              <Link to="/explore"><i className="far fa-compass fa-lg"></i></Link>
             </li>
             <li className="grayed-icon">
               <i className="far fa-heart fa-lg"></i>

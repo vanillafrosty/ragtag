@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
-import { fetchExplore } from './actions/post_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -18,6 +17,5 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
   window.store = store;
-  window.fetchExplore = fetchExplore;
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 });

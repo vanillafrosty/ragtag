@@ -5,7 +5,7 @@ import { ProtectedRoute } from '../util/route_util';
 import FeedContainer from './feed/feed_container';
 import ProfileContainer from './profile/profile_container';
 import Modal from './modal/modal';
-
+import ExploreContainer from './explore/explore_container';
 
 const HomeContainer = (props) => {
   return (
@@ -14,6 +14,7 @@ const HomeContainer = (props) => {
       <NavbarContainer />
       <Switch>
         <ProtectedRoute path="/user/:userId" component={ProfileContainer} />
+        <ProtectedRoute path="/explore" component={ExploreContainer} />
         <ProtectedRoute path="/" component={FeedContainer} />
       </Switch>
     </div>
