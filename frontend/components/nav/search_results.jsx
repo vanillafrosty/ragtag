@@ -26,8 +26,8 @@ export default class SearchResults extends React.Component {
       searchedArr = this.props.searchedUsers.map( user => {
         return (
           <li key={user.id} className="search-results-li">
-            <div className="search-results-img"><img src={user.avatar_url} /></div>
-            <div className="search-results-text">{user.username}</div>
+            <Link to={`/user/${user.id}`} onClick={this.props.clearSearch}><div className="search-results-img"><img src={user.avatar_url} /></div></Link>
+            <Link to={`/user/${user.id}`} onClick={this.props.clearSearch}><div className="search-results-text">{user.username}</div></Link>
           </li>
         )
       });

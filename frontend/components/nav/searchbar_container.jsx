@@ -26,6 +26,7 @@ class SearchbarContainer extends React.Component {
       body: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.clearSearch = this.clearSearch.bind(this);
   }
 
   handleChange(e) {
@@ -35,12 +36,17 @@ class SearchbarContainer extends React.Component {
     });
   }
 
+  clearSearch() {
+    this.setState({
+      body: ''
+    });
+  }
 
   render() {
     return (
       <div className="searchbar-container">
         <input className="searchbar" type="text" maxLength="60" value={this.state.body} onChange={this.handleChange} placeholder="Search" />
-        <SearchResults fetchSearchUsers={this.props.fetchSearchUsers} query={this.state.body} searchedUsers={this.props.searchedUsers} />
+        <SearchResults fetchSearchUsers={this.props.fetchSearchUsers} clearSearch={this.clearSearch} query={this.state.body} searchedUsers={this.props.searchedUsers} />
       </div>
     );
   }
