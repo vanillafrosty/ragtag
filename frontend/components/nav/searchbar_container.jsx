@@ -25,6 +25,14 @@ class SearchbarContainer extends React.Component {
     this.state = {
       body: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    e.preventDefault();
+    this.setState({
+      body: e.target.value
+    });
   }
 
   render() {
@@ -38,7 +46,7 @@ class SearchbarContainer extends React.Component {
     });
     return (
       <div className="searchbar-container">
-        <input className="searchbar" type="text" maxLength="60" value={this.state.body} placeholder="Search" />
+        <input className="searchbar" type="text" maxLength="60" value={this.state.body} onChange={this.handleChange} placeholder="Search" />
         <ul>
           {searchedArr}
         </ul>
