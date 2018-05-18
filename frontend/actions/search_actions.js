@@ -11,6 +11,7 @@ export const receiveSearchUsers = (users) => {
 };
 
 export const fetchSearchUsers = (searchStr) => {
+  debugger;
   return (dispatch) => {
     return APIUtil.searchUsers(searchStr).then( users => {
       return dispatch(receiveSearchUsers(users));
