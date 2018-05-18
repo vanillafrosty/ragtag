@@ -117,7 +117,10 @@ export default class PostShowContainer extends React.Component {
         id: this.state.post_id,
         body: this.state.captionBody
       });
-      this.setState({ editing: false });
+      this.setState({
+        editing: false,
+        dropDownClass: "down-button"
+      });
     };
   }
 
