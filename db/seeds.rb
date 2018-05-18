@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'uri'
 
 ActiveRecord::Base.transaction do
   User.destroy_all
@@ -17,10 +16,10 @@ ActiveRecord::Base.transaction do
 
 
   u1= User.create!({username: 'instagram', password: 'starwars', bio: "Capture and share the world's moments",
-    avatar: URI('https://s3.amazonaws.com/ragtagio-dev/instagram/instagram_prof.jpg')})
+    avatar: 'https://s3.amazonaws.com/ragtagio-dev/instagram/instagram_prof.jpg'})
   u6 = User.create!({username: 'blackbeard', password: 'starwars', bio: 'Bottles of rum'})
-  u7 = User.create!({username: 'wakanda', password: 'starwars', bio: 'Wakanda Forever',
-    avatar: 'https://s3.amazonaws.com/ragtagio-dev/wakanda/wakanda_prof.jpg'})
+  u7 = User.create!({username: 'animals', password: 'starwars', bio: 'Hakuna Matata',
+    avatar: 'https://s3.amazonaws.com/ragtagio-dev/animals/animals_prof.jpg'})
   u2 = User.create!({username: 'gordon', password: 'starwars', bio: "It's raw!",
     avatar: 'https://s3.amazonaws.com/ragtagio-dev/gordon/gordon_prof.jpeg'})
   User.create!({username: 'sportsball', password: 'starwars'})
@@ -67,6 +66,7 @@ ActiveRecord::Base.transaction do
   Follow.create!({follower_id: u1.id, followee_id: u7.id})
   Follow.create!({follower_id: u1.id, followee_id: u9.id})
   Follow.create!({follower_id: u1.id, followee_id: u3.id})
+  Follow.create!({follower_id: u1.id, followee_id: u4.id})
 
   p1 = Post.create!({user_id: u1.id, body:'#tbt', image:'https://s3.amazonaws.com/ragtagio-dev/instagram/instagram_1.jpeg'})
   p2 = Post.create!({user_id:u1.id, body:'a very good boy', image:'https://s3.amazonaws.com/ragtagio-dev/instagram/instagram_2.jpeg'})
@@ -108,6 +108,10 @@ ActiveRecord::Base.transaction do
   p38 = Post.create!({user_id:u5.id, body:"What's that jacket, Margiela?", image: 'https://s3.amazonaws.com/ragtagio-dev/yeezies/yeezies_6.jpeg'})
   p39 = Post.create!({user_id:u5.id, body:"See three PO's like Star Wars", image: 'https://s3.amazonaws.com/ragtagio-dev/yeezies/yeezies_7.jpeg'})
   p40 = Post.create!({user_id:u5.id, body:"Next week it's the fries", image: 'https://s3.amazonaws.com/ragtagio-dev/yeezies/yeezies_8.jpeg'})
+  p41 = Post.create!({user_id:u7.id, image:'https://s3.amazonaws.com/ragtagio-dev/animals/animals_1.jpg'})
+  p43 = Post.create!({user_id:u7.id, image:'https://s3.amazonaws.com/ragtagio-dev/animals/animals_2.jpeg'})
+  p44 = Post.create!({user_id:u7.id, image:'https://s3.amazonaws.com/ragtagio-dev/animals/animals_3.jpeg'})
+  p45 = Post.create!({user_id:u7.id, image:'https://s3.amazonaws.com/ragtagio-dev/animals/animals_4.jpeg'})
 
   Like.create!({user_id:u3.id, post_id: p1.id})
   Like.create!({user_id:u3.id, post_id: p2.id})
