@@ -59,3 +59,29 @@
 .searchbar:focus {
   background-color: $white;
 }
+
+.search-results {
+  position: absolute;
+  top: 52px;
+  width: 215px;
+}
+
+.search-results-li {
+  display: flex;
+  padding: 5px;
+  background-color: white;
+  border-top: 1px solid $light-gray;
+  border-right: 1px solid $light-gray;
+  border-left: 1px solid $light-gray;
+}
+
+.search-results li:last-child {
+  border-bottom: 1px solid $light-gray;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.search-results li:first-child {
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}

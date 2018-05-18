@@ -25,7 +25,7 @@ export default class SearchResults extends React.Component {
     } else {
       searchedArr = this.props.searchedUsers.map( user => {
         return (
-          <li key={user.id}>
+          <li key={user.id} className="search-results-li">
             <div>{user.username}</div>
             <div>{user.id}</div>
           </li>
@@ -33,7 +33,7 @@ export default class SearchResults extends React.Component {
       });
     }
     return (
-      <ul>
+      <ul className="search-results">
         {searchedArr}
       </ul>
     );
