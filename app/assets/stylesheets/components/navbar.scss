@@ -68,6 +68,8 @@
 
 .search-results-li {
   display: flex;
+  align-items: center;
+  overflow: hidden;
   padding: 5px;
   background-color: white;
   border-top: 1px solid $light-gray;
@@ -84,4 +86,20 @@
 .search-results li:first-child {
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
+}
+
+.search-results-img {
+  width: 40px;
+  height: 40px;
+}
+
+.search-results-img img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.search-results-text {
+  padding-left: 10px;
 }

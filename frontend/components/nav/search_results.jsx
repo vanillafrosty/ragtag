@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 
 export default class SearchResults extends React.Component {
@@ -26,8 +26,8 @@ export default class SearchResults extends React.Component {
       searchedArr = this.props.searchedUsers.map( user => {
         return (
           <li key={user.id} className="search-results-li">
-            <div>{user.username}</div>
-            <div>{user.id}</div>
+            <div className="search-results-img"><img src={user.avatar_url} /></div>
+            <div className="search-results-text">{user.username}</div>
           </li>
         )
       });
