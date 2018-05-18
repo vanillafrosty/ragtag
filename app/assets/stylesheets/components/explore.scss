@@ -1,0 +1,13 @@
+.explore-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.explore-text {
+  font-family: $title;
+  font-size: 52px;
+  margin: 30px;
+}

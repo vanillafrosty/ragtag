@@ -4,6 +4,7 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import PostNewContainer from './post_new_container';
 import PostShowContainer from './post_show_container';
+import PostExploreContainer from './post_explore_container';
 import { createPost, clearErrors, updatePost, deletePost } from '../../actions/post_actions';
 import { createLike } from '../../actions/like_actions';
 import { fetchCommentsAndUsers, clearComments, createComment } from '../../actions/comment_actions';
@@ -25,12 +26,16 @@ const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post,
       component = <PostShowContainer sessionUser={sessionUser} currentUser={currentUser} users={users} post={post} createLike={createLike} liked={liked}
         fetchCommentsAndUsers={fetchCommentsAndUsers} clearComments={clearComments} comments={comments} createComment={createComment} updatePost={updatePost} deletePost={deletePost} closeModal={closeModal} />;
       break;
+    case 'explore':
+      component = <PostExploreContainer sessionUser={sessionUser} users={users} post={post} createLike={createLike} liked={liked}
+        comments={comments} createComment={createComment} closeModal={closeModal} />;
+      break;
     default:
       return null;
   }
   return (
-    <div className="modal-background" onClick={modal.status === 'show' ? closeModal : null}>
-      <div className="modal-child" onClick={modal.status === 'show' ? e => e.stopPropagation() : null}>
+    <div className="modal-background" onClick={modal.status !== 'create' ? closeModal : null}>
+      <div className="modal-child" onClick={modal.status !== 'create' ? e => e.stopPropagation() : null}>
         { component }
       </div>
     </div>
@@ -57,6 +62,11 @@ const mapStateToProps = (state, ownProps) => {
     if (typeof post === 'undefined') {
       return { likes: [] };
     }
+    users = state.entities.users;
+    liked = post.likes.includes(sessionUser.id);
+  }
+  if (modal.status === 'explore') {
+    post = state.entities.posts[modal.postId];
     users = state.entities.users;
     liked = post.likes.includes(sessionUser.id);
   }

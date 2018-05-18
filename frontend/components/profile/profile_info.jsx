@@ -88,7 +88,7 @@ export default class ProfileInfo extends React.Component {
         <ul className={this.state.editing === false ? "profile-info" : "profile-info-edit"}>
           <li className="profile-info-first">
             <div className="user-text">{this.props.user.username}</div>
-            {this.props.user.id === this.props.currentUser ? (<button type="button" onClick={this.handleEdit}>Edit Profile</button>) :
+            {this.props.user.id === this.props.currentUser ? (<div className="profile-info-first-svg" onClick={this.handleEdit}><i className="fas fa-cog fa-2x"></i></div>) :
               (<button type="button" onClick={this.props.createFollow}>{followPrompt}</button>)}
             {this.props.user.id === this.props.currentUser ? <button type="button" onClick={this.props.openCreateModal}>New Post</button> : ''}
             {this.props.user.id === this.props.currentUser ? <button type="button" onClick={this.props.logout}>Logout</button> : ''}

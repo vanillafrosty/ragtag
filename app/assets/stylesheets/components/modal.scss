@@ -269,6 +269,7 @@ input[type="file"] {
 }
 
 .post-show-edit {
+  padding-left: 5px;
   resize: none;
   @extend %border-navy-thin;
   border-radius: 5px;

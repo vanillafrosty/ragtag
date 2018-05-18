@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchExplore: () => dispatch(fetchExplore()),
     clearPosts: () => dispatch(clearPosts()),
-    openShowModal: (postId) => dispatch(openModal({ status: 'show', postId: postId }))
+    openShowModal: (postId) => dispatch(openModal({ status: 'explore', postId: postId }))
   };
 };
 
@@ -43,6 +43,7 @@ class ExploreContainer extends React.Component {
     });
     return (
       <div className="explore-container">
+        <div className="explore-text">Explore.</div>
         <ul className="post-lite-list">
           {postLiteArr}
         </ul>

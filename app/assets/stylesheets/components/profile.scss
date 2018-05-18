@@ -123,6 +123,12 @@
   font-weight: 500;
 }
 
+.profile-info-first-svg {
+  color: $navy;
+  margin-right: 50px;
+  cursor: pointer;
+}
+
 .profile-info-first button {
   border: 2px solid $navy;
   border-radius: 1px;
@@ -155,6 +161,7 @@
 }
 
 .profile-bio-edit {
+  padding: 5px;
   resize: none;
   @extend %border-navy-thin;
   border-radius: 5px;

@@ -148,15 +148,19 @@ export default class PostShowContainer extends React.Component {
     });
 
     const heartColor = this.props.liked ? "sidebar-icon-red" : "sidebar-icon";
+
+    const sameUser = (this.props.currentUser.id === this.props.sessionUser.id);
+
     return (
       <div className="post-show-container">
         <div className="post-show-image">
           <img className="post-show-image-preview" src={this.props.post.img_url} />
         </div>
         <div className="post-show-side">
-          <div className={this.state.dropDownClass} onClick={this.handleDrop}>
-            <i className="fas fa-chevron-down fa-lg"></i>
-          </div>
+          {!sameUser ? '' :
+            <div className={this.state.dropDownClass} onClick={this.handleDrop}>
+              <i className="fas fa-chevron-down fa-lg"></i>
+            </div>}
           {this.state.dropDown === false ? '' :
             <ul className="down-dropdown">
               <li className="down-dropdown-button-li" onClick={this.handleEdit}>Edit</li>
