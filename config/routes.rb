@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       post '/follows' => 'users#createFollow'
       delete '/follows' => 'users#destroyFollow'
     end
+    get '/search' => 'users#search'
     resource :sessions, only: [:create, :destroy]
     resources :posts do
       get '/likes' => 'posts#likes'
