@@ -22,12 +22,26 @@ class SearchbarContainer extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      body: ''
+    };
   }
 
   render() {
+    const searchedArr = this.props.searchedUsers.map( user => {
+      return (
+        <li key={user.id}>
+          <div>user.username</div>
+          <div>user.id</div>
+        </li>
+      )
+    });
     return (
       <div className="searchbar-container">
-        <input className="searchbar" type="text" maxLength="60" placeholder="Search" />
+        <input className="searchbar" type="text" maxLength="60" value={this.state.body} placeholder="Search" />
+        <ul>
+          {searchedArr}
+        </ul>
       </div>
     );
   }
