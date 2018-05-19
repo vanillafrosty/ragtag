@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PostModalProfile from './post_modal_profile';
-import PostCaption from './post_caption';
+import PostCaption from '../util/post_caption';
 
 export default class PostShow extends React.Component {
 
