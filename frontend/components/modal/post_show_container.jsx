@@ -1,218 +1,54 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PostShow from './post_show';
+import { withRouter } from 'react-router-dom';
+import { closeModal } from '../../actions/modal_actions';
+import { connect } from 'react-redux';
+import { updatePost, deletePost } from '../../actions/post_actions';
+import { createLike } from '../../actions/like_actions';
+import { fetchCommentsAndUsers, clearComments, createComment } from '../../actions/comment_actions';
 
-export default class PostShowContainer extends React.Component {
 
-  constructor(props){
-    super(props);
-    this.handleLike = this.handleLike.bind(this);
-    this.handleDrop = this.handleDrop.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.handleCaptionKeyDown = this.handleCaptionKeyDown.bind(this);
-    this.handleRemove = this.handleRemove.bind(this);
-    this.state = {
-      dropDown: false,
-      deleting: false,
-      editing: false,
-      commentBody: '',
-      captionBody: this.props.post.body,
-      post_id: this.props.post.id,
-      dropDownClass: "down-button"
-    };
+const mapStateToProps = (state, ownProps) => {
+  let modal, post, users, liked, sessionUser, currentUser;
+  modal = state.ui.modal;
+  sessionUser = state.entities.users[state.session.id];
+  let matched = ownProps.location.pathname.match(/\d+/);
+  if (matched) {
+    currentUser = state.entities.users[matched[0]];
   }
-
-  componentDidMount() {
-    this.props.fetchCommentsAndUsers(this.props.post.id);
+  //set dummy currentUser for when component renders for the first time,
+  //before fetchCommentsAndUsers fires
+  if (currentUser === undefined) {
+    currentUser = {};
   }
-
-  componentWillUnmount() {
-    this.props.clearComments();
+  post = state.entities.posts[modal.postId];
+  //when we remove a post from the state, the modal will try to re-render before we actually close it.
+  //since the post will be removed from the redux state, we fail unless we put a dummy post here.
+  if (typeof post === 'undefined') {
+    post = { likes: [], comments: [] };
   }
+  users = state.entities.users;
+  liked = post.likes.includes(sessionUser.id);
+  return {
+    sessionUser: sessionUser,
+    currentUser: currentUser,
+    post: post,
+    users: users,
+    liked: liked,
+    comments: state.entities.comments
+  };
+};
 
-  handleLike(e) {
-    e.preventDefault();
-    this.props.createLike(this.props.post.id);
-  }
+const mapDispatchToProps = dispatch => {
+  return {
+    closeModal: () => dispatch(closeModal()),
+    updatePost: (post) => dispatch(updatePost(post)),
+    deletePost: (id) => { return dispatch(deletePost(id)) },
+    createLike: (id) => dispatch(createLike(id)),
+    fetchCommentsAndUsers: (id) => dispatch(fetchCommentsAndUsers(id)),
+    clearComments: () => dispatch(clearComments()),
+    createComment: (comment) => dispatch(createComment(comment))
+  };
+};
 
-  handleEdit(e) {
-    e.preventDefault();
-    this.setState({
-      editing: !this.state.editing,
-      dropDown: !this.state.dropDown,
-      captionBody: this.props.post.body,
-      dropDownClass: "down-button rotate"
-    });
-  }
-
-  handleDelete(e) {
-    e.preventDefault();
-    if (this.state.deleting) {
-      this.setState({
-        deleting: !this.state.deleting
-      });
-    } else {
-      this.setState({
-        deleting: !this.state.deleting,
-        dropDown: !this.state.dropDown,
-        dropDownClass: "down-button"
-      });
-    }
-  }
-
-  handleRemove(e) {
-    e.preventDefault();
-    this.props.deletePost(this.props.post.id).then( success => {
-      this.props.closeModal();
-    });
-  }
-
-  handleDrop(e) {
-    //DO NOT drop down the actual menu if we're clicking the drop
-    //and the bio is in edit mode!!!
-    e.preventDefault();
-    if (this.state.editing) {
-      this.setState({
-        editing: !this.state.editing,
-        dropDownClass: "down-button"
-      });
-    } else if (this.state.dropDownClass === "down-button") {
-      this.setState({
-        dropDownClass: "down-button rotate",
-        dropDown: !this.state.dropDown
-      });
-    } else {
-      this.setState({
-        dropDownClass: "down-button",
-        dropDown: !this.state.dropDown
-      });
-    }
-  }
-
-  handleChange(key) {
-    return (e) => {
-      e.preventDefault();
-      this.setState({
-        [key]: e.target.value
-      });
-    };
-  }
-
-  handleKeyDown(e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      this.props.createComment({
-        post_id: this.state.post_id,
-        body: this.state.commentBody
-      });
-      this.setState({ commentBody: '' });
-    }
-  }
-
-
-  handleCaptionKeyDown(e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      this.props.updatePost({
-        id: this.state.post_id,
-        body: this.state.captionBody
-      });
-      this.setState({
-        editing: false,
-        dropDownClass: "down-button"
-      });
-    };
-  }
-
-  render() {
-    let post_comments = [];
-    for (let i=0; i<this.props.post.comments.length; i++) {
-      let comment = this.props.comments[this.props.post.comments[i]];
-      if (comment === undefined) {
-        break;
-      }
-      post_comments.push({
-        username: this.props.users[comment.user_id].username,
-        user_id: comment.user_id,
-        body: comment.body
-      });
-    };
-
-    const comments = post_comments.map((comment, id) => {
-      return (
-        <li key={id}>
-          <Link to={`/user/${comment.user_id}`} onClick={this.props.closeModal}><h3 className="comment-text-name">{comment.username}</h3></Link>
-          <h3 className="comment-text">{comment.body}</h3>
-        </li>
-      );
-    });
-
-    const heartColor = this.props.liked ? "sidebar-icon-red" : "sidebar-icon";
-
-    const sameUser = (this.props.currentUser.id === this.props.sessionUser.id);
-
-    return (
-      <div className="post-show-container">
-        <div className="post-show-image">
-          <img className="post-show-image-preview" src={this.props.post.img_url} />
-        </div>
-        <div className="post-show-side">
-          {!sameUser ? '' :
-            <div className={this.state.dropDownClass} onClick={this.handleDrop}>
-              <i className="fas fa-chevron-down fa-lg"></i>
-            </div>}
-          {this.state.dropDown === false ? '' :
-            <ul className="down-dropdown">
-              <li className="down-dropdown-button-li" onClick={this.handleEdit}>Edit</li>
-              <li className="down-dropdown-button-li" onClick={this.handleDelete}>Delete</li>
-            </ul>}
-          {this.state.deleting === false? '' :
-            <div className="post-delete-container">
-              <div className="post-delete-prompt">Are you sure you want to delete this post?</div>
-              <ul className="post-delete-buttons">
-                <li className="post-delete-buttons-li" onClick={this.handleRemove}>Yes</li>
-                <li className="post-delete-buttons-li" onClick={this.handleDelete}>Cancel</li>
-              </ul>
-            </div>}
-          <div className="post-modal-profile">
-            <div className="post-modal-profile-pic">
-              <Link to={`/user/${this.props.currentUser.id}`} onClick={this.props.closeModal}><img src={this.props.currentUser.avatar_url} /></Link>
-            </div>
-            <Link to={`/user/${this.props.currentUser.id}`} onClick={this.props.closeModal}><div className="post-modal-profile-name">{this.props.currentUser.username}</div></Link>
-          </div>
-          <div className="post-show-divide"></div>
-          <div className="post-show-all-text">
-            <ul className="post-show-sidebar-info">
-              <li className="post-show-sidebar-info-first">
-                <div className={heartColor} onClick={this.handleLike}><i className="fas fa-heart fa-lg"></i></div>
-                <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
-              </li>
-              <li className="post-show-sidebar-info-second">
-                <h3>{this.props.post.likes.length} likes</h3>
-              </li>
-              <li id="post-show-sidebar-info-third">
-                {this.state.editing === false ?
-                  <span className="post-show-sidebar-info-span">
-                    <Link to={`/user/${this.props.currentUser.id}`} onClick={this.props.closeModal}><h3 className="comment-text-name">{this.props.currentUser.username}</h3></Link>
-                    <h3 className="comment-text">{this.props.post.body}</h3>
-                  </span> :
-                  <textarea className="post-show-edit" maxLength="280" placeholder="Caption..." value={this.state.captionBody}
-                    onKeyDown={this.handleCaptionKeyDown} onChange={this.handleChange('captionBody')}>
-                  </textarea>
-                }
-              </li>
-              {comments}
-            </ul>
-            <div className="comment-submit">
-              <textarea className="comment-textarea" maxLength="280" placeholder="Add a comment..."
-                onKeyDown={this.handleKeyDown} onChange={this.handleChange('commentBody')} value={this.state.commentBody}>
-              </textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostShow));

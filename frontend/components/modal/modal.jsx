@@ -8,7 +8,6 @@ import PostExploreContainer from './post_explore_container';
 import { createPost, clearErrors, updatePost, deletePost } from '../../actions/post_actions';
 import { createLike } from '../../actions/like_actions';
 import { fetchCommentsAndUsers, clearComments, createComment } from '../../actions/comment_actions';
-import _ from 'lodash';
 
 const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post, updatePost, deletePost, createLike, liked, fetchCommentsAndUsers, comments, clearComments, sessionUser, currentUser, createComment}) => {
 
@@ -23,8 +22,7 @@ const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post,
         errors={errors} clearErrors={clearErrors} />;
       break;
     case 'show':
-      component = <PostShowContainer sessionUser={sessionUser} currentUser={currentUser} users={users} post={post} createLike={createLike} liked={liked}
-        fetchCommentsAndUsers={fetchCommentsAndUsers} clearComments={clearComments} comments={comments} createComment={createComment} updatePost={updatePost} deletePost={deletePost} closeModal={closeModal} />;
+      component = <PostShowContainer />;
       break;
     case 'explore':
       component = <PostExploreContainer sessionUser={sessionUser} users={users} post={post} createLike={createLike} liked={liked}
@@ -54,16 +52,6 @@ const mapStateToProps = (state, ownProps) => {
   //before fetchCommentsAndUsers fires
   if (currentUser === undefined) {
     currentUser = {};
-  }
-  if (modal.status === 'show') {
-    post = state.entities.posts[modal.postId];
-    //when we remove a post, the modal will try to re-render before we actually close it.
-    //since the post will be removed from the redux state, we fail unless we put a dummy post here.
-    if (typeof post === 'undefined') {
-      post = { likes: [], comments: [] };
-    }
-    users = state.entities.users;
-    liked = post.likes.includes(sessionUser.id);
   }
   if (modal.status === 'explore') {
     post = state.entities.posts[modal.postId];
