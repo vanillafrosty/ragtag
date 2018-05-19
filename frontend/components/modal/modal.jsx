@@ -50,14 +50,14 @@ const mapStateToProps = (state, ownProps) => {
   if (matched) {
     currentUser = state.entities.users[matched[0]];
   }
-  //set dummy currentUser before postShowContainer calls fetchCommentsAndUsers (remember fetchCommentsAndUsers
-  //will force include session user and the post's user)
+  //set dummy currentUser for when component renders for the first time,
+  //before fetchCommentsAndUsers fires
   if (currentUser === undefined) {
     currentUser = {};
   }
   if (modal.status === 'show') {
     post = state.entities.posts[modal.postId];
-    //when we remove a post, the modal will try to re-render before it fails the modal.status check.
+    //when we remove a post, the modal will try to re-render before we actually close it.
     //since the post will be removed from the redux state, we fail unless we put a dummy post here.
     if (typeof post === 'undefined') {
       post = { likes: [], comments: [] };

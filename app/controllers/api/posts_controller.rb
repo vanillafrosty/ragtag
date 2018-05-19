@@ -55,12 +55,6 @@ class Api::PostsController < ApplicationController
     end
   end
 
-  # def show
-  # end
-  #
-  # def likes
-  # end
-
   def update
     @post = Post.find(params[:id])
     if @post.update_attributes(update_params)

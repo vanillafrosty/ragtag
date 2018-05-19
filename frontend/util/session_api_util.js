@@ -1,5 +1,4 @@
 export const signup = (user) => {
-  // user.avatar = window.images.navy;
   return $.ajax({
     method: 'POST',
     url: '/api/users',

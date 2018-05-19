@@ -16,7 +16,6 @@ export const removePost = (post) => {
   };
 };
 
-//action creator used when fetching posts from user show page
 export const receivePosts = (data) => {
   return {
     type: RECEIVE_POSTS,
@@ -24,8 +23,7 @@ export const receivePosts = (data) => {
   };
 };
 
-//action creator used when fetching posts for the current user's
-//index page
+
 export const receiveIndex = (data) => {
   return {
     type: RECEIVE_INDEX,

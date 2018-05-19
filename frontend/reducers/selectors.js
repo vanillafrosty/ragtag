@@ -2,14 +2,12 @@ export const selectPostComments = (post, comments, users) => {
   let post_comments = [];
   for (let i=0; i<post.comments.length; i++){
     let comment = comments[post.comments[i]];
-    //break out of the function in the case where we have no comments in state
-    //but are trying to run the code below. at first glance this is fine
-    //if we have no posts (we are clearing posts when going to the index), since
-    //it'd seem like we'd never get into this map function,
-    //but the component will try to render before the clear posts action finishes.
-    //note that even if we had comments in the state (navigating from index to user show),
-    //navigating back to index still might break because the comments are the index posts'
-    //comments and not the user show page's comments
+    //return [] if we have no comments in state. mostly needed for leaving
+    //the user show page and going to the index, because we will have posts
+    //but no comments. note that we are running clearPosts when leaving the
+    //user show, but because it's asynch, we will run this function (the index
+    //will begin rendering) before the posts are actually cleared,
+    //so comments[post.comments[i]] for any of our posts will fail. 
     if (comment === undefined) {
       return [];
     }
