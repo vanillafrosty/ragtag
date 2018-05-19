@@ -18,8 +18,7 @@ const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post,
   let component;
   switch (modal.status) {
     case 'create':
-      component = <PostNewContainer sessionUser={sessionUser} closeModal={closeModal} createPost={createPost}
-        errors={errors} clearErrors={clearErrors} />;
+      component = <PostNewContainer />;
       break;
     case 'show':
       component = <PostShowContainer />;
@@ -63,7 +62,6 @@ const mapStateToProps = (state, ownProps) => {
     currentUser: currentUser,
     modal: modal,
     post: post,
-    errors: state.errors.post,
     users: users,
     liked: liked,
     comments: state.entities.comments
@@ -73,10 +71,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     closeModal: () => dispatch(closeModal()),
-    createPost: (post) => dispatch(createPost(post)),
     updatePost: (post) => dispatch(updatePost(post)),
     deletePost: (id) => { return dispatch(deletePost(id)) },
-    clearErrors: () => dispatch(clearErrors()),
     createLike: (id) => dispatch(createLike(id)),
     fetchCommentsAndUsers: (id) => dispatch(fetchCommentsAndUsers(id)),
     clearComments: () => dispatch(clearComments()),
