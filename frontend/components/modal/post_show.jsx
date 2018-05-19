@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PostModalProfile from './post_modal_profile';
+import PostCaption from './post_caption';
 
 export default class PostShow extends React.Component {
 
@@ -175,17 +176,14 @@ export default class PostShow extends React.Component {
               <li className="post-show-sidebar-info-second">
                 <h3>{this.props.post.likes.length} likes</h3>
               </li>
-              <li id="post-caption">
-                {this.state.editing === false ?
-                  <span className="post-show-sidebar-info-span">
-                    <Link to={`/user/${this.props.currentUser.id}`} onClick={this.props.closeModal}><h3 className="comment-text-name">{this.props.currentUser.username}</h3></Link>
-                    <h3 className="comment-text">{this.props.post.body}</h3>
-                  </span> :
+              {this.state.editing === false ?
+                <PostCaption user={this.props.currentUser} closeModal={this.props.closeModal} post={this.props.post} /> :
+                <li id="post-caption">
                   <textarea className="post-show-edit" maxLength="280" placeholder="Caption..." value={this.state.captionBody}
                     onKeyDown={this.handleCaptionKeyDown} onChange={this.handleChange('captionBody')}>
                   </textarea>
+                </li>
                 }
-              </li>
               {comments}
             </ul>
             <div className="comment-submit">
