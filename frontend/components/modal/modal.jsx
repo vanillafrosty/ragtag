@@ -24,8 +24,7 @@ const Modal = ({users, errors, clearErrors, modal, closeModal, createPost, post,
       component = <PostShowContainer />;
       break;
     case 'explore':
-      component = <PostExploreContainer sessionUser={sessionUser} users={users} post={post} createLike={createLike} liked={liked}
-        comments={comments} createComment={createComment} closeModal={closeModal} />;
+      component = <PostExploreContainer />;
       break;
     default:
       return null;
@@ -51,11 +50,6 @@ const mapStateToProps = (state, ownProps) => {
   //before fetchCommentsAndUsers fires
   if (currentUser === undefined) {
     currentUser = {};
-  }
-  if (modal.status === 'explore') {
-    post = state.entities.posts[modal.postId];
-    users = state.entities.users;
-    liked = post.likes.includes(sessionUser.id);
   }
   return {
     sessionUser: sessionUser,
