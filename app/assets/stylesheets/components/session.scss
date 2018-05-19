@@ -11,8 +11,7 @@
 
 .sessionFormContainer{
   @extend %border-light;
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   justify-content: space-around;
   background-color: $white;
   width: 360px;
@@ -21,8 +20,7 @@
 
 .sessionFormContainerWithErrors{
   @extend %border-light;
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   justify-content: space-around;
   background-color: $white;
   width: 360px;
@@ -37,15 +35,13 @@
 }
 
 .sessionForm {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   justify-content: space-between;
   align-items: center;
 }
 
 .sessionPrompt {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 10px;

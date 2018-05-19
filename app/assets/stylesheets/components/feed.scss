@@ -23,8 +23,7 @@
 
 
 .post-index-container {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   width: 602px;
 }
 
@@ -55,27 +54,22 @@
 }
 
 .post-index-profile-pic {
-  width: 40px;
-  height: 40px;
+  @extend %avatar-dim-s;
   padding: 10px;
 }
 
 .post-index-profile-pic img {
-  width: 40px;
-  height: 40px;
+  @extend %avatar-dim-s;
   border-radius: 20px;
   object-fit: cover;
 }
 
 
 .post-index-info {
-  // display: flex;
-  // flex-direction: column;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 5px;
   overflow-y: auto;
-  // overflow-wrap: break-word;
 }
 
 
@@ -93,8 +87,7 @@
 
 .post-index-all-text {
   height: 290px;
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   justify-content: space-between;
 }
 
@@ -115,8 +108,7 @@
   background-color: $white;
   position: sticky;
   top: 126px;
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   font-family: $raleway;
 }
 
@@ -126,22 +118,19 @@
 }
 
 .sidebar-profile-pic {
-  width: 50px;
-  height: 50px;
+  @extend %avatar-dim-l;
   margin: 10px;
 }
 
 
 .sidebar-profile-pic img {
-  width: 50px;
-  height: 50px;
+  @extend %avatar-dim-l;
   border-radius: 25px;
   object-fit: cover;
 }
 
 .sidebar-info {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   padding: 10px;
   height: 235px;
 }

@@ -1,6 +1,5 @@
 .profile-container {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
 }
 
 
@@ -53,8 +52,7 @@
   margin-right: 60px;
   height: 200px;
   width: 140px;
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   justify-content: space-between;
   align-items: center;
 }
@@ -74,16 +72,14 @@
 }
 
 .profile-info {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   padding-left: 60px;
   height: 160px;
   width: 600px;
 }
 
 .profile-info-edit {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   padding-left: 60px;
   height: 160px;
   width: 600px;

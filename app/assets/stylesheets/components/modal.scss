@@ -15,15 +15,13 @@
   transform: translate(-50%, -50%);
 }
 
-
 .post-modal-profile {
   display: flex;
   align-items: center;
 }
 
 .post-modal-profile-pic {
-  width: 50px;
-  height: 50px;
+  @extend %avatar-dim-l;
   margin-left: 15px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -36,8 +34,7 @@
 }
 
 .post-modal-profile-pic img {
-  width: 50px;
-  height: 50px;
+  @extend %avatar-dim-l;
   border-radius: 25px;
   object-fit: cover;
 }
@@ -80,8 +77,7 @@
 
 
 .post-new-side {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   height: 600px;
   width: 350px;
 }
@@ -92,8 +88,7 @@
 }
 
 .post-new-submit {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   align-items: center;
   margin: auto;
 }
@@ -103,7 +98,6 @@ input[type="file"] {
 }
 
 .post-file-upload {
-  /* border: 1px solid #ccc; */
   border: 2px solid $navy;
   border-radius: 5px;
   display: inline-block;
@@ -181,15 +175,13 @@ input[type="file"] {
 }
 
 .post-show-side {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   height: 600px;
   width: 350px;
 }
 
 .post-show-sidebar-info {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   padding-left: 15px;
   padding-right: 20px;
 }
@@ -235,8 +227,7 @@ input[type="file"] {
   top: 50px;
   right: 10px;
   width: 80px;
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   align-items: center;
 }
 
@@ -264,8 +255,7 @@ input[type="file"] {
 
 .post-show-all-text {
   height: 529px;
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   justify-content: space-between;
 }
 
@@ -283,7 +273,6 @@ input[type="file"] {
   top: 250px;
   right: 325px;
   width: 300px;
-  // height: 150px;
   height: auto;
   background-color: $white-gray;
   border-radius: 5px;

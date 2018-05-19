@@ -29,3 +29,18 @@ $raleway: "Raleway", sans-serif;
   border-color: $navy;
   border-radius: 5px;
 }
+
+%flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+%avatar-dim-l {
+  width: 50px;
+  height: 50px;
+}
+
+%avatar-dim-s {
+  width: 40px;
+  height: 40px;
+}

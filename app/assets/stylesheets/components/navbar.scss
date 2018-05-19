@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   background-color: $white;
-  border-bottom: 1px solid #E3E3E3;
+  border-bottom: 1px solid $light-gray;
   font-family: $raleway;
 }
 
@@ -89,13 +89,11 @@
 }
 
 .search-results-img {
-  width: 40px;
-  height: 40px;
+  @extend %avatar-dim-s;
 }
 
 .search-results-img img {
-  width: 40px;
-  height: 40px;
+  @extend %avatar-dim-s;
   border-radius: 20px;
   object-fit: cover;
 }

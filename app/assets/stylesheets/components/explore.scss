@@ -1,6 +1,5 @@
 .explore-container {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-c;
   align-items: center;
 }
 
