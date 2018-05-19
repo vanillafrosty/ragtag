@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { updatePost, deletePost } from '../../actions/post_actions';
 import { createLike } from '../../actions/like_actions';
 import { fetchCommentsAndUsers, clearComments, createComment } from '../../actions/comment_actions';
-
+import { selectPostComments } from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {
   let modal, post, users, liked, sessionUser, currentUser;
@@ -29,13 +29,16 @@ const mapStateToProps = (state, ownProps) => {
   }
   users = state.entities.users;
   liked = post.likes.includes(sessionUser.id);
+  let comments = state.entities.comments;
+  let postComments = selectPostComments(post, comments, users);
   return {
     sessionUser: sessionUser,
     currentUser: currentUser,
     post: post,
     users: users,
     liked: liked,
-    comments: state.entities.comments
+    comments: comments,
+    postComments: postComments
   };
 };
 

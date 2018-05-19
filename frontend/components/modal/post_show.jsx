@@ -126,20 +126,8 @@ export default class PostShow extends React.Component {
   }
 
   render() {
-    let post_comments = [];
-    for (let i=0; i<this.props.post.comments.length; i++) {
-      let comment = this.props.comments[this.props.post.comments[i]];
-      if (comment === undefined) {
-        break;
-      }
-      post_comments.push({
-        username: this.props.users[comment.user_id].username,
-        user_id: comment.user_id,
-        body: comment.body
-      });
-    };
 
-    const comments = post_comments.map((comment, id) => {
+    const comments = this.props.postComments.map((comment, id) => {
       return (
         <li key={id}>
           <Link to={`/user/${comment.user_id}`} onClick={this.props.closeModal}><h3 className="comment-text-name">{comment.username}</h3></Link>
