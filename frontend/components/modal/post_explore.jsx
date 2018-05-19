@@ -75,7 +75,7 @@ export default class PostExplore extends React.Component {
               <li className="post-show-sidebar-info-second">
                 <h3>{this.props.post.likes.length} likes</h3>
               </li>
-              <li id="post-show-sidebar-info-third">
+              <li id="post-caption">
                 <span className="post-show-sidebar-info-span">
                   <Link to={`/user/${currentUser.id}`} onClick={this.props.closeModal}><h3 className="comment-text-name">{currentUser.username}</h3></Link>
                   <h3 className="comment-text">{this.props.post.body}</h3>

@@ -64,7 +64,7 @@ export default class PostIndexItem extends React.Component {
             <li className="post-index-info-second">
               <h3>{this.props.post.likes.length} likes</h3>
             </li>
-            <li id="post-index-info-third">
+            <li id="post-caption">
               <Link to={`/user/${this.props.user.id}`}><h3 className="comment-text-name">{this.props.user.username}</h3></Link>
               <h3 className="comment-text">{this.props.post.body}</h3>
             </li>

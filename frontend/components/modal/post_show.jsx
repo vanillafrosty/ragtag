@@ -175,7 +175,7 @@ export default class PostShow extends React.Component {
               <li className="post-show-sidebar-info-second">
                 <h3>{this.props.post.likes.length} likes</h3>
               </li>
-              <li id="post-show-sidebar-info-third">
+              <li id="post-caption">
                 {this.state.editing === false ?
                   <span className="post-show-sidebar-info-span">
                     <Link to={`/user/${this.props.currentUser.id}`} onClick={this.props.closeModal}><h3 className="comment-text-name">{this.props.currentUser.username}</h3></Link>
