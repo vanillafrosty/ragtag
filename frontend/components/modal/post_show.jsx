@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PostModalProfile from './post_modal_profile';
 
 export default class PostShow extends React.Component {
 
@@ -163,12 +164,7 @@ export default class PostShow extends React.Component {
                 <li className="post-delete-buttons-li" onClick={this.handleDeletePrompt}>Cancel</li>
               </ul>
             </div>}
-          <div className="post-modal-profile">
-            <div className="post-modal-profile-pic">
-              <Link to={`/user/${this.props.currentUser.id}`} onClick={this.props.closeModal}><img src={this.props.currentUser.avatar_url} /></Link>
-            </div>
-            <Link to={`/user/${this.props.currentUser.id}`} onClick={this.props.closeModal}><div className="post-modal-profile-name">{this.props.currentUser.username}</div></Link>
-          </div>
+          <PostModalProfile user={this.props.currentUser} closeModal={this.props.closeModal} />
           <div className="post-show-divide"></div>
           <div className="post-show-all-text">
             <ul className="post-show-sidebar-info">

@@ -1,4 +1,5 @@
 import React from 'react';
+import PostModalProfile from './post_modal_profile';
 
 export default class PostNew extends React.Component {
 
@@ -66,12 +67,7 @@ export default class PostNew extends React.Component {
 
           <div className="post-new-side">
             <div className="x-button" onClick={this.props.closeModal}><i className="fas fa-times fa-lg"></i></div>
-            <div className="post-modal-profile">
-              <div className="post-modal-profile-pic">
-                <img src={this.props.sessionUser.avatar_url} />
-              </div>
-              <div className="post-modal-profile-name">{this.props.sessionUser.username}</div>
-            </div>
+            <PostModalProfile user={this.props.sessionUser} closeModal={this.props.closeModal} />
             <div className="post-show-divide"></div>
             <div className="post-new-submit">
               <div className="post-new-errors">{styledErrors}</div>

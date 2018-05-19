@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PostModalProfile from './post_modal_profile';
 
 export default class PostExplore extends React.Component {
 
@@ -75,12 +76,7 @@ export default class PostExplore extends React.Component {
           <img className="post-show-image-preview" src={this.props.post.img_url} />
         </div>
         <div className="post-show-side">
-          <div className="post-modal-profile">
-            <div className="post-modal-profile-pic">
-              <Link to={`/user/${currentUser.id}`} onClick={this.props.closeModal}><img src={currentUser.avatar_url} /></Link>
-            </div>
-            <Link to={`/user/${currentUser.id}`} onClick={this.props.closeModal}><div className="post-modal-profile-name">{currentUser.username}</div></Link>
-          </div>
+          <PostModalProfile user={currentUser} closeModal={this.props.closeModal} />
           <div className="post-show-divide"></div>
           <div className="post-show-all-text">
             <ul className="post-show-sidebar-info">
