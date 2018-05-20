@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { fetchSearchUsers } from '../../actions/search_actions';
+import { fetchSearchUsers, clearSearchUsers } from '../../actions/search_actions';
 import SearchResults from './search_results';
 
 const mapStateToProps = (state) => {
@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchSearchUsers: (str) => dispatch(fetchSearchUsers(str))
+    fetchSearchUsers: (str) => dispatch(fetchSearchUsers(str)),
+    clearSearchUsers: () => dispatch(clearSearchUsers())
   };
 };
 
@@ -46,7 +47,7 @@ class SearchbarContainer extends React.Component {
     return (
       <div className="searchbar-container">
         <input className="searchbar" type="text" maxLength="60" value={this.state.body} onChange={this.handleChange} placeholder="Search" />
-        <SearchResults fetchSearchUsers={this.props.fetchSearchUsers} clearSearch={this.clearSearch} query={this.state.body} searchedUsers={this.props.searchedUsers} />
+        <SearchResults fetchSearchUsers={this.props.fetchSearchUsers} clearSearch={this.clearSearch} clearSearchUsers={this.props.clearSearchUsers} query={this.state.body} searchedUsers={this.props.searchedUsers} />
       </div>
     );
   }

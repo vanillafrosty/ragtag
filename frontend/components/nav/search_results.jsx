@@ -6,15 +6,22 @@ export default class SearchResults extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      searchResults: this.props.searchedUsers
-    };
+    this.timeout = null;
   }
 
   componentWillReceiveProps(nextProps) {
     let newQuery = nextProps.query;
     if (newQuery.length > 0 && this.props.query !== newQuery) {
-      this.props.fetchSearchUsers(newQuery);
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+      }
+      this.timeout = setTimeout(() => {
+        this.props.fetchSearchUsers(newQuery);
+      }, 350);
+      // this.props.fetchSearchUsers(newQuery);
+    };
+    if (newQuery.length === 0 && this.props.query !== newQuery) {
+      this.props.clearSearchUsers();
     }
   }
 
@@ -32,6 +39,7 @@ export default class SearchResults extends React.Component {
         )
       });
     }
+
     return (
       <ul className="search-results">
         {searchedArr}
