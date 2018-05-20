@@ -25,13 +25,13 @@ export default class PostShow extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.props.fetchCommentsAndUsers(this.props.post.id);
-  }
-
-  componentWillUnmount() {
-    this.props.clearComments();
-  }
+  // componentDidMount() {
+  //   this.props.fetchCommentsAndUsers(this.props.post.id);
+  // }
+  //
+  // componentWillUnmount() {
+  //   this.props.clearComments();
+  // }
 
   handleLike(e) {
     e.preventDefault();

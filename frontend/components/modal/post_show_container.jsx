@@ -5,7 +5,8 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import { updatePost, deletePost } from '../../actions/post_actions';
 import { createLike } from '../../actions/like_actions';
-import { fetchCommentsAndUsers, clearComments, createComment } from '../../actions/comment_actions';
+// import { fetchCommentsAndUsers, clearComments, createComment } from '../../actions/comment_actions';
+import { createComment } from '../../actions/comment_actions';
 import { selectPostComments } from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {
@@ -18,9 +19,9 @@ const mapStateToProps = (state, ownProps) => {
   }
   //set dummy currentUser for when component renders for the first time,
   //before fetchCommentsAndUsers fires
-  if (currentUser === undefined) {
-    currentUser = {};
-  }
+  // if (currentUser === undefined) {
+  //   currentUser = {};
+  // }
   post = state.entities.posts[modal.postId];
   //when we remove a post from the state, the modal will try to re-render before we actually close it.
   //since the post will be removed from the redux state, we fail unless we put a dummy post here.
@@ -48,8 +49,6 @@ const mapDispatchToProps = dispatch => {
     updatePost: (post) => dispatch(updatePost(post)),
     deletePost: (id) => { return dispatch(deletePost(id)) },
     createLike: (id) => dispatch(createLike(id)),
-    fetchCommentsAndUsers: (id) => dispatch(fetchCommentsAndUsers(id)),
-    clearComments: () => dispatch(clearComments()),
     createComment: (comment) => dispatch(createComment(comment))
   };
 };

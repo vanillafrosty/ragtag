@@ -28,9 +28,9 @@ class Api::PostsController < ApplicationController
       @posts = @posts.slice(0,10)
       render :index
     elsif (params[:type] == "user")
-      user = User.find(params[:id])
-      if user
-        @posts = user.posts.includes(:likes, {comments: :user})
+      @user = User.find(params[:id])
+      if @user
+        @posts = @user.posts.includes(:likes, {comments: :user})
         render :indexShow
       else
         render json: ['Cannot find user with that ID'], status: 422

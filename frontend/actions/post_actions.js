@@ -59,13 +59,13 @@ export const clearErrors = () => {
   };
 };
 
-export const fetchPosts = (params) => {
-  return (dispatch) => {
-    return ApiUtil.fetchPosts(params).then( data => {
-      return dispatch(receivePosts(data));
-    });
-  };
-};
+// export const fetchPosts = (params) => {
+//   return (dispatch) => {
+//     return ApiUtil.fetchPosts(params).then( data => {
+//       return dispatch(receivePosts(data));
+//     });
+//   };
+// };
 
 export const fetchIndex = () => {
   return (dispatch) => {
@@ -81,7 +81,15 @@ export const fetchExplore = () => {
       return dispatch(receiveIndex(data));
     });
   };
-}
+};
+
+export const fetchUserShow = (params) => {
+  return (dispatch) => {
+    return ApiUtil.fetchPosts(params).then( data => {
+      return dispatch(receiveIndex(data));
+    });
+  };
+};
 
 export const createPost = (post) => {
   return (dispatch) => {

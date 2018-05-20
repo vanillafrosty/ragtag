@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ProfileInfo from './profile_info';
 import { logout } from '../../actions/session_actions';
 import _ from 'lodash';
-import { fetchPosts, clearPosts } from '../../actions/post_actions';
+import { fetchUserShow, clearPosts } from '../../actions/post_actions';
 import { openModal } from '../../actions/modal_actions';
 import PostLiteContainer from './post_lite_container';
 import { fetchUser, updateUser, updateUserPic } from '../../actions/user_actions';
@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     updateUser: (user) => dispatch(updateUser(user)),
     updateUserPic: (user) => dispatch(updateUserPic(user)),
     logout: () => dispatch(logout()),
-    fetchPosts: (params) => dispatch(fetchPosts(params)),
+    fetchUserShow: (params) => dispatch(fetchUserShow(params)),
     openCreateModal: () => dispatch(openModal({ status: 'create', postId: null })),
     openShowModal: (postId) => dispatch(openModal({ status: 'show', postId: postId })),
     clearPosts: () => dispatch(clearPosts())
@@ -48,15 +48,15 @@ class ProfileContainer extends React.Component {
 
   componentDidMount() {
     let id = this.props.match.params.userId;
-    this.props.fetchUser(id);
-    this.props.fetchPosts({ type: "user", id: id });
+    // this.props.fetchUser(id);
+    this.props.fetchUserShow({ type: "user", id: id });
   }
 
   componentWillReceiveProps(nextProps) {
     let id = nextProps.match.params.userId;
     if (this.props.match.params.userId !== id) {
-      this.props.fetchUser(id);
-      this.props.fetchPosts({ type: "user", id: id });
+      // this.props.fetchUser(id);
+      this.props.fetchUserShow({ type: "user", id: id });
     }
   }
 

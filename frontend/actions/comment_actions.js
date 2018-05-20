@@ -19,13 +19,13 @@ export const clearComments = () => {
     type: CLEAR_COMMENTS
   };
 };
-
-export const receiveComments = (comments) => {
-  return {
-    type: RECEIVE_COMMENTS,
-    comments: comments
-  };
-};
+//
+// export const receiveComments = (comments) => {
+//   return {
+//     type: RECEIVE_COMMENTS,
+//     comments: comments
+//   };
+// };
 
 export const receiveComment = (comment) => {
   return {
@@ -41,13 +41,13 @@ export const removeComment = (comment) => {
   };
 };
 
-export const fetchComments = (postId) => {
-  return (dispatch) => {
-    return APIUtil.fetchComments(postId).then( comments => {
-      return dispatch(receiveComments(comments));
-    });
-  };
-};
+// export const fetchComments = (postId) => {
+//   return (dispatch) => {
+//     return APIUtil.fetchComments(postId).then( comments => {
+//       return dispatch(receiveComments(comments));
+//     });
+//   };
+// };
 
 export const fetchCommentsAndUsers = (postId) => {
   return (dispatch) => {
