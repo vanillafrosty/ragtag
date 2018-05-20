@@ -53,8 +53,11 @@ class ProfileContainer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     let id = nextProps.match.params.userId;
-    if (this.props.match.params.userId !== id) {
-      this.props.fetchUserShow({ type: "user", id: id });
+    let prevId = this.props.match.params.userId;
+    if (prevId !== id) {
+      this.props.fetchUserShow({ type: "user", id: id }).then(null, resp => {
+        this.props.history.push(`/user/${prevId}`);
+      });
     }
   }
 
