@@ -1,6 +1,4 @@
-import { RECEIVE_COMMENT, RECEIVE_COMMENTS,
-  REMOVE_COMMENT, CLEAR_COMMENTS,
-  RECEIVE_COMMENTS_AND_USERS } from '../actions/comment_actions';
+import { RECEIVE_COMMENT, REMOVE_COMMENT, CLEAR_COMMENTS } from '../actions/comment_actions';
 import { RECEIVE_INDEX } from '../actions/post_actions';
 import merge from 'lodash/merge';
 
@@ -8,7 +6,6 @@ import merge from 'lodash/merge';
 const commentsReducer = (state = {}, action) => {
   switch(action.type) {
     case RECEIVE_INDEX:
-    case RECEIVE_COMMENTS_AND_USERS:
       if (action.comments === undefined) {
         return {};
       } else {

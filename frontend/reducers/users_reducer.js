@@ -4,7 +4,6 @@ import { RECEIVE_INDEX } from '../actions/post_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_FOLLOW, REMOVE_FOLLOW } from '../actions/follow_actions';
 import { RECEIVE_USER } from '../actions/user_actions';
-import { RECEIVE_COMMENTS_AND_USERS } from '../actions/comment_actions';
 
 const usersReducer = (state = {}, action) => {
   switch(action.type) {
@@ -25,7 +24,6 @@ const usersReducer = (state = {}, action) => {
     case RECEIVE_CURRENT_USER:
     case RECEIVE_USER:
       return merge({}, state, { [action.user.id]: action.user });
-    case RECEIVE_COMMENTS_AND_USERS:
     case RECEIVE_INDEX:
       return action.users;
     default:
