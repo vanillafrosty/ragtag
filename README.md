@@ -50,15 +50,18 @@ Ragtag is a single-page app with one back-end route responsible for rendering HT
 ### Front End
 
 **React**
+
  The response info is taken by the [React JS library](https://reactjs.org/) to update the page.
 - Aside from utilization of a virtual DOM to make DOM manipulation efficient, React provides many other tools for front-end development.
 
 **Redux**
-[Redux](https://redux.js.org/) is used to manage the front-end state of Ragtag. When database info is retrieved, Redux state is updated first, before the React architecture is re-rendered. 
+
+[Redux](https://redux.js.org/) is used to manage the front-end state of Ragtag. When database info is retrieved, Redux state is updated first, before the React architecture is re-rendered.
 
 ### Back End
 
 **Ruby on Rails**
+
 Ruby on Rails is the back-end framework used to query the database. Rails provides a bunch of tools out of the box to make life easy. [Read more](https://rubyonrails.org/)
 
 ### DB
