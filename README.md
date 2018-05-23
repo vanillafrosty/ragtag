@@ -16,9 +16,9 @@ Ragtag is a photo sharing social platform inspired by Instagram. Share your expe
 ### Photos
 - Photos are displayed in a grid on the home page, user profile, and explore page.
 - While on another user's profile page or the explore page, you can click on one of their photos to display a higher resolution version, as well as like or comment on the photo.
-- Users can photos as new posts (that can be liked and commented on), or as profile pictures.
+- Users can upload photos as new posts (that can be liked and commented on), or as profile pictures.
 - Photos that users upload will be displayed on their personal profile page and will show up on a follower's home feed.
-- Photos are uploaded and stored to an AWS S3 bucket (more on AWS here: )
+- Photos are uploaded and stored to an [AWS S3 bucket](https://aws.amazon.com/s3/)
 
 ### Likes
 - Users can like and unlike photos on the site.
@@ -49,13 +49,17 @@ Ragtag is a single-page app with one back-end route responsible for rendering HT
 
 ### Front End
 
-### React
- The response info is taken by the React JS library to update the page.
-- Aside from utilization of a virtual DOM to make DOM manipulation efficient, React provides many other tools for front-end development. Read more here:
+**React**
+ The response info is taken by the [React JS library](https://reactjs.org/) to update the page.
+- Aside from utilization of a virtual DOM to make DOM manipulation efficient, React provides many other tools for front-end development.
 
-### Redux
-Redux is used to manage the front-end state of Ragtag.
+**Redux**
+[Redux](https://redux.js.org/) is used to manage the front-end state of Ragtag. When database info is retrieved, Redux state is updated first, before the React architecture is re-rendered. 
 
 ### Back End
 
-### Ruby on Rails
+**Ruby on Rails**
+Ruby on Rails is the back-end framework used to query the database. Rails provides a bunch of tools out of the box to make life easy. [Read more](https://rubyonrails.org/)
+
+### DB
+Ragtag uses a [PostgreSQL](https://www.postgresql.org/) database to store its relational data.
