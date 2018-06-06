@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PostIndexItem from './post_index_item';
-import { createLike } from '../../actions/like_actions';
+import { createLike, deleteLike } from '../../actions/like_actions';
 import { createComment } from '../../actions/comment_actions';
 import { selectPostComments } from '../../reducers/selectors';
 
@@ -21,6 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createLike: (id) => dispatch(createLike(id)),
+    deleteLike: (id) => dispatch(deleteLike(id)),
     createComment: (comment) => {dispatch(createComment(comment))}
   };
 };

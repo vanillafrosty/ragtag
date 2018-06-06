@@ -30,6 +30,20 @@ export default class PostIndexItem extends React.Component {
     }
   }
 
+  handleLike() {
+    if (this.props.liked) {
+      return (e) => {
+        e.preventDefault();
+        this.props.deleteLike(this.props.post.id);
+      }
+    } else {
+      return (e) => {
+        e.preventDefault();
+        this.props.createLike(this.props.post.id);
+      }
+    }
+  }
+
 
   render() {
     const heartColor = this.props.liked ? "sidebar-icon-red" : "sidebar-icon";
@@ -59,7 +73,7 @@ export default class PostIndexItem extends React.Component {
         <div className="post-index-all-text">
           <ul className="post-index-info">
             <li className="post-index-info-first">
-              <div className={heartColor} onClick={(e) => { this.props.createLike(this.props.post.id) }}><i className="fas fa-heart fa-lg"></i></div>
+              <div className={heartColor} onClick={this.handleLike()}><i className="fas fa-heart fa-lg"></i></div>
               <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
             </li>
             <li className="post-index-info-second">
