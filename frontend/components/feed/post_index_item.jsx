@@ -63,7 +63,7 @@ export default class PostIndexItem extends React.Component {
               <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
             </li>
             <li className="post-index-info-second">
-              <h3>{this.props.post.likes.length} likes</h3>
+              <h3>{`${this.props.post.likes.length} ${this.props.post.likes.length !== 1 ? 'likes':'like'}`}</h3>
             </li>
             <PostCaption user={this.props.user} post={this.props.post} />
             {comments}
