@@ -7,19 +7,8 @@ class Api::PostsController < ApplicationController
     @current_user = current_user
     if (params[:type] == "index") #home feed
       #nested includes takes care of all potential N+1 queries
-      # @followed_users = current_user.followed_people.includes(posts: [:likes, {comments: :user}])
-      # @posts = []
-      # @followed_users.each do |user|
-      #   @posts.concat(user.posts)
-      # end
-      # @posts.shuffle!
-      # @posts = @posts.slice(0,10)
-      #
-      # render :index
       @followed_users = current_user.followed_people
-      @posts = Post.where(user_id: @followed_users).includes(:user, :likes, {comments: :user})
-      @posts = @posts.page(params[:page])
-      # debugger
+      @posts = Post.where(user_id: @followed_users).includes(:user, :likes, {comments: :user}).order(:created_at).page(params[:page])
 
       render :index
     elsif (params[:type] == "user") #user show
@@ -31,10 +20,7 @@ class Api::PostsController < ApplicationController
         render json: ['Cannot find user with that ID'], status: 422
       end
     elsif (params[:type] == "explore") #explore page
-      #activeRecord can order by created_at, which we may do later. for now,
-      #random may actually make the explore page look more random.
       @posts = Post.order("RANDOM()").limit(24).includes(:user, :likes, {comments: :user})
-      # @posts = Post.all.includes(:user, :likes, {comments: :user})
       render :explore
     else
       render json: ['Invalid request type'], status: 422
