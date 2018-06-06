@@ -85,10 +85,18 @@ export const addIndex = (page) => {
   };
 }
 
-export const fetchExplore = () => {
+export const fetchExplore = (page) => {
   return (dispatch) => {
-    return ApiUtil.fetchPosts({ type: 'explore' }).then( data => {
+    return ApiUtil.fetchPosts({ type: 'explore', page: page }).then( data => {
       return dispatch(receiveIndex(data));
+    });
+  };
+};
+
+export const addExplore = (page) => {
+  return (dispatch) => {
+    return ApiUtil.fetchPosts({ type: 'explore', page: page }).then( data => {
+      return dispatch(receiveAdditional(data));
     });
   };
 };

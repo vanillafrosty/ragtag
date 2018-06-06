@@ -20,7 +20,8 @@ class Api::PostsController < ApplicationController
         render json: ['Cannot find user with that ID'], status: 422
       end
     elsif (params[:type] == "explore") #explore page
-      @posts = Post.order("RANDOM()").limit(24).includes(:user, :likes, {comments: :user})
+      # @posts = Post.order("RANDOM()").limit(24).includes(:user, :likes, {comments: :user})
+      @posts = Post.order(:created_at).includes(:user, :likes, {comments: :user}).page(params[:page]).per(12)
       render :explore
     else
       render json: ['Invalid request type'], status: 422
