@@ -75,7 +75,6 @@ class ProfileContainer extends React.Component {
 
   onScroll() {
     if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 60) && !this.timeout) {
-      // debugger;
       this.timeout = true;
       this.props.addPosts({type: "user", id: this.props.match.params.userId, page: this.state.page+1}).then( resp => {
         this.setState({

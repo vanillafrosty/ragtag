@@ -23,11 +23,11 @@ export default class Navbar extends React.Component {
             <li>
               <Link to="/explore"><i className="far fa-compass fa-lg"></i></Link>
             </li>
-            <li className="grayed-icon">
-              <i className="far fa-heart fa-lg"></i>
-            </li>
             <li>
               <Link to={`/user/${this.props.userId}`}><i className="far fa-user fa-lg"></i></Link>
+            </li>
+            <li>
+              <a href="https://github.com/vanillafrosty/ragtag"><i className="fab fa-github fa-lg"></i></a>
             </li>
           </ul>
         </nav>

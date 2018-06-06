@@ -47,7 +47,6 @@ class FeedContainer extends React.Component {
 
   onScroll() {
     if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 60) && !this.timeout) {
-      // debugger;
       this.timeout = true;
       this.props.addPosts(this.state.page+1).then( resp => {
         this.setState({
@@ -59,7 +58,6 @@ class FeedContainer extends React.Component {
   }
 
   render() {
-    debugger;
     const post_containers = this.props.posts.map( post => {
       return <PostIndexItemContainer key={post.id} post={post}
         currentUser={this.props.currentUser} />

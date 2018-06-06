@@ -47,7 +47,6 @@ class ExploreContainer extends React.Component {
 
   onScroll() {
     if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 60) && !this.timeout) {
-      // debugger;
       this.timeout = true;
       this.props.addPosts(this.state.page+1).then( resp => {
         this.setState({
