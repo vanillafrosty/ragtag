@@ -7,7 +7,7 @@ import { fetchUserShow, addUserShow, clearPosts } from '../../actions/post_actio
 import { openModal } from '../../actions/modal_actions';
 import PostLiteContainer from './post_lite_container';
 import { fetchUser, updateUser, updateUserPic } from '../../actions/user_actions';
-import { createFollow } from '../../actions/follow_actions';
+import { createFollow, deleteFollow } from '../../actions/follow_actions';
 
 const mapStateToProps = (state, ownProps) => {
   let user;
@@ -29,6 +29,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     createFollow: () => dispatch(createFollow(ownProps.match.params.userId)),
+    deleteFollow: () => dispatch(deleteFollow(ownProps.match.params.userId)),
     fetchUser: (id) => dispatch(fetchUser(id)),
     updateUser: (user) => dispatch(updateUser(user)),
     updateUserPic: (user) => dispatch(updateUserPic(user)),
@@ -86,14 +87,14 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
-    const { user, posts, logout, openCreateModal, openShowModal, currentUser, createFollow, followed, updateUser, updateUserPic } = this.props;
+    const { user, posts, logout, openCreateModal, openShowModal, currentUser, createFollow, deleteFollow, followed, updateUser, updateUserPic } = this.props;
     let postLiteArr = posts.map( post => {
       return <PostLiteContainer key={post.id} openShowModal={openShowModal} post={post} />
     });
     return (
       <div className="profile-container">
         <ProfileInfo user={user} currentUser={currentUser} updateUser={updateUser} updateUserPic={updateUserPic} followed={followed}
-          createFollow={createFollow} posts={posts} logout={logout} openCreateModal={openCreateModal} />
+          createFollow={createFollow} deleteFollow={deleteFollow} posts={posts} logout={logout} openCreateModal={openCreateModal} />
         <div className="profile-divide"></div>
         <div>
           <ul className="post-lite-list">

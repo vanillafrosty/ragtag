@@ -18,6 +18,17 @@ export default class ProfileInfo extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  handleFollow() {
+    if (this.props.followed) {
+      return (e) => {
+        this.props.deleteFollow();
+      }
+    } else {
+      return (e) => {
+        this.props.createFollow();
+      }
+    }
+  }
 
   handleEdit(e) {
     e.preventDefault();
@@ -89,7 +100,7 @@ export default class ProfileInfo extends React.Component {
           <li className="profile-info-first">
             <div className="user-text">{this.props.user.username}</div>
             {this.props.user.id === this.props.currentUser ? (<div className="profile-info-first-svg" onClick={this.handleEdit}><i className="fas fa-cog fa-2x"></i></div>) :
-              (<button type="button" onClick={this.props.createFollow}>{followPrompt}</button>)}
+              (<button type="button" onClick={this.handleFollow()}>{followPrompt}</button>)}
             {this.props.user.id === this.props.currentUser ? <button type="button" onClick={this.props.openCreateModal}>New Post</button> : ''}
             {this.props.user.id === this.props.currentUser ? <button type="button" onClick={this.props.logout}>Logout</button> : ''}
           </li>
