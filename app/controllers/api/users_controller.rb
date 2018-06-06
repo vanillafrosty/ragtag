@@ -51,7 +51,11 @@ class Api::UsersController < ApplicationController
 
   def search
     @users = User.where("username LIKE ?", "#{params[:searchStr]}%")
-    render :search
+    if @users.length == 0
+      render json: { 0 => "No results" }
+    else
+      render :search
+    end
   end
 
 
