@@ -18,7 +18,8 @@ class Api::PostsController < ApplicationController
       # render :index
       @followed_users = current_user.followed_people
       @posts = Post.where(user_id: @followed_users).includes(:user, :likes, {comments: :user})
-      @posts = @posts.page(1)
+      @posts = @posts.page(params[:page])
+      # debugger
 
       render :index
     elsif (params[:type] == "user") #user show

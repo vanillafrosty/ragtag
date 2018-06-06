@@ -7,7 +7,7 @@ export const CLEAR_POST_ERRORS = 'CLEAR_POST_ERRORS';
 export const RECEIVE_INDEX = 'RECEIVE_INDEX';
 export const CLEAR_POSTS = 'CLEAR_POSTS';
 export const REMOVE_POST = 'REMOVE_POST';
-
+export const ADD_INDEX = 'ADD_INDEX';
 
 export const removePost = (post) => {
   return {
@@ -27,6 +27,15 @@ export const receivePosts = (data) => {
 export const receiveIndex = (data) => {
   return {
     type: RECEIVE_INDEX,
+    posts: data.posts,
+    users: data.users,
+    comments: data.comments
+  };
+};
+
+export const receiveAdditional = (data) => {
+  return {
+    type: ADD_INDEX,
     posts: data.posts,
     users: data.users,
     comments: data.comments
@@ -59,18 +68,19 @@ export const clearErrors = () => {
   };
 };
 
-// export const fetchPosts = (params) => {
-//   return (dispatch) => {
-//     return ApiUtil.fetchPosts(params).then( data => {
-//       return dispatch(receivePosts(data));
-//     });
-//   };
-// };
 
-export const fetchIndex = () => {
+export const fetchIndex = (page) => {
   return (dispatch) => {
-    return ApiUtil.fetchPosts({ type: 'index' }).then( data => {
+    return ApiUtil.fetchPosts({ type: 'index', page: page }).then( data => {
       return dispatch(receiveIndex(data));
+    });
+  };
+}
+
+export const addIndex = (page) => {
+  return (dispatch) => {
+    return ApiUtil.fetchPosts({ type: 'index', page: page }).then( data => {
+      return dispatch(receiveAdditional(data));
     });
   };
 }

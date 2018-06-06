@@ -2,7 +2,7 @@ import React from 'react';
 import Sidebar from './sidebar';
 import { connect } from 'react-redux';
 import PostIndexItemContainer from './post_index_item_container';
-import { fetchIndex, clearPosts } from '../../actions/post_actions';
+import { fetchIndex, addIndex, clearPosts } from '../../actions/post_actions';
 import { selectFollowed } from '../../reducers/selectors';
 import _ from 'lodash';
 
@@ -18,8 +18,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchIndex: () => dispatch(fetchIndex()),
-    clearPosts: () => dispatch(clearPosts())
+    fetchIndex: (page) => dispatch(fetchIndex(page)),
+    clearPosts: () => dispatch(clearPosts()),
+    addPosts: (page) => dispatch(addIndex(page))
   };
 };
 
@@ -27,14 +28,35 @@ class FeedContainer extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      page: 1
+    }
+    this.onScroll = this.onScroll.bind(this);
+    this.timeout = false;
   }
 
   componentDidMount() {
-    this.props.fetchIndex();
+    // debugger;
+    this.props.fetchIndex(this.state.page);
+    window.addEventListener("scroll", this.onScroll);
   }
 
   componentWillUnmount() {
     this.props.clearPosts();
+    window.removeEventListener("scroll", this.onScroll);
+  }
+
+  onScroll() {
+    if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 60) && !this.timeout) {
+      // debugger;
+      this.timeout = true;
+      this.props.addPosts(this.state.page+1).then( resp => {
+        this.setState({
+          page: this.state.page+1
+        });
+      });
+      setTimeout(() => {this.timeout = false}, 500);
+    }
   }
 
   render() {

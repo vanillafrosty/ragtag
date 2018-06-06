@@ -1,6 +1,6 @@
 import merge from 'lodash/merge';
 
-import { RECEIVE_INDEX } from '../actions/post_actions';
+import { RECEIVE_INDEX, ADD_INDEX } from '../actions/post_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_FOLLOW, REMOVE_FOLLOW } from '../actions/follow_actions';
 import { RECEIVE_USER } from '../actions/user_actions';
@@ -26,6 +26,8 @@ const usersReducer = (state = {}, action) => {
       return merge({}, state, { [action.user.id]: action.user });
     case RECEIVE_INDEX:
       return action.users;
+    case ADD_INDEX:
+      return merge({}, state, action.users);
     default:
       return state;
   }
