@@ -30,7 +30,10 @@ export default class SearchResults extends React.Component {
       searchedArr = [];
     } else {
       if (typeof this.props.searchedUsers[0] === 'string') {
-        searchedArr = "No results";
+        searchedArr = (
+          <li className="search-results-li">
+            <div className="search-results-none">No results</div>
+          </li>);
       } else {
         searchedArr = this.props.searchedUsers.map( user => {
           return (

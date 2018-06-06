@@ -67,6 +67,7 @@
 }
 
 .search-results-li {
+  text-align: right;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -86,6 +87,10 @@
 .search-results li:first-child {
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
+}
+
+.search-results-none {
+  margin: auto;
 }
 
 .search-results-img {
