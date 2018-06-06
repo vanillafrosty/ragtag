@@ -109,6 +109,14 @@ export const fetchUserShow = (params) => {
   };
 };
 
+export const addUserShow = (params) => {
+  return (dispatch) => {
+    return ApiUtil.fetchPosts(params).then( data => {
+      return dispatch(receiveAdditional(data));
+    });
+  };
+}
+
 export const createPost = (post) => {
   return (dispatch) => {
     return ApiUtil.createPost(post).then( post => {

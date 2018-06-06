@@ -36,7 +36,6 @@ class FeedContainer extends React.Component {
   }
 
   componentDidMount() {
-    // debugger;
     this.props.fetchIndex(this.state.page);
     window.addEventListener("scroll", this.onScroll);
   }

@@ -14,7 +14,8 @@ class Api::PostsController < ApplicationController
     elsif (params[:type] == "user") #user show
       @user = User.find(params[:id])
       if @user
-        @posts = @user.posts.includes(:likes, {comments: :user})
+        @posts = @user.posts.order(created_at: :desc).includes(:likes, {comments: :user}).page(params[:page]).per(9)
+        @page_offset = (params[:page].to_i-1)*9 #9 posts per user show page
         render :indexShow
       else
         render json: ['Cannot find user with that ID'], status: 422
