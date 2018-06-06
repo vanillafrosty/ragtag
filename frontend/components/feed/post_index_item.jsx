@@ -26,7 +26,9 @@ export default class PostIndexItem extends React.Component {
   handleKeyDown(e) {
     if (e.key === 'Enter') {
       e.preventDefault();
-      this.props.createComment(this.state);
+      if (this.state.body.length > 0) {
+        this.props.createComment(this.state);
+      }
       this.setState({ body: '' });
     }
   }
