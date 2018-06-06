@@ -13,6 +13,7 @@ export default class PostExplore extends React.Component {
       commentBody: '',
       post_id: this.props.post.id,
     };
+    this.focusTextarea = this.focusTextarea.bind(this);
   }
 
 
@@ -51,6 +52,11 @@ export default class PostExplore extends React.Component {
     }
   }
 
+  focusTextarea() {
+    const textArea = document.getElementById(this.state.post_id + '');
+    textArea.focus();
+  }
+
 
   render() {
 
@@ -79,7 +85,7 @@ export default class PostExplore extends React.Component {
             <ul className="post-show-sidebar-info">
               <li className="post-show-sidebar-info-first">
                 <div className={heartColor} onClick={this.handleLike()}><i className="fas fa-heart fa-lg"></i></div>
-                <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
+                <div className="sidebar-icon" onClick={this.focusTextarea}><i className="far fa-comment fa-lg"></i></div>
               </li>
               <li className="post-show-sidebar-info-second">
                 <h3>{`${this.props.post.likes.length} ${this.props.post.likes.length !== 1 ? 'likes':'like'}`}</h3>
@@ -88,7 +94,7 @@ export default class PostExplore extends React.Component {
               {comments}
             </ul>
             <div className="comment-submit">
-              <textarea className="comment-textarea" maxLength="280" placeholder="Add a comment..."
+              <textarea id={this.state.post_id} className="comment-textarea" maxLength="280" placeholder="Add a comment..."
                 onKeyDown={this.handleKeyDown} onChange={this.handleChange('commentBody')} value={this.state.commentBody}>
               </textarea>
             </div>
