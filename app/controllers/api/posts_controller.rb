@@ -16,7 +16,7 @@ class Api::PostsController < ApplicationController
       # @posts = @posts.slice(0,10)
       #
       # render :index
-      @posts = Post.where(user_id: current_user.followed_people)
+      @posts = Post.where(user_id: current_user.followed_people).includes(:user, :likes, {comments: :user})
       @posts = @posts.shuffle.slice(0,10)
 
       render :index
