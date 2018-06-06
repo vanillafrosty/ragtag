@@ -44,10 +44,12 @@ export default class PostExplore extends React.Component {
   handleKeyDown(e) {
     if (e.key === 'Enter') {
       e.preventDefault();
-      this.props.createComment({
-        post_id: this.state.post_id,
-        body: this.state.commentBody
-      });
+      if (this.state.commentBody.length > 0){
+        this.props.createComment({
+          post_id: this.state.post_id,
+          body: this.state.commentBody
+        });
+      }
       this.setState({ commentBody: '' });
     }
   }
