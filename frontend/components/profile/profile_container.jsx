@@ -66,6 +66,9 @@ class ProfileContainer extends React.Component {
       this.props.fetchUserShow({ type: "user", id: id }).then(null, resp => {
         this.props.history.push(`/user/${prevId}`);
       });
+      this.setState({
+        page: 1
+      });
     }
   }
 
