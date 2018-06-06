@@ -1,19 +1,14 @@
 comments_arr = []
-# users_arr = []
-# seen_users = {}
 
 json.posts do
-  @posts.each do |post|
+  @posts.each_with_index do |post, ind|
     json.set! post.id do
       json.extract! post, :id, :body, :user_id
       json.img_url asset_path(post.image.url)
       json.likes post.likes.map{ |like| like.user_id }
       json.comments post.comments.pluck(:id)
+      json.order ind+@page_offset
       comments_arr.concat(post.comments)
-      # if (!seen_users[post.user.id])
-      #   users_arr.push(post.user)
-      #   seen_users[post.user.id] = true
-      # end
     end
   end
 end

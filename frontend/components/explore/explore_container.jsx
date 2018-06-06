@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
   let currentUser = state.entities.users[state.session.id];
   return {
     currentUser: currentUser,
-    posts: _.values(state.entities.posts)
+    posts: _.values(state.entities.posts).sort((a,b) => a.order - b.order)
   };
 };
 

@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
   let followedUsers = selectFollowed(state.entities.users, currentUser);
   return {
     currentUser: currentUser,
-    posts: _.values(state.entities.posts),
+    posts: _.values(state.entities.posts).sort((a,b) => a.order - b.order),
     followedUsers: followedUsers
   };
 };
@@ -60,6 +60,7 @@ class FeedContainer extends React.Component {
   }
 
   render() {
+    debugger;
     const post_containers = this.props.posts.map( post => {
       return <PostIndexItemContainer key={post.id} post={post}
         currentUser={this.props.currentUser} />

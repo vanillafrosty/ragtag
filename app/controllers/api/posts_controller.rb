@@ -8,8 +8,8 @@ class Api::PostsController < ApplicationController
     if (params[:type] == "index") #home feed
       #nested includes takes care of all potential N+1 queries
       @followed_users = current_user.followed_people
-      @posts = Post.where(user_id: @followed_users).includes(:user, :likes, {comments: :user}).order(:created_at).page(params[:page])
-
+      @posts = Post.where(user_id: @followed_users).includes(:user, :likes, {comments: :user}).order(created_at: :desc).page(params[:page])
+      @page_offset = (params[:page].to_i-1)*5 #5 is the default posts per page
       render :index
     elsif (params[:type] == "user") #user show
       @user = User.find(params[:id])
@@ -20,8 +20,8 @@ class Api::PostsController < ApplicationController
         render json: ['Cannot find user with that ID'], status: 422
       end
     elsif (params[:type] == "explore") #explore page
-      # @posts = Post.order("RANDOM()").limit(24).includes(:user, :likes, {comments: :user})
-      @posts = Post.order(:created_at).includes(:user, :likes, {comments: :user}).page(params[:page]).per(12)
+      @posts = Post.order(created_at: :desc).includes(:user, :likes, {comments: :user}).page(params[:page]).per(12)
+      @page_offset = (params[:page].to_i-1)*12 #12 is the posts per explore page
       render :explore
     else
       render json: ['Invalid request type'], status: 422
