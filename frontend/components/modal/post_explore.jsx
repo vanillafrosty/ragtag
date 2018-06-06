@@ -74,7 +74,7 @@ export default class PostExplore extends React.Component {
                 <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
               </li>
               <li className="post-show-sidebar-info-second">
-                <h3>{this.props.post.likes.length} likes</h3>
+                <h3>{`${this.props.post.likes.length} ${this.props.post.likes.length !== 1 ? 'likes':'like'}`}</h3>
               </li>
               <PostCaption user={currentUser} post={this.props.post} closeModal={this.props.closeModal} />
               {comments}
