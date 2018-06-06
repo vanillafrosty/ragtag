@@ -105,8 +105,8 @@ export default class ProfileInfo extends React.Component {
             {this.props.user.id === this.props.currentUser ? <button type="button" onClick={this.props.logout}>Logout</button> : ''}
           </li>
           <li className="profile-info-second">
-            <div className="profile-text">{`${this.props.posts.length} posts`}</div>
-            <div className="profile-text">{`${this.props.user.follows.length} followers`}</div>
+            <div className="profile-text">{`${this.props.posts.length} ${this.props.posts.length !== 1 ? 'posts':'post'}`}</div>
+            <div className="profile-text">{`${this.props.user.follows.length} ${this.props.user.follows.length !== 1 ? 'followers':'follower'}`}</div>
           </li>
           <li className="profile-info-third">
             {this.state.editing === false ? <h3 className="profile-bio">{this.props.user.bio}</h3> :
