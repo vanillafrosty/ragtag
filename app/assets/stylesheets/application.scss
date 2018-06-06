@@ -42,10 +42,12 @@ body {
 }
 
 .sidebar-icon {
+  cursor: pointer;
   margin-right: 20px;
 }
 
 .sidebar-icon-red {
+  cursor: pointer;
   margin-right: 20px;
   color: $red;
 }

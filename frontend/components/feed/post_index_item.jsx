@@ -12,6 +12,7 @@ export default class PostIndexItem extends React.Component {
     };
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.focusTextarea = this.focusTextarea.bind(this);
   }
 
 
@@ -44,6 +45,10 @@ export default class PostIndexItem extends React.Component {
     }
   }
 
+  focusTextarea() {
+    const textArea = document.getElementById(this.state.post_id + '');
+    textArea.focus();
+  }
 
   render() {
     const heartColor = this.props.liked ? "sidebar-icon-red" : "sidebar-icon";
@@ -74,7 +79,7 @@ export default class PostIndexItem extends React.Component {
           <ul className="post-index-info">
             <li className="post-index-info-first">
               <div className={heartColor} onClick={this.handleLike()}><i className="fas fa-heart fa-lg"></i></div>
-              <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
+              <div className="sidebar-icon" onClick={this.focusTextarea}><i className="far fa-comment fa-lg"></i></div>
             </li>
             <li className="post-index-info-second">
               <h3>{`${this.props.post.likes.length} ${this.props.post.likes.length !== 1 ? 'likes':'like'}`}</h3>
@@ -83,7 +88,7 @@ export default class PostIndexItem extends React.Component {
             {comments}
           </ul>
           <div className="comment-submit">
-            <textarea className="comment-textarea" maxLength="280" placeholder="Add a comment..."
+            <textarea id={this.state.post_id} className="comment-textarea" maxLength="280" placeholder="Add a comment..."
               onKeyDown={this.handleKeyDown} onChange={this.handleChange} value={this.state.body}>
             </textarea>
           </div>
