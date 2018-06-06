@@ -1,33 +1,26 @@
 class Api::PostsController < ApplicationController
 
   def index
-    #if we want the user's index (home feed), find the current user's
-    #followed posts
-    #if we are navigating to an arbitrary user's profile page...
-    #params = { type: "index"/"user", id: "5" }
-    #we need the current user when rendering the sidebar, so we do this.
+    #we generally want the current user always in our state
     #remember that without the below, the users slice of state will be
     #replaced by only all the followed users of current_user
-    #we also just generally want the current user always in our state
     @current_user = current_user
-    if (params[:type] == "index")
+    if (params[:type] == "index") #home feed
       #nested includes takes care of all potential N+1 queries
-      @followed_users = current_user.followed_people.includes(posts: [:likes, {comments: :user}])
-      @posts = []
-      #we don't really need a nested array when sending @posts back up
-      # to our json view...so we concat.
-      #we don't want to return up a user if he/she has no posts, that's
-      #unecessary data
-      #ACTUALLY may want to remove the check for length...
-      #if we want to render a number/list of people that current user
-      #is following on the index sidebar. make it a todo
-      @followed_users.each do |user|
-        @posts.concat(user.posts)
-      end
-      @posts.shuffle!
-      @posts = @posts.slice(0,10)
+      # @followed_users = current_user.followed_people.includes(posts: [:likes, {comments: :user}])
+      # @posts = []
+      # @followed_users.each do |user|
+      #   @posts.concat(user.posts)
+      # end
+      # @posts.shuffle!
+      # @posts = @posts.slice(0,10)
+      #
+      # render :index
+      @posts = Post.where(user_id: current_user.followed_people)
+      @posts = @posts.shuffle.slice(0,10)
+
       render :index
-    elsif (params[:type] == "user")
+    elsif (params[:type] == "user") #user show
       @user = User.find(params[:id])
       if @user
         @posts = @user.posts.includes(:likes, {comments: :user})
@@ -35,7 +28,7 @@ class Api::PostsController < ApplicationController
       else
         render json: ['Cannot find user with that ID'], status: 422
       end
-    elsif (params[:type] == "explore")
+    elsif (params[:type] == "explore") #explore page
       #activeRecord can order by created_at, which we may do later. for now,
       #random may actually make the explore page look more random.
       @posts = Post.order("RANDOM()").limit(24).includes(:user, :likes, {comments: :user})
