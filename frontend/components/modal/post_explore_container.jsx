@@ -2,7 +2,7 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import PostExplore from './post_explore';
-import { createLike } from '../../actions/like_actions';
+import { createLike, deleteLike } from '../../actions/like_actions';
 import { createComment } from '../../actions/comment_actions';
 import { selectPostComments } from '../../reducers/selectors';
 
@@ -29,6 +29,7 @@ const mapDispatchToProps = dispatch => {
   return {
     closeModal: () => dispatch(closeModal()),
     createLike: (id) => dispatch(createLike(id)),
+    deleteLike: (id) => dispatch(deleteLike(id)),
     createComment: (comment) => dispatch(createComment(comment))
   };
 };

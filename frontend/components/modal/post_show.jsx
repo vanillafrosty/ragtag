@@ -7,7 +7,6 @@ export default class PostShow extends React.Component {
 
   constructor(props){
     super(props);
-    this.handleLike = this.handleLike.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
     this.handleCommentKeyDown = this.handleCommentKeyDown.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
@@ -25,17 +24,19 @@ export default class PostShow extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.props.fetchCommentsAndUsers(this.props.post.id);
-  // }
-  //
-  // componentWillUnmount() {
-  //   this.props.clearComments();
-  // }
 
-  handleLike(e) {
-    e.preventDefault();
-    this.props.createLike(this.props.post.id);
+  handleLike() {
+    if (this.props.liked) {
+      return (e) => {
+        e.preventDefault();
+        this.props.deleteLike(this.props.post.id);
+      }
+    } else {
+      return (e) => {
+        e.preventDefault();
+        this.props.createLike(this.props.post.id);
+      }
+    }
   }
 
   handleEdit(e) {
@@ -170,7 +171,7 @@ export default class PostShow extends React.Component {
           <div className="post-show-all-text">
             <ul className="post-show-sidebar-info">
               <li className="post-show-sidebar-info-first">
-                <div className={heartColor} onClick={this.handleLike}><i className="fas fa-heart fa-lg"></i></div>
+                <div className={heartColor} onClick={this.handleLike()}><i className="fas fa-heart fa-lg"></i></div>
                 <div className="sidebar-icon"><i className="far fa-comment fa-lg"></i></div>
               </li>
               <li className="post-show-sidebar-info-second">

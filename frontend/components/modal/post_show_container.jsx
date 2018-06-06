@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import { updatePost, deletePost } from '../../actions/post_actions';
-import { createLike } from '../../actions/like_actions';
+import { createLike, deleteLike } from '../../actions/like_actions';
 import { createComment } from '../../actions/comment_actions';
 import { selectPostComments } from '../../reducers/selectors';
 
@@ -43,6 +43,7 @@ const mapDispatchToProps = dispatch => {
     updatePost: (post) => dispatch(updatePost(post)),
     deletePost: (id) => { return dispatch(deletePost(id)) },
     createLike: (id) => dispatch(createLike(id)),
+    deleteLike: (id) => dispatch(deleteLike(id)),
     createComment: (comment) => dispatch(createComment(comment))
   };
 };
