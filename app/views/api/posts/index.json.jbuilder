@@ -1,6 +1,6 @@
 comments_arr = []
-users_arr = []
-seen_users = {}
+# users_arr = []
+# seen_users = {}
 
 json.posts do
   @posts.each do |post|
@@ -10,17 +10,17 @@ json.posts do
       json.likes post.likes.map{ |like| like.user_id }
       json.comments post.comments.pluck(:id)
       comments_arr.concat(post.comments)
-      if (!seen_users[post.user.id])
-        users_arr.push(post.user)
-        seen_users[post.user.id] = true
-      end
+      # if (!seen_users[post.user.id])
+      #   users_arr.push(post.user)
+      #   seen_users[post.user.id] = true
+      # end
     end
   end
 end
 
 
 json.users do
-  users_arr.each do |user|
+  @followed_users.each do |user|
     json.set! user.id do
       json.partial! 'api/users/user', user: user
     end
@@ -32,7 +32,7 @@ json.users do
   end
   json.set! @current_user.id do
     json.partial! 'api/users/user', user: @current_user
-    json.followedUsers users_arr.map{ |user| user.id }
+    json.followedUsers @followed_users.pluck(:id)
   end
 end
 
