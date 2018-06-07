@@ -49,7 +49,7 @@ Ragtag is a photo sharing social platform inspired by Instagram. Share your expe
 
 ### User Search
 * As a user updates the searchbar with their input, AJAX requests are sent to the database to search for users. 
-* This search is **debounced**. An AJAX request isn't sent until some time has passed, meaning the user has enough time to finish typing their desired input and then shoot off one request. Debouncing prevents an AJAX request from firing on every letter the user types in a predetermined multi-character string search.
+* This search is **debounced**. An AJAX request isn't sent until some time has passed, meaning the user has enough time to finish typing their desired input and then shoot off one single request. Debouncing prevents an AJAX request from firing on every letter the user types in a predetermined multi-character string search.
 
 ### Infinite Scroll
 * Posts on any page (home, user profile, or explore) are not fetched all at once. Rather, additional posts are fetched and displayed when the user scrolls down far enough on the page.
