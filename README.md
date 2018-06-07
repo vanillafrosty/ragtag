@@ -1,6 +1,6 @@
 # Welcome to Ragtag!
 
-[Live!](https://ragtag-io.herokuapp.com/)
+[Live!](https://www.ragtagapp.com/)
 
 Ragtag is a photo sharing social platform inspired by Instagram. Share your experiences through photography and follow your friends as they share their own. Join today and help build our community!
 
@@ -43,7 +43,28 @@ Ragtag is a photo sharing social platform inspired by Instagram. Share your expe
 	- Followers
 
 
-## Technologies
+
+
+## Notable Technical Features
+
+### User Search
+* As a user updates the searchbar with their input, AJAX requests are sent to the database to search for users. 
+* This search is **debounced**. An AJAX request isn't sent until some time has passed, meaning the user has enough time to finish typing their desired input and then shoot off one request. Debouncing prevents an AJAX request from firing on every letter the user types in a predetermined multi-character string search.
+
+### Infinite Scroll
+* Posts on any page (home, user profile, or explore) are not fetched all at once. Rather, additional posts are fetched and displayed when the user scrolls down far enough on the page.
+* Benefits
+    * This gives us better performance compared to fetching all posts at once. 
+    * Posts are easier to scroll through and read when there are less posts on the page.
+    * User is unlikely to want to see all the posts on every page, so adding a few at a time is preferred. 
+* Fetching of additional posts is **throttled**. This means that additional posts can only be fetched once every N milliseconds.
+    * This ensures that only one fetch for additional posts is fired when the user scrolls to the bottom of the page. The page then expands and the user can look through the new posts before reaching the new bottom of the page and sending another AJAX request to fetch more posts. 
+
+
+
+
+
+## Technology Stack
 
 Ragtag is a single-page app with one back-end route responsible for rendering HTML. As users interact with the site, AJAX requests are sent to the API routes in the back-end, which are responsible for rendering database information in JSON format.
 
