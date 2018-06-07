@@ -49,7 +49,9 @@ Ragtag is a photo sharing social platform inspired by Instagram. Share your expe
 
 ### User Search
 * As a user updates the searchbar with their input, AJAX requests are sent to the database to search for users. 
-* This search is **debounced**. An AJAX request isn't sent until some time has passed, meaning the user has enough time to finish typing their desired input and then shoot off one single request. Debouncing prevents an AJAX request from firing on every letter the user types in a predetermined multi-character string search.
+* This search is **debounced**. 
+    * An AJAX request isn't sent until some time has passed, meaning the user has enough time to finish typing their desired input and then shoot off one single request. 
+    * If the user wants to search for "david", debouncing ensures we fire one AJAX request to search for "david" when the user is done typing, as opposed to firing five requests (one on every letter). 
 
 ### Infinite Scroll
 * Posts on any page (home, user profile, or explore) are not fetched all at once. Rather, additional posts are fetched and displayed when the user scrolls down far enough on the page.
@@ -57,7 +59,8 @@ Ragtag is a photo sharing social platform inspired by Instagram. Share your expe
     * This gives us better performance compared to fetching all posts at once. 
     * Posts are easier to scroll through and read when there are less posts on the page.
     * User is unlikely to want to see all the posts on every page, so adding a few at a time is preferred. 
-* Fetching of additional posts is **throttled**. This means that additional posts can only be fetched once every N milliseconds.
+* Fetching of additional posts is **throttled**. 
+    * Additional posts can only be fetched once every N milliseconds.
     * This ensures that only one fetch for additional posts is fired when the user scrolls to the bottom of the page. The page then expands and the user can look through the new posts before reaching the new bottom of the page and sending another AJAX request to fetch more posts. 
 
 
